@@ -1626,6 +1626,10 @@
 <p>主页：<a href="https://mathpix.com/">Mathpix Snip</a></p>
 <h2 id="glade">glade</h2>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo snap install glade</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="scienceplots">SciencePlots</h2>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pip install SciencePlots</span><br></pre></td></tr></tbody></table></figure>
+<p>用latex时报错了：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"></span><br><span class="line">fmtutil-sys --all</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/59423.html">https://yuhldr.github.io/posts/59423.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
@@ -3041,7 +3045,21 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
   <entry>
     <title>mac10.15配置latex格式化</title>
     <url>/posts/14097.html</url>
-    <content><![CDATA[<p>mac10.15</p>
+    <content><![CDATA[<p>参考这里的：<a href="https://latexindentpl.readthedocs.io/en/latest/appendices.html">12. Appendices — latexindent.pl 3.13.2 documentation</a></p>
+<h2 id="ubuntu">ubuntu</h2>
+<p>报错这个</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Can<span class="string">'t locate YAML/Tiny.pm in @INC (you may need to install the YAML::Tiny module) </span></span><br></pre></td></tr></tbody></table></figure>
+<p>按照官网的，<code>sudo cpan -i App::cpanminus</code> 这一步卡住了，这一步我是这么干的</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt install cpanminus</span><br></pre></td></tr></tbody></table></figure>
+<p>还需要这个</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo cpanm Log::Dispatch</span><br></pre></td></tr></tbody></table></figure>
+<p>整体是</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt install perl</span><br><span class="line">sudo apt install cpanminus</span><br><span class="line">sudo cpanm YAML::Tiny</span><br><span class="line">sudo cpanm File::HomeDir</span><br><span class="line">sudo cpanm Unicode::GCString</span><br><span class="line">sudo cpanm Log::Dispatch</span><br></pre></td></tr></tbody></table></figure>
+<p>后三步，需要一分钟左右，慢慢等</p>
+<p>可还报错，我又把latexindent更新了，方法：进入root更新latex库</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"></span><br><span class="line">tlmgr update --self</span><br><span class="line"></span><br><span class="line">tlmgr update latexindent</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="macos">macos</h2>
+<p>mac10.15</p>
 <p>vscode格式化latex时报错</p>
 <p><code>Formatting failed. Please refer to LaTeX Workshop Output for details.</code></p>
 <p>并且按照之前的mac系统，运行以下也不行，仍然提示缺少<code>File::HomeDir</code></p>
@@ -3675,10 +3693,17 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/yuhldr/lammps.git</span><br></pre></td></tr></tbody></table></figure>
 <p>防止污染</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lammps &amp;&amp; mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br></pre></td></tr></tbody></table></figure>
+<p>需要依赖：多核并行、输出视频</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev ffmpeg gzip</span><br></pre></td></tr></tbody></table></figure>
 <p>暂时不配置GPU，先占位</p>
 <p>需要哪些包自己加。我只用PKG_MANYBODY和BUILD_OMP</p>
 <p>官方文档很详细 <a href="https://lammps.sandia.gov/doc/Build_cmake.html">官方文档</a></p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes  -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on ../cmake</span><br></pre></td></tr></tbody></table></figure>
+<p>我只用到了并行和<code>PKG_MANYBODY</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes ../cmake</span><br></pre></td></tr></tbody></table></figure>
+<p>如果需要python接口</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on ../cmake</span><br></pre></td></tr></tbody></table></figure>
+<p>GPU需要这个</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes  -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on -D PKG_GPU=on -D GPU_API=cuda ../cmake</span><br></pre></td></tr></tbody></table></figure>
 <p>如果 make -j 4会用4个核心编译，如果make -j使用所有cpu，容易卡住</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake --build . -j5</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake --install .</span><br></pre></td></tr></tbody></table></figure>
