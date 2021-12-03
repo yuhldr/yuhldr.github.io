@@ -2322,15 +2322,7 @@ D(0)=1 \quad D(\pm 2N)=-1 \quad D(*)=0
 <p><a href="https://www.mendeley.com/guides/download-mendeley-desktop/ubuntu/instructions">官网</a> 给的apt不能安装，用它的<code>deb</code>吧</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">wget https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest</span><br><span class="line"></span><br><span class="line">sudo dpkg -i mendeleydesktop-latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一般会有依赖失败</span></span><br><span class="line">sudo apt install -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新安装</span></span><br><span class="line">sudo dpkg -i mendeleydesktop-latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除刚才下载文件</span></span><br><span class="line">rm mendeleydesktop-latest</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="lammps">lammps</h3>
-<p>貌似可以apt安装，但是不建议，因为自己一般用的包很少，而且movie这些命令需要一些依赖，GPU、Python配置也需要</p>
-<p>编译安装的源码在这里，也可以看 <a href="https://docs.lammps.org/Build_cmake.html">官网安装</a>，<a href="https://docs.lammps.org/Build_extras.html#gpu">GPU加速</a>，<a href="https://docs.lammps.org/Python_install.html">python接口</a></p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 下载源码，太慢的话，看下面的</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/lammps/lammps.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 国内太慢，可以在这里下载</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/yuhldr/lammps.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入文件</span></span><br><span class="line"><span class="built_in">cd</span> lammps &amp;&amp; mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># movie命令需要 gzip ffmpeg</span></span><br><span class="line">sudo apt install ffmpeg gzip cmake</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译配置选项</span></span><br><span class="line"><span class="comment"># 1. 我用的airebo，需要这个：-D PKG_MANYBODY=yes</span></span><br><span class="line"><span class="comment"># 2. 这个也有用：-D BUILD_OMP=yes</span></span><br><span class="line"><span class="comment"># 3. 如果已经按照最上面配置了cuda，可以支持GPU：-D PKG_GPU=on -D GPU_API=cuda</span></span><br><span class="line"><span class="comment"># 4. 如果支持Python：-D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on</span></span><br><span class="line"></span><br><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes  -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on -D PKG_GPU=on -D GPU_API=cuda ../cmake</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译，5可以去掉，会用所有cpu核心编译，更快</span></span><br><span class="line">cmake --build . -j5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">cmake --install .</span><br></pre></td></tr></tbody></table></figure>
-<p>配置路径，没这个有时会报错，尤其是支持 <code>python</code> 和 <code>GPU</code></p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你没有用zsh，编辑这个文件</span></span><br><span class="line">vim ~./bashrc</span><br></pre></td></tr></tbody></table></figure>
-<p>末尾添加如下</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$HOME</span>/.<span class="built_in">local</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></tbody></table></figure>
-<p>编译pdf手册</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 按照前文配置texlive， 并安装如下依赖</span></span><br><span class="line">sudo apt-get install python-virtualenv git doxygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入源码doc目录</span></span><br><span class="line"><span class="built_in">cd</span> lammps/doc</span><br><span class="line">make pdf</span><br></pre></td></tr></tbody></table></figure>
+<p><a href="./320.html">看这里</a></p>
 <h3 id="code-server">code-server</h3>
 <p>在线编辑器，基于theia</p>
 <p>项目位置 <a href="https://github.com/cdr/code-server">github开源</a></p>
@@ -3683,7 +3675,9 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
   <entry>
     <title>Ubuntu系统源码编译安装LAMMPS</title>
     <url>/posts/320.html</url>
-    <content><![CDATA[<p>官网很详细，也可以去github提问，作者回复很不错</p>
+    <content><![CDATA[<p>貌似可以apt安装，但是不建议，因为自己一般用的包很少，而且movie这些命令需要一些依赖，GPU、Python配置也需要</p>
+<p>编译安装的源码在这里，也可以看 <a href="https://docs.lammps.org/Build_cmake.html">官网安装</a>，<a href="https://docs.lammps.org/Build_extras.html#gpu">GPU加速</a>，<a href="https://docs.lammps.org/Python_install.html">python接口</a></p>
+<p>官网很详细，也可以去github提问，作者回复很不错</p>
 <p>如果不知道git，百度</p>
 <blockquote>
 <p>github很慢，建议第二个</p>
@@ -3693,8 +3687,8 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/yuhldr/lammps.git</span><br></pre></td></tr></tbody></table></figure>
 <p>防止污染</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lammps &amp;&amp; mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br></pre></td></tr></tbody></table></figure>
-<p>需要依赖：多核并行、输出视频</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev ffmpeg gzip</span><br></pre></td></tr></tbody></table></figure>
+<p>我这里是ubuntu系统，需要依赖：多核并行、输出视频</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev ffmpeg gzip cmake</span><br></pre></td></tr></tbody></table></figure>
 <p>暂时不配置GPU，先占位</p>
 <p>需要哪些包自己加。我只用PKG_MANYBODY和BUILD_OMP</p>
 <p>官方文档很详细 <a href="https://lammps.sandia.gov/doc/Build_cmake.html">官方文档</a></p>
@@ -3703,10 +3697,16 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <p>如果需要python接口</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on ../cmake</span><br></pre></td></tr></tbody></table></figure>
 <p>GPU需要这个</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes  -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on -D PKG_GPU=on -D GPU_API=cuda ../cmake</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 编译配置选项</span></span><br><span class="line"><span class="comment"># 1. 我用的airebo，需要这个：-D PKG_MANYBODY=yes</span></span><br><span class="line"><span class="comment"># 2. 这个也有用：-D BUILD_OMP=yes</span></span><br><span class="line"><span class="comment"># 3. 如果已经按照最上面配置了cuda，可以支持GPU：-D PKG_GPU=on -D GPU_API=cuda</span></span><br><span class="line"><span class="comment"># 4. 如果支持Python：-D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on</span></span><br><span class="line"></span><br><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=yes  -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on -D PKG_GPU=on -D GPU_API=cuda ../cmake</span><br></pre></td></tr></tbody></table></figure>
 <p>如果 make -j 4会用4个核心编译，如果make -j使用所有cpu，容易卡住</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake --build . -j5</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake --install .</span><br></pre></td></tr></tbody></table></figure>
+<p>配置路径，没这个有时会报错，尤其是支持 <code>python</code> 和 <code>GPU</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你没有用zsh，编辑这个文件</span></span><br><span class="line">vim ~./bashrc</span><br></pre></td></tr></tbody></table></figure>
+<p>末尾添加如下</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$HOME</span>/.<span class="built_in">local</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></tbody></table></figure>
+<p>编译pdf手册</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 按照前文配置texlive， 并安装如下依赖</span></span><br><span class="line">sudo apt-get install python-virtualenv git doxygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入源码doc目录</span></span><br><span class="line"><span class="built_in">cd</span> lammps/doc</span><br><span class="line">make pdf</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/320.html">https://yuhldr.github.io/posts/320.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
