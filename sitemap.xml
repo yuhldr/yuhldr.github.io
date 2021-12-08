@@ -354,34 +354,6 @@
   </url>
   
   <url>
-    <loc>https://yuhldr.github.io/tags/mac%E7%BB%88%E7%AB%AF/</loc>
-    <lastmod>2021-12-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/windows%E7%BB%88%E7%AB%AF/</loc>
-    <lastmod>2021-12-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/clash/</loc>
-    <lastmod>2021-12-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/VPN/</loc>
-    <lastmod>2021-12-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yuhldr.github.io/tags/python-selenium%E6%A8%A1%E6%8B%9F%E7%82%B9%E5%87%BB/</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>daily</changefreq>
@@ -411,6 +383,34 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/windows%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AFWSL%E7%9B%B8%E5%85%B3%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/mac%E7%BB%88%E7%AB%AF/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/windows%E7%BB%88%E7%AB%AF/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/clash/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/VPN/</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -621,6 +621,13 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/vscode%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2021-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/icpcs/</loc>
     <lastmod>2021-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
