@@ -1265,9 +1265,9 @@
 <h2 id="slurm-初步了解">slurm 初步了解</h2>
 <p>一般情况下，一台服务器(<code>master</code>)即主节点用来登录，提交程序，另外一堆服务器(<code>node1</code> <code>node2</code> <code>node3</code> ... <code>nodex</code> ..)用来计算，这些服务器需要有</p>
 <ul>
-<li>一个共同的 linux 账户管理系统，方便快速创建 linux 用户，暂时不管这个（可以用 yp），</li>
-<li>需要时间同步，暂时也不管这个</li>
-<li>需要有一块硬盘在每一个服务器上都能访问上面的数据，方便计算，暂时也不管这个</li>
+<li>一个共同的 linux 账户管理系统，方便快速创建 linux 用户，暂时不管这个（可以用NIS协议：ypbind，yp-tools），</li>
+<li>需要时间同步，暂时也不管这个（可以用网络时间协议: ntp）</li>
+<li>需要有一块硬盘在每一个服务器上都能访问上面的数据，方便计算，暂时也不管这个（可以用网络文件系统 NFS）</li>
 </ul>
 <p>因为下面都是以单机（就只有一台电脑，既可以提交程序，也可以计算程序）为例，其他先不管</p>
 <p><code>slurm</code> 一般意义上包含 3 个程序</p>
@@ -1470,6 +1470,10 @@
 <p>看这里 ：<a href="/posts/d8e81662.html">服务器与 SLURM 的使用</a></p>
 <h2 id="lammps编译安装">LAMMPS编译安装</h2>
 <p>看这里 ：<a href="/posts/320.html">Linux系统源码编译安装LAMMPS</a></p>
+<p>slurm提交请注意</p>
+<p>申请一个核心一个线程，才最快即</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">srun -n 72  --ntasks-per-core 1  --mem=5G lmp -<span class="keyword">in</span> file.in</span><br></pre></td></tr></tbody></table></figure>
+<p>72为核心数，<code>--ntasks-per-core</code> 代表一个核心一个进程 <code>--mem=5G</code> 申请的内存，<code>file.in</code> lammps脚本文件名</p>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/bfa79f01.html">https://yuhldr.github.io/posts/bfa79f01.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
@@ -3758,12 +3762,15 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes ../cmake</span><br><span class="line"></span><br><span class="line">改为</span><br><span class="line"></span><br><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_OMP=no -D BUILD_MPI=no  ../cmake</span><br></pre></td></tr></tbody></table></figure>
 <p>其他不变</p>
 <h4 id="支持mpi">支持mpi</h4>
-<p>必须保证编译lampps时openmpi与slurm集群支持的 mpi 是否一致，先查看slurm集群支持什么</p>
+<blockquote>
+<p>如果在 <code>slurm</code> 集群上运行，必须保证编译 <code>lampps</code> 时 <code>openmpi</code> 与 <code>slurm</code> 集群支持的 <code>mpi</code> 一致，先查看 <code>slurm</code> 集群支持什么</p>
+</blockquote>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">srun --mpi=list</span><br></pre></td></tr></tbody></table></figure>
 <p>一般如下，主要注意有没有pmix，如果 <code>slurm</code> 太过久远或者管理员技术不够的话，没有 <code>pmix</code> 的选项</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">srun: MPI types are...</span><br><span class="line">srun: pmix</span><br><span class="line">srun: pmix_v3</span><br><span class="line">srun: cray_shasta</span><br><span class="line">srun: none</span><br><span class="line">srun: pmi2</span><br></pre></td></tr></tbody></table></figure>
 <p>如果集群管理员技术还可以，支持 <code>pmix_v3</code> 的话，系统里是有对应的 <code>openmpi</code> 的，输入 <code>ompi_info</code> 可以看到 <code>openmpi</code> 相关信息，其中有一条 <code>MPI API</code> 必须与 <code>slurm</code> 的对应</p>
-<p>如果连 <code>pmix</code> 的选项都没有的话，你让管理员去看一下 ，安装合适的 <code>slurm</code> 和 <code>openmpi</code>，如果只是没有合适的 <code>openmpi</code>，自己按照那个博客编译一个合适的 <code>openmpi</code> 也行</p>
+<p>如果连 <code>pmix</code> 的选项都没有的话，你让管理员去看一下这个文章：<a href="/posts/bfa79f01.html">slurm集群安装与踩坑详解</a>，安装合适的 <code>slurm</code> 和 <code>openmpi</code></p>
+<p>如果只是没有合适的 <code>openmpi</code>，自己按照那个博客编译一个合适的 <code>openmpi</code> 也行</p>
 <p>如果 <code>openmpi</code> 已经合适了，删除 <code>build</code> 文件夹，重新编译即可</p>
 <h3 id="环境变量">环境变量</h3>
 <p>配置路径，没这个有时会报错，尤其是支持 <code>python</code> 和 <code>GPU</code></p>
