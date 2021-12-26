@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2021-12-26T10:25:41.422Z</updated>
+  <updated>2021-12-26T13:14:41.855Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/d8e81662.html"/>
     <id>https://yuhldr.github.io/posts/d8e81662.html</id>
     <published>2021-12-26T09:54:15.000Z</published>
-    <updated>2021-12-26T10:25:41.422Z</updated>
+    <updated>2021-12-26T13:14:41.855Z</updated>
     
     
     <summary type="html">icpcs集群内部文档，slurm使用</summary>
@@ -42,7 +42,7 @@
     <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
     <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
     <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2021-12-26T10:15:26.543Z</updated>
+    <updated>2021-12-26T13:19:23.655Z</updated>
     
     
     <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
