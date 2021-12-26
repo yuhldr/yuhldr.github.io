@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2021-11-20T09:18:09.709Z</updated>
+  <updated>2021-12-26T10:25:41.422Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,59 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>slurm集群用户使用指南</title>
+    <link href="https://yuhldr.github.io/posts/d8e81662.html"/>
+    <id>https://yuhldr.github.io/posts/d8e81662.html</id>
+    <published>2021-12-26T09:54:15.000Z</published>
+    <updated>2021-12-26T10:25:41.422Z</updated>
+    
+    
+    <summary type="html">icpcs集群内部文档，slurm使用</summary>
+    
+    
+    
+    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
+    
+    
+    <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
+    
+    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>slurm集群安装与踩坑详解</title>
+    <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
+    <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
+    <published>2021-12-25T15:29:25.000Z</published>
+    <updated>2021-12-26T10:15:26.543Z</updated>
+    
+    
+    <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
+    
+    
+    
+    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
+    
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
+    
+    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
+    
+    <category term="openmpi" scheme="https://yuhldr.github.io/tags/openmpi/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从零开始-开发ubuntu版翻译软件</title>
     <link href="https://yuhldr.github.io/posts/f85bb316.html"/>
     <id>https://yuhldr.github.io/posts/f85bb316.html</id>
     <published>2021-11-11T15:43:14.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:35:43.707Z</updated>
     
     
     <summary type="html">突然膨胀，觉得自己可以开发一个ubuntu的翻译软件，然后就成功了……，效果很不错</summary>
@@ -37,7 +85,7 @@
     
     <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
     
-    <category term="软件开发" scheme="https://yuhldr.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/"/>
+    <category term="gtk" scheme="https://yuhldr.github.io/tags/gtk/"/>
     
   </entry>
   
@@ -46,7 +94,7 @@
     <link href="https://yuhldr.github.io/posts/fa905576.html"/>
     <id>https://yuhldr.github.io/posts/fa905576.html</id>
     <published>2021-11-04T09:10:42.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:35:30.879Z</updated>
     
     
     <summary type="html">终端设置 oh-my-zsh 和 p10k 很方便，但是国内安装如果没有代理，一堆坑，这里处理一下</summary>
@@ -56,7 +104,7 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="终端" scheme="https://yuhldr.github.io/tags/%E7%BB%88%E7%AB%AF/"/>
+    <category term="terminal" scheme="https://yuhldr.github.io/tags/terminal/"/>
     
     <category term="oh-my-zsh" scheme="https://yuhldr.github.io/tags/oh-my-zsh/"/>
     
@@ -130,7 +178,7 @@
     <link href="https://yuhldr.github.io/posts/13877.html"/>
     <id>https://yuhldr.github.io/posts/13877.html</id>
     <published>2021-10-15T10:30:00.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:35:09.663Z</updated>
     
     
     <summary type="html">高阶微分方程，可以用python“数值求解”或者“解析式求解”，很方便，解析式求解有些可能无解，数值求解画图方便一些</summary>
@@ -142,6 +190,8 @@
     
     <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
     
+    <category term="微分方程求解" scheme="https://yuhldr.github.io/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/"/>
+    
   </entry>
   
   <entry>
@@ -149,7 +199,7 @@
     <link href="https://yuhldr.github.io/posts/53634.html"/>
     <id>https://yuhldr.github.io/posts/53634.html</id>
     <published>2021-09-10T10:30:00.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:34:51.015Z</updated>
     
     
     <summary type="html">FPU $\beta$ 模型，32个原子，固定边界条件，各个模式能量被激活规律</summary>
@@ -161,7 +211,7 @@
     
     <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
     
-    <category term="FPU" scheme="https://yuhldr.github.io/tags/FPU/"/>
+    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
     
     <category term="选择定则" scheme="https://yuhldr.github.io/tags/%E9%80%89%E6%8B%A9%E5%AE%9A%E5%88%99/"/>
     
@@ -172,7 +222,7 @@
     <link href="https://yuhldr.github.io/posts/46949.html"/>
     <id>https://yuhldr.github.io/posts/46949.html</id>
     <published>2021-09-09T10:30:00.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:34:46.552Z</updated>
     
     
     <summary type="html">FPU $\alpha$ 模型，32个原子，固定边界条件，投影不同时刻的模式能量，得到各个模式能量变化</summary>
@@ -182,7 +232,7 @@
     <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
     
     
-    <category term="FPU" scheme="https://yuhldr.github.io/tags/FPU/"/>
+    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
     
     <category term="模式能量" scheme="https://yuhldr.github.io/tags/%E6%A8%A1%E5%BC%8F%E8%83%BD%E9%87%8F/"/>
     
@@ -193,7 +243,7 @@
     <link href="https://yuhldr.github.io/posts/28023.html"/>
     <id>https://yuhldr.github.io/posts/28023.html</id>
     <published>2021-09-08T10:30:00.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-25T15:34:41.524Z</updated>
     
     
     <summary type="html">FPU $\alpha$ 模型，32个原子，固定边界条件</summary>
@@ -207,9 +257,9 @@
     
     <category term="振动模式" scheme="https://yuhldr.github.io/tags/%E6%8C%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="FPU" scheme="https://yuhldr.github.io/tags/FPU/"/>
+    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
     
-    <category term="verlet算法" scheme="https://yuhldr.github.io/tags/verlet%E7%AE%97%E6%B3%95/"/>
+    <category term="verlet" scheme="https://yuhldr.github.io/tags/verlet/"/>
     
   </entry>
   
@@ -218,7 +268,7 @@
     <link href="https://yuhldr.github.io/posts/30877.html"/>
     <id>https://yuhldr.github.io/posts/30877.html</id>
     <published>2021-07-10T03:12:00.000Z</published>
-    <updated>2021-12-03T14:29:00.899Z</updated>
+    <updated>2021-12-25T15:31:40.029Z</updated>
     
     
     <summary type="html">ubuntu20.04安装配置clash代理，oh-my-zsh，ssh远程访问，systemctl自启服务管理，fail2ban暴力登录拦截，cuda11.4-470，docker，code-server，nextcloud客户端，idea、AS、pycharm，pip3，lammps，等等</summary>
@@ -228,15 +278,13 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="Docker" scheme="https://yuhldr.github.io/tags/Docker/"/>
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
-    <category term="VPN" scheme="https://yuhldr.github.io/tags/VPN/"/>
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
     
-    <category term="Linux" scheme="https://yuhldr.github.io/tags/Linux/"/>
-    
-    <category term="Lammps" scheme="https://yuhldr.github.io/tags/Lammps/"/>
+    <category term="vpn" scheme="https://yuhldr.github.io/tags/vpn/"/>
     
   </entry>
   
@@ -245,7 +293,7 @@
     <link href="https://yuhldr.github.io/posts/52201.html"/>
     <id>https://yuhldr.github.io/posts/52201.html</id>
     <published>2021-05-08T03:12:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
+    <updated>2021-12-25T15:34:28.196Z</updated>
     
     
     <summary type="html">windows10可以安装Docker Desktop，设置中自动配置WSL2，从而实现WSL2中docker</summary>
@@ -255,9 +303,9 @@
     <category term="Docker" scheme="https://yuhldr.github.io/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://yuhldr.github.io/tags/Docker/"/>
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
-    <category term="WSL" scheme="https://yuhldr.github.io/tags/WSL/"/>
+    <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
     
   </entry>
   
@@ -308,7 +356,7 @@
     <link href="https://yuhldr.github.io/posts/2411.html"/>
     <id>https://yuhldr.github.io/posts/2411.html</id>
     <published>2021-04-22T08:58:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
+    <updated>2021-12-25T15:34:11.336Z</updated>
     
     
     <summary type="html">WSL2简单的安装在其他盘、存储压缩、多个WSL2管理</summary>
@@ -318,7 +366,7 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="WSL" scheme="https://yuhldr.github.io/tags/WSL/"/>
+    <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
     
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
@@ -411,54 +459,6 @@
     <category term="mac" scheme="https://yuhldr.github.io/tags/mac/"/>
     
     <category term="latex" scheme="https://yuhldr.github.io/tags/latex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker配置安装gitlab</title>
-    <link href="https://yuhldr.github.io/posts/21265.html"/>
-    <id>https://yuhldr.github.io/posts/21265.html</id>
-    <published>2020-12-27T03:58:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">docker配置安装gitlab，一堆坑，注意！</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="Docker" scheme="https://yuhldr.github.io/tags/Docker/"/>
-    
-    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>服务器与SLURM的使用</title>
-    <link href="https://yuhldr.github.io/posts/11567.html"/>
-    <id>https://yuhldr.github.io/posts/11567.html</id>
-    <published>2020-12-18T12:58:00.000Z</published>
-    <updated>2021-12-08T11:01:33.485Z</updated>
-    
-    
-    <summary type="html">ssh免密码、免ip远程连接服务器，vscode无感修改、运行远程文件，可下载文件，以及slurm使用入门</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
-    
-    <category term="linux命令入门" scheme="https://yuhldr.github.io/tags/linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/"/>
-    
-    <category term="linux环境变量" scheme="https://yuhldr.github.io/tags/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
-    
-    <category term="vscode使用" scheme="https://yuhldr.github.io/tags/vscode%E4%BD%BF%E7%94%A8/"/>
-    
-    <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
     
   </entry>
   
