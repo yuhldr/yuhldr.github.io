@@ -69,7 +69,7 @@
     <link href="https://yuhldr.github.io/posts/f85bb316.html"/>
     <id>https://yuhldr.github.io/posts/f85bb316.html</id>
     <published>2021-11-11T15:43:14.000Z</published>
-    <updated>2021-12-25T15:35:43.707Z</updated>
+    <updated>2021-12-26T14:17:02.244Z</updated>
     
     
     <summary type="html">突然膨胀，觉得自己可以开发一个ubuntu的翻译软件，然后就成功了……，效果很不错</summary>
@@ -136,7 +136,7 @@
     <link href="https://yuhldr.github.io/posts/59423.html"/>
     <id>https://yuhldr.github.io/posts/59423.html</id>
     <published>2021-10-20T08:51:11.000Z</published>
-    <updated>2021-11-23T13:09:25.921Z</updated>
+    <updated>2022-01-01T01:30:30.480Z</updated>
     
     
     <summary type="html">自己用的一些软件，方便寻找</summary>
@@ -155,7 +155,7 @@
     <link href="https://yuhldr.github.io/posts/25445.html"/>
     <id>https://yuhldr.github.io/posts/25445.html</id>
     <published>2021-10-19T12:42:54.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
+    <updated>2021-12-26T14:16:44.708Z</updated>
     
     
     <summary type="html">hexo中，在`source/images`里放图片，markdown引用路径为`../images/*.png`或者`/source/images/*.png`，但是这样编译出来，图片路径是不对的，这个插件自动修改一下</summary>

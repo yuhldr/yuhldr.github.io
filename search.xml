@@ -1526,7 +1526,7 @@
 <li>有时候一句话在文献里分成上下两页，复制半句翻译有问题，这时候点击左上角 <code>追加</code>，接下来复制的内容，会和前一次的复制内容，一起翻译</li>
 </ol>
 <p>源码以及具体如何使用看这里：</p>
-<p><a href="https://github.com/yuhlzu/ldr-translate.git">开源项目：ldr-translate（兰译）</a></p>
+<p><a href="https://github.com/yuhldr/ldr-translate.git">开源项目：ldr-translate（兰译）</a></p>
 <h2 id="开发过程">开发过程</h2>
 <h3 id="环境依赖">环境依赖</h3>
 <p>用的<code>python</code>语言，使用 <code>Gtk3</code> 相关的接口，在ubuntu20.04下可以直接开发，常驻状态栏用到了依赖 <code>gir1.2-appindicator3-0.1</code>，python用到了依赖 <code>requests</code></p>
@@ -1535,7 +1535,7 @@
 <h3 id="开发工具">开发工具</h3>
 <p>用的 <a href="https://code.visualstudio.com/">vscode，点我下载</a>，vscode侧栏安装几个依赖，搜索 <code>git</code> 安装前4个依赖，搜索 <code>python</code> 安装第一个依赖</p>
 <h3 id="开发简介">开发简介</h3>
-<p><a href="https://github.com/yuhlzu/ldr-translate.git">以开源开源：ldr-translate（兰译）</a></p>
+<p><a href="https://github.com/yuhldr/ldr-translate.git">以开源开源：ldr-translate（兰译）</a></p>
 <p>界面相关两个文件 <code>ldr-translate.py</code> 和 <code>ui_translate.py</code></p>
 <ul>
 <li><code>ldr-translate.py</code>：入口文件，运行它即可，或创建状态栏上的翻译小图标，并绑定复制信号，系统复制即可调用翻译窗口
@@ -1864,7 +1864,16 @@
   <entry>
     <title>ubuntu常用软件</title>
     <url>/posts/59423.html</url>
-    <content><![CDATA[<h2 id="双系统时间">双系统时间</h2>
+    <content><![CDATA[<h2 id="普通用户免密码">普通用户免密码</h2>
+<p>为了安全，密码设置的比较复杂，防止已经授权的普通用户总是需要输入密码</p>
+<p>如下：</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"></span><br><span class="line">vim /etc/sudoers.d/yuh</span><br></pre></td></tr></tbody></table></figure>
+<p>添加如下，其中<code>test</code> 改成你的用户名</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">test</span>    ALL=(ALL) NOPASSWD:ALL</span><br></pre></td></tr></tbody></table></figure>
+<p>设置权限</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">chmod 400 /etc/sudoers.d/yuh</span><br></pre></td></tr></tbody></table></figure>
+<p><code>ctrl-D</code> 退出root，如新打开终端测试，如果还不行，重启试试</p>
+<h2 id="双系统时间">双系统时间</h2>
 <p>双系统时间显示不一致</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">timedatectl set-local-rtc 1 --adjust-system-clock</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="自动登录">自动登录</h2>
@@ -1923,7 +1932,7 @@
 </blockquote>
 <p>整个项目地址</p>
 <ul>
-<li><a href="https://github.com/yuhlzu/hexo-md-imgs">github</a></li>
+<li><a href="https://github.com/yuhldr/hexo-md-imgs">github</a></li>
 <li><a href="https://www.npmjs.com/package/hexo-md-imgs/">npm库</a></li>
 </ul>
 <h3 id="使用方法">使用方法</h3>
@@ -3998,8 +4007,6 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <p>查看</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></tbody></table></figure><p></p></li>
 </ul>
-<h2 id="配置docker可视化可选">配置docker可视化(可选)</h2>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo docker run -p 9000:9000 --name prtainer --restart=always  -v /var/run/docker.sock:/var/run/docker.sock -d portainer/portainer</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="docker初步使用">docker初步使用</h2>
 <ul>
 <li><p>查看docker安装了那些软件</p>
@@ -4013,31 +4020,37 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <li><p>停止某个docker软件</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker stop 这里是CONTAINER ID 或者 NAMES</span><br></pre></td></tr></tbody></table></figure><p></p></li>
 </ul>
-<h2 id="docker安装mysql">docker安装mysql</h2>
+<h3 id="可视化">可视化</h3>
+<p>其实都可以用 <code>portainer</code> 完成以上操作</p>
+<p>目前数据 <code>/data</code> 连接到 <code>/home/data/docker_apps/portainer</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/data/docker_apps/portainer:/data portainer/portainer-ce</span><br></pre></td></tr></tbody></table></figure>
+<p>更新</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker stop portainer &amp;&amp; docker rm portainer &amp;&amp; docker pull portainer/portainer-ce</span><br></pre></td></tr></tbody></table></figure>
+<p>然后运行上面的，重新创建</p>
+<p>浏览器打开 <a href="http://localhost:9000%5D">localhost:9000</a></p>
+<h2 id="依赖">依赖</h2>
+<p>需要 <code>mysql</code> <code>redis</code></p>
+<h3 id="docker安装mysql">docker安装mysql</h3>
+<blockquote>
+<p>mysql密码12345678，端口3306，这个只是在服务器上或者端口转发时可以访问，不要对外公开，外部文件夹 <code>/home/data/docker_apps/mysql</code>，防止重新创建时数据丢失</p>
+</blockquote>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d --name mysql --restart always --security-opt seccomp=unconfined -p 33306:3306 -v /home/data/docker_apps/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345678 mysql</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="redis">redis</h3>
+<p>可以加速</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d  --restart always --privileged=<span class="literal">true</span> -p 6379:6379 -v /home/data/docker_apps/redis/redis.conf:/etc/redis/redis.conf -v /home/data/docker_apps/redis/data:/data --name redis redis:latest redis-server /etc/redis/redis.conf --appendonly yes --requirepass <span class="string">'12345678'</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="docker安装nextcloud">docker安装nextcloud</h2>
 <ul>
-<li><p>mysql密码12345678，端口3306，这个只是在服务器上或者端口转发时可以访问，不要对外公开</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run --name=nextcloud_db -e MYSQL_ROOT_PASSWORD=12345678 -d -p 33306:3306 mysql</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>打开docker的mysql，并且创建nextcloud的数据库</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it nextcloud_db mysql -u root -p</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>输入密码</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">12345678</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>创建数据库</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">CREATE DATABASE nextcloud;</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>将数据库赋予root用户</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">GRANT ALL ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span>;</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>刷新</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li>docker外部端口为81，主机为db，外部文件夹为<code>/home/data/docker_apps/nextcloud</code>，方便以后转移或者备份文件</li>
 </ul>
-<h2 id="docker安装nextcloud并与mysql关联">docker安装nextcloud，并与mysql关联</h2>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d --name=nextcloud --link mysql:mysql --link redis:redis -p 81:80  --restart always -v /home/data/docker_apps/nextcloud:/var/www/html docker.io/nextcloud:latest</span><br></pre></td></tr></tbody></table></figure>
+<p>直接连接到 <code>redis</code> 和 <code>mysql</code> 了，不需要单独配置数据库</p>
 <ul>
-<li><p>docker外部端口为81，主机为db，外部文件夹为<code>/home/data/nextcloud</code>，方便以后转移或者备份文件</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d --name=nextcloud --link nextcloud_db:db -p 81:80  --restart always -v /home/data/nextcloud:/var/www/html nextcloud</span><br></pre></td></tr></tbody></table></figure><p></p></li>
 <li><p>初始化</p>
 <p>此时如果使用vscode的ssh插件远程到服务器上，在vscode的远程插件左下角端口转发80，点击会跳转浏览器，即在电脑浏览器打开了 http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
 <li><p>注意！</p>
 <p>最后一项主机名填写 db，密码12345678</p></li>
 </ul>
-<h2 id="配置域名">配置域名</h2>
+<h2 id="配置">配置</h2>
 <ul>
 <li><p>进入docker命令行</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it nextcloud /bin/bash</span><br></pre></td></tr></tbody></table></figure><p></p></li>
@@ -4047,20 +4060,36 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim config/config.php</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>找到 <code>trusted_domains</code> 这一行，下面应该有一行 <code>0 =&gt; 'ip地址'</code>，在它下面添加域名即可</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">1 =&gt; <span class="string">'域名'</span></span><br></pre></td></tr></tbody></table></figure><p></p></li>
+</ul>
+<h3 id="配置网址二级目录">配置网址二级目录</h3>
+<p>因为主页一般都有用，所以设置二级目录即<code>域名/nc</code></p>
+<h3 id="完整配置">完整配置</h3>
+<p>注意把 <code>你的域名</code> 改为 真实域名，大部分都是自动生成的，把里面所有中文，都按照自己的改一下，有些自动生成的不用管</p>
+<p>主要需要改的</p>
+<ul>
+<li>trusted_domains: 信任的域名</li>
+<li>overwrite.cli.url: 完整网址</li>
+<li>overwritehost: 域名</li>
+<li>overwritewebroot: 二级目录</li>
+<li>mail_*:邮箱相关，发通知或普通用户找回密码</li>
+<li>memcache* redis:加速</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="variable">$CONFIG</span> = array (</span><br><span class="line">  <span class="string">'apps_paths'</span> =&gt;</span><br><span class="line">  array (</span><br><span class="line">    0 =&gt; </span><br><span class="line">    array (</span><br><span class="line">      <span class="string">'path'</span> =&gt; <span class="string">'/var/www/html/apps'</span>,</span><br><span class="line">      <span class="string">'url'</span> =&gt; <span class="string">'/apps'</span>,</span><br><span class="line">      <span class="string">'writable'</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">    ),</span><br><span class="line">    1 =&gt; </span><br><span class="line">    array (</span><br><span class="line">      <span class="string">'path'</span> =&gt; <span class="string">'/var/www/html/custom_apps'</span>,</span><br><span class="line">      <span class="string">'url'</span> =&gt; <span class="string">'/custom_apps'</span>,</span><br><span class="line">      <span class="string">'writable'</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">  <span class="string">'instanceid'</span> =&gt; <span class="string">'docker创建nextcloud时自动生成'</span>,</span><br><span class="line">  <span class="string">'passwordsalt'</span> =&gt; <span class="string">'docker创建nextcloud时自动生成'</span>,</span><br><span class="line">  <span class="string">'secret'</span> =&gt; <span class="string">'docker创建nextcloud时自动生成'</span>,</span><br><span class="line">  <span class="string">'trusted_domains'</span> =&gt;</span><br><span class="line">  array (</span><br><span class="line">    0 =&gt; <span class="string">'你的ip'</span>,</span><br><span class="line">    1 =&gt; <span class="string">'你的域名'</span>,</span><br><span class="line">    2 =&gt; <span class="string">'localhost'</span>,</span><br><span class="line">  ),</span><br><span class="line">  <span class="string">'datadirectory'</span> =&gt; <span class="string">'/var/www/html/data'</span>,</span><br><span class="line">  <span class="string">'dbtype'</span> =&gt; <span class="string">'mysql'</span>,</span><br><span class="line">  <span class="string">'version'</span> =&gt; <span class="string">'23.0.0.10'</span>,</span><br><span class="line">  <span class="string">''</span> =&gt; <span class="string">''</span>,</span><br><span class="line">  <span class="string">'overwrite.cli.url'</span> =&gt; <span class="string">'https://改为你的域名/改为二级目录名字比如nc/'</span>,</span><br><span class="line">  <span class="string">'overwritehost'</span> =&gt; <span class="string">'改为你的域名'</span>,</span><br><span class="line">  <span class="string">'overwritewebroot'</span> =&gt; <span class="string">'/改为二级目录名字比如nc'</span>,</span><br><span class="line">  <span class="string">'overwriteprotocol'</span> =&gt; <span class="string">'https'</span>,</span><br><span class="line">  <span class="string">'dbname'</span> =&gt; <span class="string">'nextcloud，应该也可以在docker创建nextcloud时自动生成'</span>,</span><br><span class="line">  <span class="string">'dbhost'</span> =&gt; <span class="string">'应该也可以在docker创建nextcloud时连接的数据库那个名字如:mysql'</span>,</span><br><span class="line">  <span class="string">'dbport'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">  <span class="string">'dbtableprefix'</span> =&gt; <span class="string">'oc_'</span>,</span><br><span class="line">  <span class="string">'mysql.utf8mb4'</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">  <span class="string">'dbuser'</span> =&gt; <span class="string">'docker创建nextcloud时自动生成mysql账户'</span>,</span><br><span class="line">  <span class="string">'dbpassword'</span> =&gt; <span class="string">'docker创建nextcloud时自动生成mysql密码'</span>,</span><br><span class="line">  <span class="string">'installed'</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">  <span class="string">'maintenance'</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">  <span class="string">'mail_smtpmode'</span> =&gt; <span class="string">'smtp'</span>,</span><br><span class="line">  <span class="string">'mail_sendmailmode'</span> =&gt; <span class="string">'smtp'</span>,</span><br><span class="line">  <span class="string">'mail_from_address'</span> =&gt; <span class="string">'改为你的邮箱账户不含后缀，用于其他用户找回密码如:test'</span>,</span><br><span class="line">  <span class="string">'mail_domain'</span> =&gt; <span class="string">'改为你的邮箱后缀如:163.com'</span>,</span><br><span class="line">  <span class="string">'mail_smtpauthtype'</span> =&gt; <span class="string">'LOGIN'</span>,</span><br><span class="line">  <span class="string">'mail_smtpauth'</span> =&gt; 1,</span><br><span class="line">  <span class="string">'mail_smtphost'</span> =&gt; <span class="string">'改为你的邮箱后缀如:smtp.163.com'</span>,</span><br><span class="line">  <span class="string">'mail_smtpport'</span> =&gt; <span class="string">'改为你的邮箱stmp端口如:465'</span>,</span><br><span class="line">  <span class="string">'mail_smtpname'</span> =&gt; <span class="string">'改为你的邮箱含后缀如:test@163.com'</span>,</span><br><span class="line">  <span class="string">'mail_smtppassword'</span> =&gt; <span class="string">'改为你的邮箱授权码'</span>,</span><br><span class="line">  <span class="string">'mail_smtpsecure'</span> =&gt; <span class="string">'ssl'</span>,</span><br><span class="line">  <span class="string">'loglevel'</span> =&gt; 0,</span><br><span class="line">  <span class="string">'theme'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">  <span class="string">'default_phone_region'</span> =&gt; <span class="string">'CN'</span>,</span><br><span class="line">  <span class="string">'default_locale'</span> =&gt; <span class="string">'zh_cn'</span>,</span><br><span class="line">  <span class="string">'app_install_overwrite'</span> =&gt; </span><br><span class="line">  array (</span><br><span class="line">    0 =&gt; <span class="string">'richdocumentscode'</span>,</span><br><span class="line">    1 =&gt; <span class="string">'files_mindmap'</span>,</span><br><span class="line">    2 =&gt; <span class="string">'quota_warning'</span>,</span><br><span class="line">  ),</span><br><span class="line"></span><br><span class="line">  <span class="string">'memcache.local'</span> =&gt; <span class="string">'\OC\Memcache\Redis'</span>,</span><br><span class="line">  <span class="string">'memcache.distributed'</span> =&gt; <span class="string">'\OC\Memcache\Redis'</span>,</span><br><span class="line">  <span class="string">'memcache.locking'</span> =&gt; <span class="string">'\OC\Memcache\Redis'</span>,</span><br><span class="line">  <span class="string">'redis'</span> =&gt; array(</span><br><span class="line">    <span class="string">'host'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">    <span class="string">'port'</span> =&gt; 6379,</span><br><span class="line">    <span class="string">'password'</span> =&gt; <span class="string">'创建redis时的密码如：12345678'</span></span><br><span class="line">  ),</span><br><span class="line"></span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<ul>
 <li><p>ssl</p>
 <p>可以在docker外的nginx配置如下，实现ssl，注意填写自己的文件夹<code>/etc/letsencrypt/live/域名/</code></p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">server {</span><br><span class="line">      listen       315 ssl;</span><br><span class="line">      server_name  icpcs.lzu.edu.cn;</span><br><span class="line"></span><br><span class="line">      ssl_certificate      /etc/letsencrypt/live/icpcs.lzu.edu.cn/fullchain.pem;</span><br><span class="line">      ssl_certificate_key  /etc/letsencrypt/live/icpcs.lzu.edu.cn/privkey.pem;</span><br><span class="line"></span><br><span class="line">      location / {</span><br><span class="line">              add_header Strict-Transport-Security <span class="string">"max-age=15768000;preload;"</span>;</span><br><span class="line">              proxy_pass http://localhost:81;</span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      error_page 404 /404.html;</span><br><span class="line">      location = /404.html {</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      error_page 500 502 503 504 /50x.html;</span><br><span class="line">      location = /50x.html {</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>其中letsencrypt可以使用 <a href="https://certbot.eff.org/">certbot</a></p>
-<p>3个月有效期，定时任务自动刷新</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">certbot certonly --webroot -w /home/data/www -d icpcs.lzu.edu.cn</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># https自动更新证书</span></span><br><span class="line">0 3 1 * * certbot renew &amp;&amp; nginx -s reload &amp;&amp; cp -L  /etc/letsencrypt/live/icpcs.lzu.edu.cn/* /home/data/docker/gitlab-ce/config/ssl/ &amp;&amp; cp -L /etc/letsencrypt/live/icpcs.lzu.edu.cn/* /home/data/docker/config/ssl/</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<figure class="highlight nginx"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">server</span> {</span><br><span class="line">      <span class="attribute">listen</span>       <span class="number">315</span> ssl;</span><br><span class="line">      <span class="attribute">server_name</span>  你的域名;</span><br><span class="line"></span><br><span class="line">      <span class="attribute">ssl_certificate</span>      /etc/letsencrypt/live/一般是你的域名/fullchain.pem;</span><br><span class="line">      <span class="attribute">ssl_certificate_key</span>  /etc/letsencrypt/live/一般是你的域名/privkey.pem;</span><br><span class="line"></span><br><span class="line">      <span class="attribute">location</span> / {</span><br><span class="line">          <span class="attribute">add_header</span> Strict-Transport-Security <span class="string">"max-age=15768000;preload;"</span>;</span><br><span class="line">          <span class="comment">#一级目录这里是你其他的主页</span></span><br><span class="line">          <span class="comment">#proxy_pass http://localhost:81;</span></span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line">      <span class="comment"># 按照二级目录配置的nextcloud</span></span><br><span class="line">      <span class="attribute">location</span> = /.well-known/carddav {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/remote.php/dav;</span><br><span class="line">      }</span><br><span class="line">      <span class="attribute">location</span> = /.well-known/caldav {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/remote.php/dav;</span><br><span class="line">      }</span><br><span class="line">      <span class="attribute">location</span> = /.well-known/host-meta {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/public.php?service=host-meta;</span><br><span class="line">      }</span><br><span class="line">      <span class="attribute">location</span> = /.well-known/host-meta.json {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/public.php?service=host-meta-json;</span><br><span class="line">      }</span><br><span class="line">      <span class="attribute">location</span> = /.well-known/webfinger {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/index.php/.well-known/webfinger;</span><br><span class="line">      }</span><br><span class="line">      <span class="attribute">location</span> = /.well-known/nodeinfo {</span><br><span class="line">          <span class="attribute">return</span> <span class="number">301</span> https://$server_name/nc/index.php/.well-known/nodeinfo;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="attribute">location</span> /nc/ {</span><br><span class="line">          <span class="attribute">add_header</span> Strict-Transport-Security <span class="string">"max-age=15552000; includeSubDomains; preload;"</span> always;</span><br><span class="line">          <span class="attribute">proxy_pass</span>     http://localhost:81/;</span><br><span class="line">          <span class="attribute">proxy_set_header</span> X-Real-IP $remote_addr;</span><br><span class="line">          <span class="attribute">proxy_set_header</span> REMOTE-HOST $remote_addr;</span><br><span class="line">          <span class="attribute">proxy_set_header</span> X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">      <span class="attribute">location</span> = /<span class="number">404</span>.html {</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">      <span class="attribute">location</span> = /50x.html {</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h2 id="其他">其他</h2>
-<ul>
-<li><p>定期刷新</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># docker中nextcloud后台任务刷新</span></span><br><span class="line">*/5 * * * * docker <span class="built_in">exec</span> --user www-data nextcloud php -f cron.php</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-</ul>
+<h3 id="定期刷新">定期刷新</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># docker中nextcloud后台任务刷新</span></span><br><span class="line">*/5 * * * * docker <span class="built_in">exec</span> --user www-data nextcloud php -f cron.php</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="ssl">ssl</h3>
+<p>其中letsencrypt可以使用 <a href="https://certbot.eff.org/">certbot</a></p>
+<p>3个月有效期，定时任务自动刷新 <code>/home/data/www</code> 是你的主页文件根目录</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">certbot certonly --webroot -w /home/data/www -d icpcs.lzu.edu.cn</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># https自动更新证书</span></span><br><span class="line">0 3 1 * * certbot renew --webroot -w /home/data/www/icpcs-home &amp;&amp; nginx -s reload</span><br><span class="line"><span class="comment"># 复制到需要的目录</span></span><br><span class="line">30 3 1 * * cp -L /etc/letsencrypt/live/一般为你的域名/* /home/data/docker/config/ssl/</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/26277.html">https://yuhldr.github.io/posts/26277.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
