@@ -1219,6 +1219,61 @@
       </tags>
   </entry>
   <entry>
+    <title>oneapi安装</title>
+    <url>/posts/4bdf01b7.html</url>
+    <content><![CDATA[<p><code>Intel Parallel Studio XE</code> 是付费的，学生账号可以免费试用一年，但是今年好像没找到如何续费，直接用替代产品 <code>oneAPI</code>，也是 <code>intel</code> 他们家的，这里下载，<a href="https://www.intel.cn/content/www/cn/zh/developer/tools/oneapi/base-toolkit-download.html">Download the Intel® oneAPI Base Toolkit</a></p>
+<p>我选择的是 <code>apt</code> 或者 <code>yum</code> 的在线方法，方便以后更新，安装位置在 <code>/opt/intel/oneapi</code></p>
+<h3 id="ubuntu">ubuntu</h3>
+<ul>
+<li>apt：<a href="https://www.intel.com/content/www/us/en/develop/documentation/installation-guide-for-intel-oneapi-toolkits-linux/top/installation/install-using-package-managers/apt.html">APT官方安装文档</a></li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \</span><br><span class="line">| gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg &gt; /dev/null</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main"</span> | sudo tee /etc/apt/sources.list.d/oneAPI.list</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt update -y &amp;&amp; sudo apt upgrade -y</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt install intel-basekit intel-hpckit -y</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="centos">centos</h3>
+<ul>
+<li>yum：<a href="https://www.intel.com/content/www/us/en/develop/documentation/installation-guide-for-intel-oneapi-toolkits-linux/top/installation/install-using-package-managers/yum-dnf-zypper.html">YUM官方安装文档</a></li>
+</ul>
+<p>添加源，输入，回车</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">tee &gt; /tmp/oneAPI.repo &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[oneAPI]</span></span><br><span class="line"><span class="string">name=Intel® oneAPI repository</span></span><br><span class="line"><span class="string">baseurl=https://yum.repos.intel.com/oneapi</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">repo_gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></tbody></table></figure>
+<p>移动</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo mv /tmp/oneAPI.repo /etc/yum.repos.d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo yum update -y &amp;&amp; sudo yum upgrade -y</span><br></pre></td></tr></tbody></table></figure>
+<p>安装两个</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo yum install intel-basekit intel-hpckit</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="环境变量">环境变量</h3>
+<p>不设置全局，因为关联的软件太多了，包括 <code>conda</code>、<code>python</code>、<code>ifort</code>、<code>c</code> 等，如果某些人使用</p>
+<ul>
+<li>临时使用</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> /opt/intel/oneapi/setvars.sh intel64</span><br></pre></td></tr></tbody></table></figure>
+<p>应该显示</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">:: initializing oneAPI environment ...</span><br><span class="line">   zsh: ZSH_VERSION = 5.8</span><br><span class="line">   args: Using <span class="string">"<span class="variable">$@</span>"</span> <span class="keyword">for</span> setvars.sh arguments: </span><br><span class="line">:: advisor -- latest</span><br><span class="line">:: ccl -- latest</span><br><span class="line">:: clck -- latest</span><br><span class="line">:: compiler -- latest</span><br><span class="line">:: dal -- latest</span><br><span class="line">:: debugger -- latest</span><br><span class="line">:: dev-utilities -- latest</span><br><span class="line">:: dnnl -- latest</span><br><span class="line">:: dpcpp-ct -- latest</span><br><span class="line">:: dpl -- latest</span><br><span class="line">:: inspector -- latest</span><br><span class="line">:: intelpython -- latest</span><br><span class="line">:: ipp -- latest</span><br><span class="line">:: ippcp -- latest</span><br><span class="line">:: ipp -- latest</span><br><span class="line">:: itac -- latest</span><br><span class="line">:: mkl -- latest</span><br><span class="line">:: mpi -- latest</span><br><span class="line">:: tbb -- latest</span><br><span class="line">:: vpl -- latest</span><br><span class="line">:: vtune -- latest</span><br><span class="line">:: oneAPI environment initialized ::</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>永久生效</li>
+</ul>
+<p>用户自己在终端输入</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"source /opt/intel/oneapi/setvars.sh intel64"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="测试">测试</h2>
+<p>环境变量配置以后，查看ifort版本</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ifort -V</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">应该显示</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">Intel(R) Fortran Intel(R) 64 Compiler Classic <span class="keyword">for</span> applications running on Intel(R) 64, Version 2021.5.0 Build 20211109_000000</span><br><span class="line">Copyright (C) 1985-2021 Intel Corporation.  All rights reserved.</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>intel</tag>
+        <tag>fortran</tag>
+        <tag>ifort</tag>
+        <tag>mpi</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>slurm集群用户使用指南</title>
     <url>/posts/d8e81662.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1321,7 +1376,7 @@
 <p><a href="https://github.com/dun/munge/releases/download/munge-0.5.14/munge-0.5.14.tar.xz">https://github.com/dun/munge/releases/download/munge-0.5.14/munge-0.5.14.tar.xz</a></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/code/slurm_data</span><br><span class="line"></span><br><span class="line">wget https://github.com/dun/munge/releases/download/munge-0.5.14/munge-0.5.14.tar.xz</span><br><span class="line"></span><br><span class="line">x munge-0.5.14.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> munge-0.5.14</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装目录 /usr/local/munge-0.5.14</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/munge-0.5.14</span><br><span class="line"></span><br><span class="line"><span class="comment"># -j 指的是用所有cpu核心编译</span></span><br><span class="line">make -j</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到刚才的目录</span></span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置一个版本通用的连接</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span> &amp;&amp; sudo ln -s munge-0.5.14 munge &amp;&amp; <span class="built_in">cd</span> -</span><br></pre></td></tr></tbody></table></figure>
 <p>添加环境变量</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/profile.d/openmpi.sh</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/profile.d/munge.sh</span><br></pre></td></tr></tbody></table></figure>
 <p>添加</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> MUNGE_HOME=/usr/<span class="built_in">local</span>/munge</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$MUNGE_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$MUNGE_HOME</span>/sbin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
 <p>重新打开 bash 以后生效</p>

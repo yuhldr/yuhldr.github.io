@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-01-03T13:22:38.786Z</updated>
+  <updated>2022-01-07T14:19:35.469Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>oneapi安装</title>
+    <link href="https://yuhldr.github.io/posts/4bdf01b7.html"/>
+    <id>https://yuhldr.github.io/posts/4bdf01b7.html</id>
+    <published>2022-01-07T14:00:38.000Z</published>
+    <updated>2022-01-07T14:19:35.469Z</updated>
+    
+    
+    <summary type="html">主要是为了替换、取代 Intel Parallel Studio XE，包含ifort等intel相关的加速套件</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="intel" scheme="https://yuhldr.github.io/tags/intel/"/>
+    
+    <category term="fortran" scheme="https://yuhldr.github.io/tags/fortran/"/>
+    
+    <category term="ifort" scheme="https://yuhldr.github.io/tags/ifort/"/>
+    
+    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
+    
+  </entry>
   
   <entry>
     <title>slurm集群用户使用指南</title>
@@ -42,7 +67,7 @@
     <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
     <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
     <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2021-12-26T13:33:36.533Z</updated>
+    <updated>2022-01-07T13:56:39.844Z</updated>
     
     
     <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
@@ -436,29 +461,6 @@
     <category term="数学物理方程" scheme="https://yuhldr.github.io/tags/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E6%96%B9%E7%A8%8B/"/>
     
     <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac10.15配置latex格式化</title>
-    <link href="https://yuhldr.github.io/posts/14097.html"/>
-    <id>https://yuhldr.github.io/posts/14097.html</id>
-    <published>2021-02-22T21:58:00.000Z</published>
-    <updated>2021-11-23T12:49:07.909Z</updated>
-    
-    
-    <summary type="html">mac安装mactex以后，用vscode的latexshop，右键格式化latex文档，会有报错，在命令行直接运行latexindent也会报错，并且按照网上mac10.14的办法仍然错误</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="mac" scheme="https://yuhldr.github.io/tags/mac/"/>
-    
-    <category term="latex" scheme="https://yuhldr.github.io/tags/latex/"/>
     
   </entry>
   
