@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-01-07T14:19:35.469Z</updated>
+  <updated>2022-02-24T06:58:49.397Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>brew切换国内源gitee</title>
+    <link href="https://yuhldr.github.io/posts/23f4e01a.html"/>
+    <id>https://yuhldr.github.io/posts/23f4e01a.html</id>
+    <published>2022-01-19T12:22:50.000Z</published>
+    <updated>2022-02-24T06:58:49.397Z</updated>
+    
+    
+    <summary type="html">网上一般是清华或者中科大的，但是感觉很麻烦，gitee的稳定，并且一句命令就可以了</summary>
+    
+    
+    
+    
+    <category term="brew" scheme="https://yuhldr.github.io/tags/brew/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker安装配置rocketchat</title>
+    <link href="https://yuhldr.github.io/posts/7233442f.html"/>
+    <id>https://yuhldr.github.io/posts/7233442f.html</id>
+    <published>2022-01-09T04:32:02.000Z</published>
+    <updated>2022-02-24T06:58:49.393Z</updated>
+    
+    
+    <summary type="html">linux没有合适的微信qq之类的产品，手机端与电脑端互传文件、文字比较麻烦，这里安装配置一下rocketchat，主要功能有聊天、文件传递等</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="chat" scheme="https://yuhldr.github.io/tags/chat/"/>
+    
+  </entry>
+  
+  <entry>
     <title>oneapi安装</title>
     <link href="https://yuhldr.github.io/posts/4bdf01b7.html"/>
     <id>https://yuhldr.github.io/posts/4bdf01b7.html</id>
     <published>2022-01-07T14:00:38.000Z</published>
-    <updated>2022-01-07T14:19:35.469Z</updated>
+    <updated>2022-01-07T14:19:53.077Z</updated>
     
     
     <summary type="html">主要是为了替换、取代 Intel Parallel Studio XE，包含ifort等intel相关的加速套件</summary>
@@ -31,13 +69,13 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
+    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
+    
     <category term="intel" scheme="https://yuhldr.github.io/tags/intel/"/>
     
     <category term="fortran" scheme="https://yuhldr.github.io/tags/fortran/"/>
     
     <category term="ifort" scheme="https://yuhldr.github.io/tags/ifort/"/>
-    
-    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
     
   </entry>
   
@@ -67,7 +105,7 @@
     <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
     <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
     <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2022-01-07T13:56:39.844Z</updated>
+    <updated>2022-01-07T16:32:33.118Z</updated>
     
     
     <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
@@ -415,52 +453,6 @@
     <category term="石墨烯" scheme="https://yuhldr.github.io/tags/%E7%9F%B3%E5%A2%A8%E7%83%AF/"/>
     
     <category term="振动模式" scheme="https://yuhldr.github.io/tags/%E6%8C%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>波动方程求解2-分离变量法</title>
-    <link href="https://yuhldr.github.io/posts/38767.html"/>
-    <id>https://yuhldr.github.io/posts/38767.html</id>
-    <published>2021-03-17T12:44:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">分离变量法求解波动方程：齐次方程、齐次边界条件下</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="方程求解" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/"/>
-    
-    
-    <category term="数学物理方程" scheme="https://yuhldr.github.io/tags/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E6%96%B9%E7%A8%8B/"/>
-    
-    <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>波动方程求解</title>
-    <link href="https://yuhldr.github.io/posts/58883.html"/>
-    <id>https://yuhldr.github.io/posts/58883.html</id>
-    <published>2021-03-15T12:44:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">复习（预习）大学本科数学物理方法，波动方程的求解</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="方程求解" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/"/>
-    
-    
-    <category term="数学物理方程" scheme="https://yuhldr.github.io/tags/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E6%96%B9%E7%A8%8B/"/>
-    
-    <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
     
   </entry>
   

@@ -1219,6 +1219,49 @@
       </tags>
   </entry>
   <entry>
+    <title>brew切换国内源gitee</title>
+    <url>/posts/23f4e01a.html</url>
+    <content><![CDATA[<p>网上一般是清华或者中科大的，但是感觉很麻烦，而且gitee的更稳定，并且一句命令就可以了</p>
+<p>这里 <a href="https://gitee.com/brew-cn">brew-cn</a></p>
+<p>一句话即可</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">curl -sL https://gitee.com/brew-cn/use-brew-cn/raw/master/install.sh | bash -</span><br></pre></td></tr></tbody></table></figure>
+<p>如果恢复</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">curl -sL https://gitee.com/brew-cn/use-brew-cn/raw/master/uninstall.sh | bash -</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/23f4e01a.html">https://yuhldr.github.io/posts/23f4e01a.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>brew</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装配置rocketchat</title>
+    <url>/posts/7233442f.html</url>
+    <content><![CDATA[<p>如果你有域名，可以设置二级目录作为聊天域名</p>
+<p>数据库mongo，映射到本地目录 <code>/home/data/docker/docker_app/mongo/data</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo docker run --name mongo  --restart=always -v /home/data/docker/docker_app/mongo/data/db:/data/db -v /home/data/docker/docker_app/mongo/data/configdb:/data/configdb  -d mongo --replSet rs0 --oplogSize 128</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo docker <span class="built_in">exec</span> -ti mongo mongo --<span class="built_in">eval</span> <span class="string">"printjson(rs.initiate())"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>rocket.chat，映射到本地目录 <code>/home/data/docker/docker_app/rocketchat/app/uploads</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo docker run --name  --restart=always  rocketchat -p 82:3000 -v /home/data/docker/docker_app/rocketchat/app/uploads:/app/uploads --link mongo --env ROOT_URL=https://icpcs.lzu.edu.cn/yuhChat --env MONGO_OPLOG_URL=mongodb://mongo:27017/<span class="built_in">local</span> --env MONGO_URL=mongodb://mongo:27017/meteor -d rocket.chat</span><br></pre></td></tr></tbody></table></figure>
+<p>打开本地 <a href="http://localhost:82">http://localhost:82</a></p>
+<p>nginx配置二级目录</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">location /chat/ {</span><br><span class="line">    <span class="comment"># 指向当前的某个服务端口</span></span><br><span class="line">    proxy_pass http://localhost:82;</span><br><span class="line">    <span class="comment">#设置请求头，并将头信息传递给服务器端</span></span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">"upgrade"</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/7233442f.html">https://yuhldr.github.io/posts/7233442f.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>chat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>oneapi安装</title>
     <url>/posts/4bdf01b7.html</url>
     <content><![CDATA[<p><code>Intel Parallel Studio XE</code> 是付费的，学生账号可以免费试用一年，但是今年好像没找到如何续费，直接用替代产品 <code>oneAPI</code>，也是 <code>intel</code> 他们家的，这里下载，<a href="https://www.intel.cn/content/www/cn/zh/developer/tools/oneapi/base-toolkit-download.html">Download the Intel® oneAPI Base Toolkit</a></p>
@@ -1260,17 +1303,17 @@
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ifort -V</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">应该显示</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">Intel(R) Fortran Intel(R) 64 Compiler Classic <span class="keyword">for</span> applications running on Intel(R) 64, Version 2021.5.0 Build 20211109_000000</span><br><span class="line">Copyright (C) 1985-2021 Intel Corporation.  All rights reserved.</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
-<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/4bdf01b7.html">https://yuhldr.github.io/posts/4bdf01b7.html</a> <br> <strong>版权声明</strong>：转载请注明出处！</p>
 </blockquote>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>mpi</tag>
         <tag>intel</tag>
         <tag>fortran</tag>
         <tag>ifort</tag>
-        <tag>mpi</tag>
       </tags>
   </entry>
   <entry>
@@ -1459,7 +1502,7 @@
 <p>注意都是以源码编译安装为例，安装位置都是按照前面的来的</p>
 </blockquote>
 <p>这个去官网 <a href="https://slurm.schedmd.com/configurator.html">Slurm System Configuration Tool</a> 自动生成即可，不同版本不一样，其中比较重要的是</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">; 单机就是 localhost即可</span><br><span class="line">SlurmctldHost=localhost</span><br><span class="line"></span><br><span class="line">; 这个是mpi的默认值，用户输入 --mpi=mpix_v3 这时候会覆盖这个</span><br><span class="line">MpiDefault=pmix</span><br><span class="line"></span><br><span class="line">; 这个优先用cgroup，如果报错，换这个</span><br><span class="line">ProctrackType=proctrack/linuxproc</span><br><span class="line"></span><br><span class="line">; 下面这些都是数据库相关的，配置一下就行</span><br><span class="line">AccountingStorageHost=localhost</span><br><span class="line">; 合格是munge的位置</span><br><span class="line">AccountingStoragePass=/usr/local/munge/var/run/munge/munge.socket.2</span><br><span class="line">AccountingStorageType=accounting_storage/slurmdbd</span><br><span class="line">AccountingStorageUser=slurm</span><br><span class="line">JobCompHost=localhost</span><br><span class="line">JobCompLoc=slurm_job_db</span><br><span class="line">JobCompPass=12345678</span><br><span class="line">JobCompType=jobcomp/mysql</span><br><span class="line">JobCompUser=slurm</span><br><span class="line"></span><br><span class="line">; 这个是各个计算节点，单机的话直接 localhost就行，至于CPUs就是你的cpu核心数，错了也没事，一会开启时会有提示应该是多少，Sockets，cpu插槽数；CoresPerSocket每个插槽多少核心，ThreadsPerCore每个核心多少线程</span><br><span class="line">NodeName=localhost CPUs=6 Sockets=1 CoresPerSocket=6 ThreadsPerCore=1 State=UNKNOWN</span><br><span class="line">PartitionName=ptt1 Nodes=ALL Default=YES MaxTime=INFINITE State=UP</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">; 单机就是 localhost即可</span><br><span class="line">SlurmctldHost=localhost</span><br><span class="line"></span><br><span class="line">; 这个是mpi的默认值，用户输入 --mpi=mpix_v3 这时候会覆盖这个</span><br><span class="line">MpiDefault=pmix</span><br><span class="line"></span><br><span class="line">; 这个优先用cgroup，如果报错，换这个</span><br><span class="line">ProctrackType=proctrack/linuxproc</span><br><span class="line"></span><br><span class="line">; 下面这些都是数据库相关的，配置一下就行</span><br><span class="line">AccountingStorageHost=localhost</span><br><span class="line">; 合格是munge的位置</span><br><span class="line">AccountingStoragePass=/usr/local/munge/var/run/munge/munge.socket.2</span><br><span class="line">AccountingStorageType=accounting_storage/slurmdbd</span><br><span class="line">AccountingStorageUser=slurm</span><br><span class="line">JobCompHost=localhost</span><br><span class="line">JobCompLoc=slurm_job_db</span><br><span class="line">JobCompPass=12345678</span><br><span class="line">JobCompType=jobcomp/mysql</span><br><span class="line">JobCompUser=slurm</span><br><span class="line"></span><br><span class="line">; 这个是各个计算节点，单机的话直接 localhost就行，至于CPUs就是你的cpu核心数，错了也没事，一会开启时会有提示应该是多少，Sockets，cpu插槽数；CoresPerSocket每个插槽多少核心，ThreadsPerCore每个核心多少线程， RealMemory内存（不设置的话，用户申请--mem会报错）</span><br><span class="line">NodeName=localhost CPUs=6 Sockets=1 CoresPerSocket=6 ThreadsPerCore=1 RealMemory=32041 State=UNKNOWN</span><br><span class="line">PartitionName=ptt1 Nodes=ALL Default=YES MaxTime=INFINITE State=UP</span><br></pre></td></tr></tbody></table></figure>
 <p>文件生成以后放在 <code>/usr/local/slurm/etc/slurm.conf</code></p>
 <p>如果是源安装，不在这里，而且不同版本不一样，一般是在<code>/etc/slurm-</code> 后面的名字不一样</p>
 <h2 id="管理员测试">管理员测试</h2>
@@ -3859,6 +3902,13 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
 <h3 id="gpu">gpu</h3>
 <p>GPU需要这个</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cmake -D PKG_MANYBODY=yes -D BUILD_SHARED_LIBS=on -D LAMMPS_EXCEPTIONS=on -D PKG_PYTHON=on -D PKG_GPU=on -D GPU_API=cuda ../cmake</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="计算终止恢复">计算终止恢复</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">-D PKG_MPIIO=on</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="声子色散关系">声子色散关系</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">-D PKG_PHONON=on -D PKG_KSPACE=on</span><br></pre></td></tr></tbody></table></figure>
+<p>需要 <code>fftw3</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo apt install fftw3 libfftw3-dev libfftw3-bin -y</span><br></pre></td></tr></tbody></table></figure>
+<p>如果报错，换一下源 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华源</a>，注意版本号，我的是ubuntu21.10</p>
 <h3 id="手册">手册</h3>
 <p>编译pdf手册</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 按照前文配置texlive， 并安装如下依赖</span></span><br><span class="line">sudo apt-get install python-virtualenv git doxygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入源码doc目录</span></span><br><span class="line"><span class="built_in">cd</span> lammps/doc</span><br><span class="line">make pdf</span><br></pre></td></tr></tbody></table></figure>
@@ -4172,13 +4222,13 @@ u_n(x,t) &amp;= \sum_{n=1}^\infty sin(\frac{n\pi}{l}x)(A_nsin(\omega_nt) + B_nco
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
