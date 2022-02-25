@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-02-24T06:58:49.397Z</updated>
+  <updated>2022-02-25T04:33:42.594Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>课题组集群slurm-21.08.5更新配置</title>
+    <link href="https://yuhldr.github.io/posts/95da3501.html"/>
+    <id>https://yuhldr.github.io/posts/95da3501.html</id>
+    <published>2022-02-24T07:03:37.000Z</published>
+    <updated>2022-02-25T04:33:42.594Z</updated>
+    
+    
+    <summary type="html">使用源码编译安装slurm、pmix3、openmpi等，使其支持pmix_v3并行，并配置邮件提醒</summary>
+    
+    
+    
+    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
+    
+    
+    <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
+    
+    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
+    
+  </entry>
   
   <entry>
     <title>brew切换国内源gitee</title>
@@ -432,27 +453,6 @@
     <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
     
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>石墨烯振动模式</title>
-    <link href="https://yuhldr.github.io/posts/45586.html"/>
-    <id>https://yuhldr.github.io/posts/45586.html</id>
-    <published>2021-03-22T08:30:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">基于前两篇文章，入门级理解振动模式，注意python求出来的本征向量，只是特征值与本征向量对应，但是并没有排序，但是matlab排序了，也就是说matlab的第一个本征向量不是python求解出来的第一个</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="石墨烯" scheme="https://yuhldr.github.io/tags/%E7%9F%B3%E5%A2%A8%E7%83%AF/"/>
-    
-    <category term="振动模式" scheme="https://yuhldr.github.io/tags/%E6%8C%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
