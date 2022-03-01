@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-02-25T04:33:42.594Z</updated>
+  <updated>2022-03-01T07:56:12.971Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>lammps声子谱配置与计算</title>
+    <link href="https://yuhldr.github.io/posts/db8c1b0a.html"/>
+    <id>https://yuhldr.github.io/posts/db8c1b0a.html</id>
+    <published>2022-03-01T02:17:47.000Z</published>
+    <updated>2022-03-01T07:56:12.971Z</updated>
+    
+    
+    <summary type="html">使用LAMMPS计算声子谱，有相关开源软件，很方便，如果没有计算机知识，配置起来很麻烦</summary>
+    
+    
+    
+    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
+    
+    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="phana" scheme="https://yuhldr.github.io/tags/phana/"/>
+    
+  </entry>
+  
+  <entry>
     <title>课题组集群slurm-21.08.5更新配置</title>
     <link href="https://yuhldr.github.io/posts/95da3501.html"/>
     <id>https://yuhldr.github.io/posts/95da3501.html</id>
     <published>2022-02-24T07:03:37.000Z</published>
-    <updated>2022-02-25T04:33:42.594Z</updated>
+    <updated>2022-02-26T13:32:38.933Z</updated>
     
     
     <summary type="html">使用源码编译安装slurm、pmix3、openmpi等，使其支持pmix_v3并行，并配置邮件提醒</summary>
@@ -59,7 +82,7 @@
     <link href="https://yuhldr.github.io/posts/7233442f.html"/>
     <id>https://yuhldr.github.io/posts/7233442f.html</id>
     <published>2022-01-09T04:32:02.000Z</published>
-    <updated>2022-02-24T06:58:49.393Z</updated>
+    <updated>2022-03-01T02:10:39.735Z</updated>
     
     
     <summary type="html">linux没有合适的微信qq之类的产品，手机端与电脑端互传文件、文字比较麻烦，这里安装配置一下rocketchat，主要功能有聊天、文件传递等</summary>
@@ -126,7 +149,7 @@
     <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
     <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
     <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2022-01-07T16:32:33.118Z</updated>
+    <updated>2022-03-01T02:17:28.115Z</updated>
     
     
     <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
@@ -220,7 +243,7 @@
     <link href="https://yuhldr.github.io/posts/59423.html"/>
     <id>https://yuhldr.github.io/posts/59423.html</id>
     <published>2021-10-20T08:51:11.000Z</published>
-    <updated>2022-01-01T01:30:30.480Z</updated>
+    <updated>2022-02-26T14:36:08.065Z</updated>
     
     
     <summary type="html">自己用的一些软件，方便寻找</summary>
@@ -432,27 +455,6 @@
     
     
     <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WSL2高级使用</title>
-    <link href="https://yuhldr.github.io/posts/2411.html"/>
-    <id>https://yuhldr.github.io/posts/2411.html</id>
-    <published>2021-04-22T08:58:00.000Z</published>
-    <updated>2021-12-25T15:34:11.336Z</updated>
-    
-    
-    <summary type="html">WSL2简单的安装在其他盘、存储压缩、多个WSL2管理</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
