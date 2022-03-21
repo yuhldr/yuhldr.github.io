@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-03-06T04:08:59.071Z</updated>
+  <updated>2022-03-21T16:01:53.017Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>声子态密度计算</title>
+    <link href="https://yuhldr.github.io/posts/d5c2f773.html"/>
+    <id>https://yuhldr.github.io/posts/d5c2f773.html</id>
+    <published>2022-03-21T07:03:02.000Z</published>
+    <updated>2022-03-21T16:01:53.017Z</updated>
+    
+    
+    <summary type="html">分子动力学，如何计算声子态密度，结合LAMMPS</summary>
+    
+    
+    
+    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
+    
+    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="pdos" scheme="https://yuhldr.github.io/tags/pdos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>声子与色散关系复习-预习</title>
+    <link href="https://yuhldr.github.io/posts/9553fedc.html"/>
+    <id>https://yuhldr.github.io/posts/9553fedc.html</id>
+    <published>2022-03-06T13:03:50.000Z</published>
+    <updated>2022-03-13T02:41:51.446Z</updated>
+    
+    
+    <summary type="html">声子相关的一些内容回顾</summary>
+    
+    
+    
+    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
+    
+    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="phana" scheme="https://yuhldr.github.io/tags/phana/"/>
+    
+  </entry>
   
   <entry>
     <title>lammps声子谱配置与计算</title>
@@ -128,7 +172,7 @@
     <link href="https://yuhldr.github.io/posts/d8e81662.html"/>
     <id>https://yuhldr.github.io/posts/d8e81662.html</id>
     <published>2021-12-26T09:54:15.000Z</published>
-    <updated>2022-01-03T13:22:38.786Z</updated>
+    <updated>2022-03-13T08:31:36.256Z</updated>
     
     
     <summary type="html">icpcs集群内部文档，slurm使用</summary>
@@ -149,7 +193,7 @@
     <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
     <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
     <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2022-03-06T04:57:24.270Z</updated>
+    <updated>2022-03-21T07:46:48.692Z</updated>
     
     
     <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
@@ -413,48 +457,6 @@
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gitalk登录错误403</title>
-    <link href="https://yuhldr.github.io/posts/24342.html"/>
-    <id>https://yuhldr.github.io/posts/24342.html</id>
-    <published>2021-04-27T03:12:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">gitalk在NexT主题里，有时候代理网站会出问题，但是NexT默认配置里没有代理相关的网址配置</summary>
-    
-    
-    
-    <category term="Js" scheme="https://yuhldr.github.io/categories/Js/"/>
-    
-    
-    <category term="NexT" scheme="https://yuhldr.github.io/tags/NexT/"/>
-    
-    <category term="hexo" scheme="https://yuhldr.github.io/tags/hexo/"/>
-    
-    <category term="gitalk" scheme="https://yuhldr.github.io/tags/gitalk/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python第三方库解方程</title>
-    <link href="https://yuhldr.github.io/posts/6261.html"/>
-    <id>https://yuhldr.github.io/posts/6261.html</id>
-    <published>2021-04-26T14:52:00.000Z</published>
-    <updated>2021-11-20T09:18:09.705Z</updated>
-    
-    
-    <summary type="html">第三方库sympy、scipy非线性方程求解，其他的以后用到的话再补充</summary>
-    
-    
-    
-    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
-    
-    
-    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
     
   </entry>
   
