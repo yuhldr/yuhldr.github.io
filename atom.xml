@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-03-21T16:01:53.017Z</updated>
+  <updated>2022-03-22T06:34:11.907Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>archlinux安装回顾</title>
+    <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
+    <id>https://yuhldr.github.io/posts/3513d90f.html</id>
+    <published>2022-03-21T16:03:48.000Z</published>
+    <updated>2022-03-22T06:34:11.907Z</updated>
+    
+    
+    <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="kde" scheme="https://yuhldr.github.io/tags/kde/"/>
+    
+  </entry>
+  
+  <entry>
     <title>声子态密度计算</title>
     <link href="https://yuhldr.github.io/posts/d5c2f773.html"/>
     <id>https://yuhldr.github.io/posts/d5c2f773.html</id>
     <published>2022-03-21T07:03:02.000Z</published>
-    <updated>2022-03-21T16:01:53.017Z</updated>
+    <updated>2022-03-22T06:33:49.217Z</updated>
     
     
     <summary type="html">分子动力学，如何计算声子态密度，结合LAMMPS</summary>
@@ -436,27 +457,6 @@
     <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
     
     <category term="vpn" scheme="https://yuhldr.github.io/tags/vpn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>修改windows10中docker20默认位置</title>
-    <link href="https://yuhldr.github.io/posts/52201.html"/>
-    <id>https://yuhldr.github.io/posts/52201.html</id>
-    <published>2021-05-08T03:12:00.000Z</published>
-    <updated>2021-12-25T15:34:28.196Z</updated>
-    
-    
-    <summary type="html">windows10可以安装Docker Desktop，设置中自动配置WSL2，从而实现WSL2中docker</summary>
-    
-    
-    
-    <category term="Docker" scheme="https://yuhldr.github.io/categories/Docker/"/>
-    
-    
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
-    <category term="wsl" scheme="https://yuhldr.github.io/tags/wsl/"/>
     
   </entry>
   
