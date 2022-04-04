@@ -224,9 +224,9 @@
     <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
     <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
     
@@ -452,9 +452,9 @@
     
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
     <category term="vpn" scheme="https://yuhldr.github.io/tags/vpn/"/>
     
