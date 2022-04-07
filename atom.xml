@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-04-04T14:09:03.967Z</updated>
+  <updated>2022-04-07T15:20:40.013Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
     <id>https://yuhldr.github.io/posts/3513d90f.html</id>
     <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2022-04-04T14:09:03.967Z</updated>
+    <updated>2022-04-07T15:20:40.013Z</updated>
     
     
-    <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的h使用</summary>
+    <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
     
     
     
@@ -224,9 +224,9 @@
     <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
     
     
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
     
     <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
     
@@ -452,9 +452,9 @@
     
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
     
     <category term="vpn" scheme="https://yuhldr.github.io/tags/vpn/"/>
     
