@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-04-07T15:20:40.013Z</updated>
+  <updated>2022-04-10T14:23:07.001Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux环境下连接windows共享的打印机</title>
+    <link href="https://yuhldr.github.io/posts/7d18e834.html"/>
+    <id>https://yuhldr.github.io/posts/7d18e834.html</id>
+    <published>2022-04-10T13:17:27.000Z</published>
+    <updated>2022-04-10T14:23:07.001Z</updated>
+    
+    
+    <summary type="html">办公室里大家用的都是widows电脑，他们在一台电脑上usb连接了惠普打印机，然后直接选择共享，其他人就可以连接到自己电脑上了，而用linux的我就尴尬了，死活连接不上……</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>archlinux安装回顾</title>
     <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
     <id>https://yuhldr.github.io/posts/3513d90f.html</id>
     <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2022-04-07T15:20:40.013Z</updated>
+    <updated>2022-04-10T07:54:50.159Z</updated>
     
     
     <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
@@ -432,31 +447,6 @@
     <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
     
     <category term="verlet" scheme="https://yuhldr.github.io/tags/verlet/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu20.04全新配置</title>
-    <link href="https://yuhldr.github.io/posts/30877.html"/>
-    <id>https://yuhldr.github.io/posts/30877.html</id>
-    <published>2021-07-10T03:12:00.000Z</published>
-    <updated>2021-12-25T15:31:40.029Z</updated>
-    
-    
-    <summary type="html">ubuntu20.04安装配置clash代理，oh-my-zsh，ssh远程访问，systemctl自启服务管理，fail2ban暴力登录拦截，cuda11.4-470，docker，code-server，nextcloud客户端，idea、AS、pycharm，pip3，lammps，等等</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
-    <category term="vpn" scheme="https://yuhldr.github.io/tags/vpn/"/>
     
   </entry>
   

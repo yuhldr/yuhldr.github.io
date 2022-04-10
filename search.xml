@@ -1260,6 +1260,97 @@
       </tags>
   </entry>
   <entry>
+    <title>linux环境下连接windows共享的打印机</title>
+    <url>/posts/7d18e834.html</url>
+    <content><![CDATA[<p>首先，我用的是 <code>archlinux</code> 配合 <code>gnome</code>
+桌面，<strong>最小安装</strong>
+<code>gnome</code>，几乎不包含任何应用，手动安装
+<code>gnome-control-center</code>（设置），<code>设置</code> 依赖
+<code>smbclient</code>，因为最小安装，设置中 <code>打印机</code>
+显示无法使用，再安装 <code>cups</code>，惠普打印机需要惠普驱动
+<code>hplip</code>，所以所有的软件大概是</p>
+<ul>
+<li><code>gnome-control-center</code>：设置，含打印机，方便图形化配置</li>
+<li><code>smbclient</code>：连接 windows 共享的打印机</li>
+<li><code>cups</code>：打印</li>
+<li><code>hplip</code>：惠普驱动</li>
+</ul>
+<blockquote>
+<p>注意 archlinux
+安装这些软件时，会安装相关依赖，这里不再列出，请自行查找：<a href="https://aur.archlinux.org/packages">AUR (en) - Packages</a></p>
+</blockquote>
+<h2 id="查看ip与测试">查看ip与测试</h2>
+<p>首先查看连接打印机并共享的window电脑（简写为
+<code>win_print</code>）内网ip：<code>196.168.10.1</code>，需要知道共享时windows的用户名
+<code>user_test</code> 和密码 <code>pw_12345678</code></p>
+<p>i你有的信息为</p>
+<ul>
+<li><code>196.168.10.1</code>：连接打印机并共享的window电脑内网ip</li>
+<li><code>user_test</code>：共享时windows的用户名</li>
+<li><code>pw_12345678</code>：共享时windows的密码</li>
+</ul>
+<p>直接在linux终端测试，注意此电脑需要与 <code>win_print</code>
+在同一网络环境</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ping 196.168.10.1</span><br></pre></td></tr></tbody></table></figure>
+<p>可以 <code>ping</code> 通</p>
+<p>然后查看 smb，其中 <code>user_test</code> 为之前的
+<code>win_print</code> 的用户名</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">smbclient -L 210.26.120.75 -U user_test</span><br></pre></td></tr></tbody></table></figure>
+<p>会提示输入密码，即 之前的 <code>win_print</code> 的密码
+<code>pw_12345678</code></p>
+<p>如果出现类似以下内容，请继续，否则，我也不知道了……，前面的
+<code>ping</code> 以及依赖 <code>smbclient</code> 自行核对安装</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Password <span class="keyword">for</span> [MYGROUP\3008]:</span><br><span class="line"></span><br><span class="line">  Sharename       Type      Comment</span><br><span class="line">  ---------       ----      -------</span><br><span class="line">  ADMIN$          Disk      远程管理</span><br><span class="line">  C$              Disk      默认共享</span><br><span class="line">  D$              Disk      默认共享</span><br><span class="line">  icpcs3008       Printer   HP LaserJet MFP M227-M231</span><br><span class="line">  IPC$            IPC       远程 IPC</span><br><span class="line">  <span class="built_in">print</span>$          Disk      打印机驱动程序</span><br><span class="line">SMB1 disabled -- no workgroup available</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="添加打印机">添加打印机</h2>
+<p>在 <code>gnome</code>
+设置里，有打印机选项，如果提示服务不可用，请自行按照自己的系统安装
+<code>cups</code>，对于 <code>archlinux</code> 来说</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S cups</span><br></pre></td></tr></tbody></table></figure>
+<p>开启服务</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> --now cups</span><br></pre></td></tr></tbody></table></figure>
+<p>安装驱动</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S hplip</span><br></pre></td></tr></tbody></table></figure>
+<p>重新打开 <code>设置-打印机</code></p>
+<p>选择添加打印机，输入刚才的找到的ip：<code>196.168.10.1</code>，大概有一个条目显示</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">196.168.10.1</span><br><span class="line">服务器需要认证</span><br></pre></td></tr></tbody></table></figure>
+<p>选择这个，然后会让输入帐号密码，即刚才的windows用户名密码</p>
+<p>如果正确，然后可以看到打印机选项，类似如下</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">打印机名字</span><br><span class="line">位置://196.168.10.1</span><br></pre></td></tr></tbody></table></figure>
+<p>选择即可，会让你选择驱动，惠普打印机就是 <code>Hewlett-Packard</code>
+厂商，然后选择对应机器的驱动，尽量完全对上，一个都不要错，如果驱动比较少，说明你刚才驱动安装的有问题，添加以后，设置里就有了，我的是
+<code>HP LaserJet Pro MFP M227-M231 Postscript</code></p>
+<p>这时候打开cups浏览器端口<code>localhost:631</code>：<a href="http://localhost:631/printers/">打印机 - CUPS 2.4.1</a></p>
+<p>如果一切正常，这里会显示和 <code>gnome设置</code> 里一样的打印机</p>
+<h2 id="测试打印机与踩坑">测试打印机与踩坑</h2>
+<p>按理说，这时候打开一个pdf,或者其他的，选择打印，选中刚才的打印机，就可以了，但是会报错，报错信息在这里看</p>
+<p><a href="http://localhost:631/printers/">打印机 - CUPS
+2.4.1</a>，点击你添加的打印机，里面会有介绍错误信息</p>
+<h3 id="错误一">错误一</h3>
+<p>我遇到的第一个错误是，samba相关的，因为archlinux安装的，没有配置文件，按照这里的<a href="https://wiki.archlinux.org/title/samba_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E5%AE%89%E8%A3%85">Samba
+(简体中文) - ArchWiki</a>，把这个文件 <a href="https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD">https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD</a>，下载到
+<code>/etc/samba/smb.conf</code></p>
+<h3 id="错误二">错误二</h3>
+<p>然后又有错误，通知也提示 <code>需要凭证以继续打印</code>，</p>
+<p><strong>需要先关闭cups</strong>，再修改这个文件(因为不关闭，这个文件会变，好像应该修改
+<code>/etc/cups/cupsd.conf</code> 具体的我不知道)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo systemctl stop cups</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo gedit /etc/cups/printers.conf</span><br></pre></td></tr></tbody></table></figure>
+<p>如果有 <code>AuthInfoRequired none</code> 这一行，改为
+<code>AuthInfoRequired username,password</code>，没有的话，直接添加这一行</p>
+<p>然后</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo systemctl start cups</span><br></pre></td></tr></tbody></table></figure>
+<p>再打印，应该会提示帐号密码，填写刚才 <code>windows</code>
+的帐号密码就可以了，建议选中记住密码，但是注意，如果需要修改密码，</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">seahorse</span><br></pre></td></tr></tbody></table></figure>
+<p>没有这个软件的话，自己安装，中文名 <code>密码和密钥</code></p>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>archlinux安装回顾</title>
     <url>/posts/3513d90f.html</url>
     <content><![CDATA[<p>现在感觉，以前使用的ubuntu就是个渣渣，用了几年，对与软件本身的了解很差，而且这里的yay或者pura包含的软件实在是太丰富了！而且这种自动的源码编译得到的软件，使用效果要比打包的好很多，为了增加你的决心，先看成品，这个是
@@ -1404,10 +1495,16 @@ Archlinux双系统安装教程（超详细）</a></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></tbody></table></figure>
 <p>添加</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">127.0.0.1 localhost</span><br><span class="line">::1 localhost</span><br><span class="line">127.0.0.1 phy3008.localdomain phy3008</span><br></pre></td></tr></tbody></table></figure>
+<p>中文字体</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S noto-fonts-cjk</span><br></pre></td></tr></tbody></table></figure>
+<p>北京时间</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <h4 id="安装桌面">安装桌面</h4>
-<p>显卡驱动自选：<code>nvidia</code>
-<code>nvidia-utils</code>，其它，<code>xorg</code> 为显示管理</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S nvidia xorg</span><br></pre></td></tr></tbody></table></figure>
+<p><code>xorg</code> 为显示管理</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S xorg</span><br></pre></td></tr></tbody></table></figure>
+<p>显卡驱动自选，但是我不建议，因为linux内核里本来就有开源的显卡驱动了，对于需要cuda编程的N卡来说，你可以安装
+<code>cudnn</code>，会自动把 <code>cuda</code> <code>nvidia</code>
+等安装上，同时会禁用开源驱动，重新编译内核，安装以后，不要轻易卸载，有时候会因为内核没有重新编译，导致一些奇怪问题</p>
 <ul>
 <li><p>kde</p>
 <p><code>sddm</code> 为登录管理，<code>plasma</code>
@@ -1434,12 +1531,11 @@ Extensions</a>，并打开自身的 <code>扩展</code> 应用，开启</p>
 <li>kde-connect的gnome版本：<a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect
 - GNOME Shell Extensions</a></li>
 <li>更新提示：<a href="https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/">Arch
-Linux Updates Indicator - GNOME Shell Extensions</a></li>
-<li>窗口切换：<a href="https://extensions.gnome.org/extension/4412/advanced-alttab-window-switcher/">AATWS
-- Advanced Alt-Tab Window Switcher - GNOME Shell Extensions</a></li>
+Linux Updates Indicator - GNOME Shell Extensions</a>，注意依赖
+<code>pacman -S pacman-contrib gnome-menus</code></li>
 <li>农历：<a href="https://extensions.gnome.org/extension/675/lunar-calendar/">Lunar
 Calendar 农历 - GNOME Shell Extensions</a>，注意 <code>alt-F2</code>
-输入 <code>r</code> 重载</li>
+输入 <code>r</code> 重载，注意依赖 <code>yay -S lunar-date</code></li>
 </ul></li>
 </ul>
 <h4 id="新建用户">新建用户</h4>
@@ -1578,24 +1674,20 @@ Calendar 农历 - GNOME Shell Extensions</a>，注意 <code>alt-F2</code>
 <p>其实安装以后如果登陆页面右下角，有3个选项，那么直接用就行，但是大多时候，没有的，尤其是N卡的显卡，可以这样处理</p>
 <p>参考这里，<a href="https://blog.csdn.net/Danny_lh/article/details/122710383">gnome开启Wayland_Danny_lh的博客-CSDN博客_gnome
 wayland</a>，并针对我的问题进行简化</p>
-<p>主要是3个问题</p></li>
+<p>主要是3个问题（其实最简单的解决方法是，不安装N卡的专有驱动）</p></li>
 <li><p>kde plasma桌面</p>
 <p>只要安装 <code>sudo pacman -S plasma-wayland-session</code>，然后按照
 <a href="#问题2">问题2</a> <a href="#问题3">问题3</a>
 修改就可以了</p></li>
 </ul>
 <h3 id="问题1">问题1</h3>
-<p>因为N卡问题有点多，gnome桌面自己给屏蔽了</p>
-<p>修改这个文件</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /usr/lib/udev/rules.d/61-gdm.rules</span><br></pre></td></tr></tbody></table></figure>
-<p>文件第一行加入</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">GOTO=<span class="string">"gdm_prefer_wayland"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>文件末尾加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">LABEL=<span class="string">"gdm_prefer_wayland"</span></span><br><span class="line">RUN+=<span class="string">"/usr/lib/gdm-runtime-config set daemon PreferredDisplayServer wayland"</span></span><br><span class="line">GOTO=<span class="string">"gdm_end"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>因为N卡问题有点多，gnome桌面自己给屏蔽了：<a href="https://wiki.archlinux.org/title/GDM#Wayland_and_the_proprietary_NVIDIA_driver">GDM
+- ArchWiki</a></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /dev/null /etc/udev/rules.d/61-gdm.rules</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="问题2">问题2</h3>
 <blockquote>
 <p>要注意的是，需要安装了显卡驱动
-<code>sudo pacman -S nvidia</code>，不然修改会报错</p>
+<code>sudo pacman -S nvidia</code>，不然修改会报错，在gnome42的桌面里，我没有设置这个也成功了</p>
 </blockquote>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/mkinitcpio.conf</span><br></pre></td></tr></tbody></table></figure>
 <p>其中有一行</p>
@@ -1603,7 +1695,7 @@ wayland</a>，并针对我的问题进行简化</p>
 <p>改为</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)</span><br></pre></td></tr></tbody></table></figure>
 <p>依据在这里：<a href="https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting">NVIDIA
-DRM_kernel_mode_setting</a></p>
+DRM_kernel_mode_setting</a>，好像还需要设置钩子，防止更新时被覆盖</p>
 <p>生效，其实安装系统时就应该修改，并且生效</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo mkinitcpio -P</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="问题3">问题3</h3>
