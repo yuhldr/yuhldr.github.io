@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-04-10T14:23:07.001Z</updated>
+  <updated>2022-05-06T09:53:47.207Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,17 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>latex相关笔记</title>
+    <link href="https://yuhldr.github.io/posts/2dcfe2a6.html"/>
+    <id>https://yuhldr.github.io/posts/2dcfe2a6.html</id>
+    <published>2022-04-26T08:08:11.000Z</published>
+    <updated>2022-05-06T09:53:47.207Z</updated>
+    
+    
+    <summary type="html">latex一些常见的问题和示例代码，方便复制粘贴</summary>
+    
+    
+    
+    <category term="Tools" scheme="https://yuhldr.github.io/categories/Tools/"/>
+    
+    
+    <category term="latex" scheme="https://yuhldr.github.io/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux环境下连接windows共享的打印机</title>
     <link href="https://yuhldr.github.io/posts/7d18e834.html"/>
     <id>https://yuhldr.github.io/posts/7d18e834.html</id>
     <published>2022-04-10T13:17:27.000Z</published>
-    <updated>2022-04-10T14:23:07.001Z</updated>
+    <updated>2022-05-06T09:32:24.830Z</updated>
     
     
     <summary type="html">办公室里大家用的都是widows电脑，他们在一台电脑上usb连接了惠普打印机，然后直接选择共享，其他人就可以连接到自己电脑上了，而用linux的我就尴尬了，死活连接不上……</summary>
     
     
     
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="smb" scheme="https://yuhldr.github.io/tags/smb/"/>
     
   </entry>
   
@@ -208,7 +231,7 @@
     <link href="https://yuhldr.github.io/posts/d8e81662.html"/>
     <id>https://yuhldr.github.io/posts/d8e81662.html</id>
     <published>2021-12-26T09:54:15.000Z</published>
-    <updated>2022-04-04T14:12:53.722Z</updated>
+    <updated>2022-05-06T09:19:41.088Z</updated>
     
     
     <summary type="html">icpcs集群内部文档，slurm使用</summary>
@@ -422,31 +445,6 @@
     <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
     
     <category term="模式能量" scheme="https://yuhldr.github.io/tags/%E6%A8%A1%E5%BC%8F%E8%83%BD%E9%87%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FPU单链模拟</title>
-    <link href="https://yuhldr.github.io/posts/28023.html"/>
-    <id>https://yuhldr.github.io/posts/28023.html</id>
-    <published>2021-09-08T10:30:00.000Z</published>
-    <updated>2021-12-25T15:34:41.524Z</updated>
-    
-    
-    <summary type="html">FPU $\alpha$ 模型，32个原子，固定边界条件</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
-    
-    <category term="振动模式" scheme="https://yuhldr.github.io/tags/%E6%8C%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
-    
-    <category term="verlet" scheme="https://yuhldr.github.io/tags/verlet/"/>
     
   </entry>
   
