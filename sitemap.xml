@@ -317,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://yuhldr.github.io/archives/index.html</loc>
+    <loc>https://yuhldr.github.io/about/index.html</loc>
     
     <lastmod>2021-11-20</lastmod>
     
@@ -326,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://yuhldr.github.io/about/index.html</loc>
+    <loc>https://yuhldr.github.io/archives/index.html</loc>
     
     <lastmod>2021-11-20</lastmod>
     
@@ -549,6 +549,13 @@
   </url>
   
   <url>
+    <loc>https://yuhldr.github.io/tags/gitlab/</loc>
+    <lastmod>2022-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yuhldr.github.io/tags/clash/</loc>
     <lastmod>2022-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -557,13 +564,6 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/vpn/</loc>
-    <lastmod>2022-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/gitlab/</loc>
     <lastmod>2022-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
