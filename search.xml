@@ -5993,15 +5993,15 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
       </tags>
   </entry>
   <entry>
+    <title>归档</title>
+    <url>/archives/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>我是谁</title>
     <url>/about/index.html</url>
     <content><![CDATA[<p>一个不务正业的物理生</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>分类</title>
