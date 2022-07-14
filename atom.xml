@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-05-06T09:53:47.207Z</updated>
+  <updated>2022-07-14T15:11:04.235Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>archlinux安装xrdp的心酸路程</title>
+    <link href="https://yuhldr.github.io/posts/fae93d3c.html"/>
+    <id>https://yuhldr.github.io/posts/fae93d3c.html</id>
+    <published>2022-07-14T14:48:59.000Z</published>
+    <updated>2022-07-14T15:11:04.235Z</updated>
+    
+    
+    <summary type="html">archlinux安装xrdp，远程时，对于分辨率的适配比vnc好太多，而且远程时，别人看不到，但是安装中遇到了各种问题，官方文档也不靠谱</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="xrdp" scheme="https://yuhldr.github.io/tags/xrdp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>虚拟机安装win11与ubuntu引导相关问题</title>
+    <link href="https://yuhldr.github.io/posts/67b80cff.html"/>
+    <id>https://yuhldr.github.io/posts/67b80cff.html</id>
+    <published>2022-06-25T11:22:35.000Z</published>
+    <updated>2022-07-14T14:47:57.034Z</updated>
+    
+    
+    <summary type="html">前几天ubuntu服务器重启失败,引导出了问题,记录一下解决方案,并且今天虚拟机安装win11遇到了类似问题</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="uefi" scheme="https://yuhldr.github.io/tags/uefi/"/>
+    
+    <category term="win11" scheme="https://yuhldr.github.io/tags/win11/"/>
+    
+  </entry>
   
   <entry>
     <title>latex相关笔记</title>
@@ -80,7 +124,7 @@
     <link href="https://yuhldr.github.io/posts/d5c2f773.html"/>
     <id>https://yuhldr.github.io/posts/d5c2f773.html</id>
     <published>2022-03-21T07:03:02.000Z</published>
-    <updated>2022-03-22T06:33:49.217Z</updated>
+    <updated>2022-06-28T06:01:47.393Z</updated>
     
     
     <summary type="html">分子动力学，如何计算声子态密度，结合LAMMPS</summary>
@@ -88,8 +132,6 @@
     
     
     <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
@@ -103,7 +145,7 @@
     <link href="https://yuhldr.github.io/posts/9553fedc.html"/>
     <id>https://yuhldr.github.io/posts/9553fedc.html</id>
     <published>2022-03-06T13:03:50.000Z</published>
-    <updated>2022-03-13T02:41:51.446Z</updated>
+    <updated>2022-06-28T06:01:41.356Z</updated>
     
     
     <summary type="html">声子相关的一些内容回顾</summary>
@@ -111,8 +153,6 @@
     
     
     <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="phana" scheme="https://yuhldr.github.io/tags/phana/"/>
@@ -124,7 +164,7 @@
     <link href="https://yuhldr.github.io/posts/db8c1b0a.html"/>
     <id>https://yuhldr.github.io/posts/db8c1b0a.html</id>
     <published>2022-03-01T02:17:47.000Z</published>
-    <updated>2022-03-06T04:08:59.071Z</updated>
+    <updated>2022-06-28T06:01:37.753Z</updated>
     
     
     <summary type="html">使用LAMMPS计算声子谱，有相关开源软件，很方便，如果没有计算机知识，配置起来很麻烦</summary>
@@ -132,8 +172,6 @@
     
     
     <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    <category term="科研工具" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
@@ -279,7 +317,7 @@
     <link href="https://yuhldr.github.io/posts/f85bb316.html"/>
     <id>https://yuhldr.github.io/posts/f85bb316.html</id>
     <published>2021-11-11T15:43:14.000Z</published>
-    <updated>2021-12-26T14:17:02.244Z</updated>
+    <updated>2022-06-28T06:41:33.518Z</updated>
     
     
     <summary type="html">突然膨胀，觉得自己可以开发一个ubuntu的翻译软件，然后就成功了……，效果很不错</summary>
@@ -287,8 +325,6 @@
     
     
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    <category term="Python" scheme="https://yuhldr.github.io/categories/Linux/Python/"/>
     
     
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
@@ -346,7 +382,7 @@
     <link href="https://yuhldr.github.io/posts/59423.html"/>
     <id>https://yuhldr.github.io/posts/59423.html</id>
     <published>2021-10-20T08:51:11.000Z</published>
-    <updated>2022-02-26T14:36:08.065Z</updated>
+    <updated>2022-06-28T06:43:29.487Z</updated>
     
     
     <summary type="html">自己用的一些软件，方便寻找</summary>
@@ -365,7 +401,7 @@
     <link href="https://yuhldr.github.io/posts/25445.html"/>
     <id>https://yuhldr.github.io/posts/25445.html</id>
     <published>2021-10-19T12:42:54.000Z</published>
-    <updated>2021-12-26T14:16:44.708Z</updated>
+    <updated>2022-06-28T06:44:00.607Z</updated>
     
     
     <summary type="html">hexo中，在`source/images`里放图片，markdown引用路径为`../images/*.png`或者`/source/images/*.png`，但是这样编译出来，图片路径是不对的，这个插件自动修改一下</summary>
@@ -388,7 +424,7 @@
     <link href="https://yuhldr.github.io/posts/13877.html"/>
     <id>https://yuhldr.github.io/posts/13877.html</id>
     <published>2021-10-15T10:30:00.000Z</published>
-    <updated>2021-12-25T15:35:09.663Z</updated>
+    <updated>2022-06-28T06:45:01.743Z</updated>
     
     
     <summary type="html">高阶微分方程，可以用python“数值求解”或者“解析式求解”，很方便，解析式求解有些可能无解，数值求解画图方便一些</summary>
@@ -401,50 +437,6 @@
     <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
     
     <category term="微分方程求解" scheme="https://yuhldr.github.io/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FPU单链选择定则</title>
-    <link href="https://yuhldr.github.io/posts/53634.html"/>
-    <id>https://yuhldr.github.io/posts/53634.html</id>
-    <published>2021-09-10T10:30:00.000Z</published>
-    <updated>2021-12-25T15:34:51.015Z</updated>
-    
-    
-    <summary type="html">FPU $\beta$ 模型，32个原子，固定边界条件，各个模式能量被激活规律</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="波动方程" scheme="https://yuhldr.github.io/tags/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B/"/>
-    
-    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
-    
-    <category term="选择定则" scheme="https://yuhldr.github.io/tags/%E9%80%89%E6%8B%A9%E5%AE%9A%E5%88%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FPU单链模式能量</title>
-    <link href="https://yuhldr.github.io/posts/46949.html"/>
-    <id>https://yuhldr.github.io/posts/46949.html</id>
-    <published>2021-09-09T10:30:00.000Z</published>
-    <updated>2021-12-25T15:34:46.552Z</updated>
-    
-    
-    <summary type="html">FPU $\alpha$ 模型，32个原子，固定边界条件，投影不同时刻的模式能量，得到各个模式能量变化</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="fpu" scheme="https://yuhldr.github.io/tags/fpu/"/>
-    
-    <category term="模式能量" scheme="https://yuhldr.github.io/tags/%E6%A8%A1%E5%BC%8F%E8%83%BD%E9%87%8F/"/>
     
   </entry>
   
