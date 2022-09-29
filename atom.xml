@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-07-14T15:11:04.235Z</updated>
+  <updated>2022-09-29T20:35:43.872Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python打包pip</title>
+    <link href="https://yuhldr.github.io/posts/4e0c9d8f.html"/>
+    <id>https://yuhldr.github.io/posts/4e0c9d8f.html</id>
+    <published>2022-09-28T13:18:27.000Z</published>
+    <updated>2022-09-29T20:35:43.872Z</updated>
+    
+    
+    <summary type="html">这里有很多坑，比如引入非python文件，比如有些python文件没有被打包进入，比如多个文件之间的引用问题</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+    <category term="pip" scheme="https://yuhldr.github.io/tags/pip/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python中json解析中文处理</title>
+    <link href="https://yuhldr.github.io/posts/a63b796.html"/>
+    <id>https://yuhldr.github.io/posts/a63b796.html</id>
+    <published>2022-09-28T13:06:42.000Z</published>
+    <updated>2022-09-29T20:35:43.872Z</updated>
+    
+    
+    <summary type="html">python中json解析中文会被编码，可以防止这个问题，并且可以自动格式化；还有个问题就是 load 和 dump 都有两种写法</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+    <category term="json" scheme="https://yuhldr.github.io/tags/json/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python正则表达式</title>
+    <link href="https://yuhldr.github.io/posts/6bab798e.html"/>
+    <id>https://yuhldr.github.io/posts/6bab798e.html</id>
+    <published>2022-08-15T20:01:12.000Z</published>
+    <updated>2022-09-29T20:35:43.869Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>archlinux安装xrdp的心酸路程</title>
     <link href="https://yuhldr.github.io/posts/fae93d3c.html"/>
     <id>https://yuhldr.github.io/posts/fae93d3c.html</id>
     <published>2022-07-14T14:48:59.000Z</published>
-    <updated>2022-07-14T15:11:04.235Z</updated>
+    <updated>2022-07-14T15:24:27.041Z</updated>
     
     
     <summary type="html">archlinux安装xrdp，远程时，对于分辨率的适配比vnc好太多，而且远程时，别人看不到，但是安装中遇到了各种问题，官方文档也不靠谱</summary>
@@ -374,69 +431,6 @@
     
     
     <category term="git" scheme="https://yuhldr.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu常用软件</title>
-    <link href="https://yuhldr.github.io/posts/59423.html"/>
-    <id>https://yuhldr.github.io/posts/59423.html</id>
-    <published>2021-10-20T08:51:11.000Z</published>
-    <updated>2022-06-28T06:43:29.487Z</updated>
-    
-    
-    <summary type="html">自己用的一些软件，方便寻找</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo插件开发与npm包发布</title>
-    <link href="https://yuhldr.github.io/posts/25445.html"/>
-    <id>https://yuhldr.github.io/posts/25445.html</id>
-    <published>2021-10-19T12:42:54.000Z</published>
-    <updated>2022-06-28T06:44:00.607Z</updated>
-    
-    
-    <summary type="html">hexo中，在`source/images`里放图片，markdown引用路径为`../images/*.png`或者`/source/images/*.png`，但是这样编译出来，图片路径是不对的，这个插件自动修改一下</summary>
-    
-    
-    
-    <category term="Js" scheme="https://yuhldr.github.io/categories/Js/"/>
-    
-    
-    <category term="hexo" scheme="https://yuhldr.github.io/tags/hexo/"/>
-    
-    <category term="js" scheme="https://yuhldr.github.io/tags/js/"/>
-    
-    <category term="npm" scheme="https://yuhldr.github.io/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python微分求解</title>
-    <link href="https://yuhldr.github.io/posts/13877.html"/>
-    <id>https://yuhldr.github.io/posts/13877.html</id>
-    <published>2021-10-15T10:30:00.000Z</published>
-    <updated>2022-06-28T06:45:01.743Z</updated>
-    
-    
-    <summary type="html">高阶微分方程，可以用python“数值求解”或者“解析式求解”，很方便，解析式求解有些可能无解，数值求解画图方便一些</summary>
-    
-    
-    
-    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
-    
-    
-    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
-    
-    <category term="微分方程求解" scheme="https://yuhldr.github.io/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/"/>
     
   </entry>
   

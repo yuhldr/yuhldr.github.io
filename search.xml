@@ -1249,6 +1249,131 @@
       </tags>
   </entry>
   <entry>
+    <title>python打包pip</title>
+    <url>/posts/4e0c9d8f.html</url>
+    <content><![CDATA[<p>我这里是自用的，打包直接安装了，方便多个地方引用，不需要写一堆路径</p>
+<h2 id="最简打包">最简打包</h2>
+<p>比如 - 你的打包的pip库名字是 <code>pytest</code> -
+你封装的函数只有一个 </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">str</span> + <span class="string">": ok"</span>)</span><br><span class="line">  <span class="built_in">print</span>(np.pi)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>你需要的工作</p>
+<ul>
+<li><p>创建最外层文件夹，名字随意 比如 <code>test</code></p></li>
+<li><p>在 <code>test</code> 文件夹里创建 <code>pytest</code> 文件夹 &gt;
+也就是你打包的pip库名字</p></li>
+<li><p>在 <code>pytest</code> 文件夹里创建的函数文件
+<code>__init__.py</code> &gt;
+注意函数可以写在这里，也可以其他地方，但是这个文件必须有
+<code>__init__.py</code> 里面的内容 </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span> + <span class="string">": ok"</span>)</span><br><span class="line">    <span class="built_in">print</span>(np.pi)</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>在 <code>test</code> 文件夹里创建 <code>setup.py</code> 文件</p>
+<p>里面的内容 </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=<span class="string">'pytest'</span>,</span><br><span class="line">    <span class="comment"># 版本号</span></span><br><span class="line">    version=<span class="string">'1.0'</span>,</span><br><span class="line">    author=<span class="string">"你的名字"</span>,</span><br><span class="line">    author_email=<span class="string">"test@gmail.com"</span>,</span><br><span class="line">    <span class="comment"># 你的打包的pip库名字</span></span><br><span class="line">    py_modules=[<span class="string">"pytest"</span>],</span><br><span class="line">    <span class="comment"># 你的依赖</span></span><br><span class="line">    install_requires=[<span class="string">"numpy"</span>],</span><br><span class="line">          <span class="comment"># 自动打包文件</span></span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    description=<span class="string">"库的说明"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+</ul>
+<p>最后你的文件目录应该是</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">test</span></span><br><span class="line">    ├── pytest</span><br><span class="line">    │   └── __init__.py</span><br><span class="line">    └── setup.py</span><br></pre></td></tr></tbody></table></figure>
+<p>最后安装，在 test 文件夹里执行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pip install ./</span><br></pre></td></tr></tbody></table></figure>
+<p>安装位置，以linux为例：<code>~/.local/lib/python3.10/site-packages/pytest/</code></p>
+<p>如果前面没有错误，不会报错，安装成功</p>
+<p>在其他文件里可以引用刚才的函数</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pytest.fun(<span class="string">"a"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># a: ok</span></span><br><span class="line"><span class="comment"># 3.141592653589793</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="复杂">复杂</h2>
+<ul>
+<li><p>如果你需要写一些比较多的说明</p>
+<p>在刚才的 <code>test</code> 文件夹里新建 <code>README.md</code></p>
+<p>然后修改 <code>setup.py</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> setuptools</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"README.md"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> fh:</span><br><span class="line">    long_description = fh.read()</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=<span class="string">'pytest'</span>,</span><br><span class="line">    <span class="comment"># 版本号</span></span><br><span class="line">    version=<span class="string">'1.0'</span>,</span><br><span class="line">    author=<span class="string">"你的名字"</span>,</span><br><span class="line">    author_email=<span class="string">"test@gmail.com"</span>,</span><br><span class="line">    <span class="comment"># 你的打包的pip库名字</span></span><br><span class="line">    py_modules=[<span class="string">"pytest"</span>],</span><br><span class="line">    <span class="comment"># 你的依赖</span></span><br><span class="line">    install_requires=[<span class="string">"numpy"</span>],</span><br><span class="line">          <span class="comment"># 自动打包文件</span></span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    description=<span class="string">"库的说明"</span>,</span><br><span class="line">    long_description=long_description,</span><br><span class="line">    long_description_content_type=<span class="string">"text/markdown"</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>可能的需要封装的函数库比较复杂</p>
+<p>比如有多个文件之间相互引用</p>
+<p><code>a.py</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_a</span>():</span><br><span class="line">  <span class="keyword">return</span> np.pi * <span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>b.py</code> 需要引用 <code>a.py</code>
+中的函数，正常导入包你的这个包就可以，也就是自己引用自己</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pytest.get_a())</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>可能你有多个文件夹</p>
+<p>每一个文件夹里，必须有 <code>__init__.py</code>
+这个文件，即使这个文件空白</p></li>
+<li><p>可能你有一些常量放在了 <code>data.json</code> 文件里</p>
+<p>首先在刚才的 <code>setuptools.setup(</code> 里添加
+<code>include_package_data=True,</code></p>
+<p>然后，在刚才的 <code>test</code> 文件夹里新建
+<code>MANIFEST.in</code></p>
+<p>里面的内容</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">include data.json</span><br></pre></td></tr></tbody></table></figure>
+<p>引用它，建议在 pytest 文件夹的 <code>__init__.py</code> 里写</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">this_dir, this_filename = os.path.split(__file__)</span><br></pre></td></tr></tbody></table></figure>
+<p>其他地方引用它</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line">file = pytest.this_dir + <span class="string">"/data.json"</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python中json解析中文处理</title>
+    <url>/posts/a63b796.html</url>
+    <content><![CDATA[<h2 id="读取">读取</h2>
+<ul>
+<li><p>读取字符串</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">"{a:1}"</span></span><br><span class="line">j_data = json.loads(<span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(j_data)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>读取文件</p>
+<p>区别仅仅是，<code>load</code> 不要 <code>s</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># windows系统 open 读取可能需要指定编码</span></span><br><span class="line">j_data = json.load(<span class="built_in">open</span>(<span class="string">"文件名"</span>, <span class="string">"r"</span>))</span><br><span class="line"><span class="built_in">print</span>(j_data)</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h2 id="保存">保存</h2>
+<ul>
+<li><p>方法一</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">data = {<span class="string">"a"</span>:<span class="number">1</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment"># windows系统 open 写入可能需要指定编码</span></span><br><span class="line"><span class="comment"># indent自动格式化</span></span><br><span class="line"><span class="comment"># ensure_ascii 中文显示没问题</span></span><br><span class="line">json.dump(data, <span class="built_in">open</span>(<span class="string">"test.json"</span>, <span class="string">'w'</span>), indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>方法二</p>
+<p>区别仅仅是，<code>dump</code> 要 <code>s</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">data = {<span class="string">"a"</span>:<span class="number">1</span>}</span><br><span class="line"></span><br><span class="line">s = json.dumps(data, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"test.json"</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file:</span><br><span class="line">  file.write(s)</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python正则表达式</title>
+    <url>/posts/6bab798e.html</url>
+    <content><![CDATA[<p>先写正则表达式 <code>re_log_data</code>，然后
+<code>re.compile(re_log_data)</code> 预处理</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">re_log_data = <span class="string">r"^\s*((-?[0-9]*(\.[0-9]*)?([eE][-]?)?[0-9]+)\s+)+(-?[0-9]*(\.[0-9]*)?([eE][-]?)?[0-9]+)?"</span></span><br><span class="line">pattern = re.<span class="built_in">compile</span>(re_log_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># test_string = '4 binsize = 6.7, bins = 8 8 150'</span></span><br><span class="line">test_string = <span class="string">'''</span></span><br><span class="line"><span class="string">       0    98.676962   -442025.34            0   -441271.54    18272.015      2306304</span></span><br><span class="line"><span class="string">    2000    96.406522   -442997.22            0   -442260.76   -13680.737      2306304</span></span><br><span class="line"><span class="string">    4000     106.9393   -443334.55            0   -442517.63   -6014.7622    2316968.2 </span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></tbody></table></figure>
+<p>接下来，开始用一些方法搜索</p>
+<h2 id="findall">findall</h2>
+<p>这个用法比较简单，大多时候这个就够了</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">result = pattern.findall(test_string)</span><br></pre></td></tr></tbody></table></figure>
+<p>一般自己打印出来看看，是元组、数组，还是其他，直接索引就可以了</p>
+<h2 id="match">match</h2>
+<p>只返回第一个</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">result = pattern.match(test_string)</span><br></pre></td></tr></tbody></table></figure>
+<p>其中</p>
+<ul>
+<li><p><code>groups()</code> 会出现一些无用的</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">result.groups()</span><br><span class="line"><span class="comment">#  ('2316968.2 \n', '2316968.2', '.', None, None, None, None)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 括号里变成数字 只是把 None 变成 这个数字</span></span><br><span class="line">result.groups(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#  ('2316968.2 \n', '2316968.2', '.', 0, 0, 0, 0)</span></span><br><span class="line">result.groups(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#  ('2316968.2 \n', '2316968.2', '.', 1, 1, 1, 1)</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><code>group()</code></p>
+<p>比较合适 </p><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(result.group())</span><br><span class="line"><span class="comment">#        0    98.676962   -442025.34            0   -441271.54    18272.015      2306304</span></span><br><span class="line"><span class="comment">#     2000    96.406522   -442997.22            0   -442260.76   -13680.737      2306304</span></span><br><span class="line"><span class="comment">#     4000    106.9393   -443334.55            0   -442517.63   -6014.7622    2316968.2 </span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure><p></p></li>
+</ul>
+<h2 id="finditer">finditer</h2>
+<p>返回多个，每一个类似 <code>match</code></p>
+<p><code>test_string</code> 换成如下</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">re_log_data = <span class="string">r"^\s*((-?[0-9]*(\.[0-9]*)?([eE][-]?)?[0-9]+)\s+)+(-?[0-9]*(\.[0-9]*)?([eE][-]?)?[0-9]+)?"</span></span><br><span class="line">pattern = re.<span class="built_in">compile</span>(re_log_data)</span><br><span class="line"></span><br><span class="line">test_string = <span class="string">'''</span></span><br><span class="line"><span class="string">4 binsize = 6.7, bins = 8 8 150</span></span><br><span class="line"><span class="string">dadafaf</span></span><br><span class="line"><span class="string">       0    98.676962   -442025.34            0   -441271.54    18272.015      2306304</span></span><br><span class="line"><span class="string">    2000    96.406522   -442997.22            0   -442260.76   -13680.737      2306304</span></span><br><span class="line"><span class="string">    4000     106.9393   -443334.55            0   -442517.63   -6014.7622    2316968.2 </span></span><br><span class="line"><span class="string">    ajdsiod</span></span><br><span class="line"><span class="string">adsncios</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = pattern.finditer(test_string)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"查找成功."</span>, result)</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(s)</span><br><span class="line">        <span class="built_in">print</span>(s.group())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"查找不成功."</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p><code>match</code> 找不到后面的</p>
+<blockquote>
+<p>当时没写完，我忘了这里准备写什么了……，或许是</p>
+</blockquote>
+<p>可以试一下把下面的打印看看</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">match.group()</span><br></pre></td></tr></tbody></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>archlinux安装xrdp的心酸路程</title>
     <url>/posts/fae93d3c.html</url>
     <content><![CDATA[<p>注意我的当前环境</p>
@@ -1310,6 +1435,8 @@
 <p><code>wm_start</code> 函数中不是 <code>arch user</code>
 的，都被我删了，这个函数，目前如下</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 注意只是 `wm_start` 这个函数里面的被我改了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#start the window manager</span></span><br><span class="line"><span class="function"><span class="title">wm_start</span></span>()</span><br><span class="line">{</span><br><span class="line">  <span class="keyword">if</span> [ -r /etc/locale.conf ]; <span class="keyword">then</span></span><br><span class="line">    . /etc/locale.conf</span><br><span class="line">    <span class="built_in">export</span> LANG LANGUAGE</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># arch user</span></span><br><span class="line">  <span class="keyword">if</span> [ -r ~/.xinitrc ]; <span class="keyword">then</span></span><br><span class="line">    pre_start</span><br><span class="line">    . ~/.xinitrc</span><br><span class="line">    post_start</span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  pre_start</span><br><span class="line">  xterm</span><br><span class="line">  post_start</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>对了期间还有，我也不确定有没有用</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo gpasswd -a <span class="variable">$USER</span> <span class="built_in">tty</span></span><br></pre></td></tr></tbody></table></figure>
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -5961,13 +6088,13 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
 ]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>归档</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
