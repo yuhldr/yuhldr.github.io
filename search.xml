@@ -1417,7 +1417,7 @@
 <p>然后注释掉如下最后几行</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#twm &amp;</span></span><br><span class="line"><span class="comment">#xclock -geometry 50x50-1+1 &amp;</span></span><br><span class="line"><span class="comment">#xterm -geometry 80x50+494+51 &amp;</span></span><br><span class="line"><span class="comment">#xterm -geometry 80x20+494-0 &amp;</span></span><br><span class="line"><span class="comment">#exec xterm -geometry 80x66+0+0 -name login</span></span><br></pre></td></tr></tbody></table></figure>
 <p>在最后添加，注意，我的是kde桌面</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> DESKTOP_SESSION=plasma</span><br><span class="line">/usr/lib/plasma-dbus-run-session-if-needed startplasma-x11</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 声音</span></span><br><span class="line">PULSE_SCRIPT=/etc/xrdp/pulse/default.pa pulseaudio --daemonize=no</span><br><span class="line">pulseaudio &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># kde-plasma桌面</span></span><br><span class="line"><span class="built_in">export</span> DESKTOP_SESSION=plasma</span><br><span class="line">/usr/lib/plasma-dbus-run-session-if-needed startplasma-x11</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="错误4">错误4</h3>
 <blockquote>
 <p>这个大概也是因为一些权限问题</p>
