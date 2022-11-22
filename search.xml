@@ -2514,13 +2514,24 @@ t-naq)}\)</span> 和 <span class="math inline">\(\omega=2\sqrt{\frac{\beta}{m}}|
 <p>这个库，编译时依赖四个库
 <code>clapack/3.2.1</code>、<code>tricubic/1.0</code>、<code>spglib/1.9.7</code>、<code>fftw/3.3.7</code>，其中
 <code>clapack</code> 和 <code>tricubic</code>是必须的</p>
+<blockquote>
+<p>如果是mac，先自己百度把 <code>brew</code>
+配置好，然后终端输入如下命令，安装
+<code>gcc</code>、<code>libtool</code>、<code>automake</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install gcc libtool automake</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="phana依赖">phana依赖</h4>
-<p><code>lib</code> 文件夹里，直接按照
-<code>README</code>编译，里面有一个错误 <code>Copy and link</code>
-中的</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /opt/clapack/3.2.1/lib/clapack_LINUX.a /opt/clapack/3.2.1/lib/libclapack.a</span><br><span class="line"><span class="comment"># 应该修改为</span></span><br><span class="line"><span class="built_in">ln</span> -s /opt/clapack/3.2.1/lib/lapack_LINUX.a /opt/clapack/3.2.1/lib/libclapack.a</span><br></pre></td></tr></tbody></table></figure>
+<p><code>lib</code> 文件夹里，直接按照 <code>README</code>编译 clapack
+和 tricubic</p>
+<blockquote>
+<p>如果要修改依赖的安装路径，比如 MAC电脑，建议安装到
+<code>/usr/local/opt</code> 而不要安装到
+<code>/opt</code>：每个<code>./configure</code>
+后面的安装路径修改一下，并且 Makefile 里面的 <code>/opt/</code>
+也对应修改一下</p>
+</blockquote>
 <h4 id="编译phana">编译phana</h4>
-<p>这一步不建议，直接跳过，往下看，完全编译，<a href="#高级">点我</a></p>
+<p>如果是linux，这一步不建议，直接跳过自己编译，MAC电脑必须自己编译。</p>
 <p>编译phana退项目根目录，只要两个必须库，需要注释掉几行代码，打开<code>Makefile</code>，</p>
 <p>注释掉<code>spglib/1.9.7</code>、<code>fftw/3.3.7</code>相关的</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># # spglib, used to get the irreducible q-points</span></span><br><span class="line"><span class="comment"># # if SFLAG is not set, spglib won't be used.</span></span><br><span class="line"><span class="comment"># SFLAG  = -DUseSPG</span></span><br><span class="line"><span class="comment"># SPGINC = -I/opt/spglib/1.9.7/include/spglib</span></span><br><span class="line"><span class="comment"># SPGLIB = -L/opt/spglib/1.9.7/lib -lsymspg</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # FFTW 3， used to deduce the force constants in real space</span></span><br><span class="line"><span class="comment"># # if FFLAG is not set, fftw won't be used.</span></span><br><span class="line"><span class="comment"># FFLAG  = -DFFTW3</span></span><br><span class="line"><span class="comment"># FFTINC = -I/opt/fftw/3.3.7/include</span></span><br><span class="line"><span class="comment"># FFTLIB = -L/opt/fftw/3.3.7/lib -lfftw3</span></span><br></pre></td></tr></tbody></table></figure>
@@ -2537,11 +2548,9 @@ t-naq)}\)</span> 和 <span class="math inline">\(\omega=2\sqrt{\frac{\beta}{m}}|
 <p>去官网下载3.3.7版本</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">wget https://fftw.org/pub/fftw/fftw-3.3.7.tar.gz</span><br><span class="line"></span><br><span class="line">tar xzvf fftw-3.3.7.tar.gz &amp;&amp; <span class="built_in">cd</span> fftw-3.3.7</span><br><span class="line"></span><br><span class="line">./configure --prefix=/opt/fftw/3.3.7 &amp;&amp; make -j &amp;&amp; sudo make install</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="完全编译">完全编译</h4>
-<p>回到刚才项目的根目录，<strong>不要注释</strong>
-之前的那几行了，但是需要修改一下，因为有问题</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">SPGINC = -I/opt/spglib/1.9.7/include/spglib</span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">SPGINC = -I/opt/spglib/1.9.7/include</span><br></pre></td></tr></tbody></table></figure>
-<p>然后 <code>sudo make</code> 编译，直至结束并出现 <code>phana</code>
-这个文件</p>
+<p>回到刚才项目的根目录，<strong>不要注释</strong> 之前的那几行了</p>
+<p>然后 <code>make</code> 编译，直至结束并出现 <code>phana</code>
+这个文件，此时安装的那些依赖已经不需要了，只要这个可执行文件就可以了</p>
 <h2 id="重复示例">重复示例</h2>
 <p>把<code>lammps</code> 文件夹里的
 <code>examples/PACKAGES/phonon</code> 复制到一个新的地方，然后打开</p>
@@ -6092,13 +6101,13 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
