@@ -2407,7 +2407,7 @@ m\frac{d^2u_n}{dt^2}=\beta(u_{n+1}+u_{n-1}-2u_{n})\]</span></p>
 <p><span class="math display">\[u_{nq}=Ae^{i(\omega t-naq)} \qquad
 q=\frac{2\pi}{\lambda}\]</span></p>
 <p><span class="math inline">\(q\)</span>
-是波数，意思就是，位移与时间的关系有很多个解，<span class="math inline">\(q\)</span> 可以取整数 <span class="math inline">\(1,2,3,...\)</span>，<span class="math inline">\(n\)</span> 指得还是第几个原子，具体为什么，看 <a href="../38767">波动方程求解2-分离变量法</a></p>
+是波数，意思就是，位移与时间的关系有很多个解，<span class="math inline">\(q\)</span> 可以取整数 <span class="math inline">\(1,2,3,...\)</span>，<span class="math inline">\(n\)</span> 指得还是第几个原子，具体为什么，看 <a href="./38767">波动方程求解2-分离变量法</a></p>
 <p><span class="math inline">\(\omega\)</span> 是角频率，<span class="math inline">\(\lambda\)</span> 是波长</p>
 <p>如果再把这个方程代回运动方程，可以得到</p>
 <p><span class="math display">\[\omega=2\sqrt{\frac{\beta}{m}}|sin\frac{1}{2}aq|\]</span></p>
