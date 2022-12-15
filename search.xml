@@ -1353,7 +1353,7 @@
 <p>一般自己打印出来看看，是元组、数组，还是其他，直接索引就可以了</p>
 <h2 id="match">match</h2>
 <p>只返回第一个</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">result = pattern.match(test_string)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">result = pattern.<span class="keyword">match</span>(test_string)</span><br></pre></td></tr></tbody></table></figure>
 <p>其中</p>
 <ul>
 <li><p><code>groups()</code> 会出现一些无用的</p>
@@ -1370,7 +1370,7 @@
 <p>当时没写完，我忘了这里准备写什么了……，或许是</p>
 </blockquote>
 <p>可以试一下把下面的打印看看</p>
-<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">match.group()</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">match</span>.group()</span><br></pre></td></tr></tbody></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -1408,7 +1408,7 @@
 </blockquote>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/polkit-1/rules.d/49-nopasswd_global.rules</span><br></pre></td></tr></tbody></table></figure>
 <p>添加如下内容</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">/* Allow members of the wheel group to execute any actions</span><br><span class="line"> * without password authentication, similar to <span class="string">"sudo NOPASSWD:"</span></span><br><span class="line"> */ </span><br><span class="line">polkit.addRule(<span class="keyword">function</span>(action, subject) {</span><br><span class="line">    <span class="keyword">if</span> ((  action.id == <span class="string">"org.freedesktop.policykit.exec"</span></span><br><span class="line">    || action.id == <span class="string">"org.fedoraproject.FirewallD1.all"</span></span><br><span class="line">    || action.id == <span class="string">"org.fedoraproject.FirewallD1.config"</span></span><br><span class="line">    || action.id == <span class="string">"org.freedesktop.NetworkManager.settings.modify.system"</span>) &amp;&amp;</span><br><span class="line">      subject.isInGroup(<span class="string">"wheel"</span>)) {</span><br><span class="line">        <span class="built_in">return</span> polkit.Result.YES;</span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">/* Allow members of the wheel group to execute any actions</span><br><span class="line"> * without password authentication, similar to <span class="string">"sudo NOPASSWD:"</span></span><br><span class="line"> */ </span><br><span class="line">polkit.addRule(<span class="keyword">function</span>(action, subject) {</span><br><span class="line">    <span class="keyword">if</span> ((  action.id == "org.freedesktop.policykit.exec"</span><br><span class="line">    || action.id == "org.fedoraproject.FirewallD1.all"</span><br><span class="line">    || action.id == "org.fedoraproject.FirewallD1.config"</span><br><span class="line">    || action.id == "org.freedesktop.NetworkManager.settings.modify.system") &amp;&amp;</span><br><span class="line">      subject.isInGroup("wheel")) {</span><br><span class="line">        <span class="built_in">return</span> polkit.Result.YES;</span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="错误3">错误3</h3>
 <blockquote>
 <p>这个大概是因为闪退、黑屏</p>
@@ -6101,13 +6101,13 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
