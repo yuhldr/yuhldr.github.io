@@ -727,6 +727,13 @@
   </url>
   
   <url>
+    <loc>https://yuhldr.github.io/tags/git/</loc>
+    <lastmod>2022-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yuhldr.github.io/tags/oh-my-zsh/</loc>
     <lastmod>2022-12-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -735,13 +742,6 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/p10k/</loc>
-    <lastmod>2022-12-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/git/</loc>
     <lastmod>2022-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
