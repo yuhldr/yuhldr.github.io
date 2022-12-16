@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>我是谁</title>
-  <icon>https://www.gravatar.com/avatar/a15bea5c558eb74469a0926b548c8756</icon>
+  <icon>https://www.gravatar.com/avatar/17d1d76075302863ec888a02edf3ac7f</icon>
   <subtitle>迷茫就去学习吧</subtitle>
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
@@ -11,7 +11,7 @@
   
   <author>
     <name>yuh</name>
-    <email>yuhldr@gmail.com</email>
+    <email>yuhldr@qq.com</email>
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
