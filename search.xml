@@ -1254,6 +1254,38 @@
       </tags>
   </entry>
   <entry>
+    <title>github自动化</title>
+    <url>/posts/dabdcea.html</url>
+    <content><![CDATA[<p>举个例子</p>
+<ul>
+<li><p>我写了软件 <a href="https://github.com/yuhldr/ldr-translate">GitHub -
+yuhldr/ldr-translate</a>，平时需要自己打包，然后上传发布，但是我不可能每次修改一些小问题都发布一次，这时候我可以用这个自动化自动发布
+<code>beta</code> 版本：<a href="https://github.com/yuhldr/ldr-translate/releases">releases</a></p></li>
+<li><p>我写了个脚本，想每天某时运行一次，但是我没有服务器，也可以用它。</p></li>
+</ul>
+<p><code>github Actions</code> 可以实现上面的问题</p>
+<p>实际的问题应用可以看这里的文件 <a href="https://github.com/yuhldr/ldr-translate/blob/master/.github/workflows/main.yml">main.yml</a></p>
+<p>我取其中一部分，做个说明</p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 这个名字随便，只是为了区分不同的 `action`</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">AutoPkg</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置启动的条件，我这里设置的是，每次提交代码都编译</span></span><br><span class="line"><span class="comment"># 被注释掉的 schedule 是定时触发，格式与linux 的 cron 一致</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="comment"># schedule:</span></span><br><span class="line">  <span class="comment">#   - cron: "0 0 * * *"</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">"master"</span> ]</span><br><span class="line">  <span class="attr">pull_request:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">"master"</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置一些固定的变量，可以用 ${{ env.SOFTWARE_NAME }} 引用</span></span><br><span class="line"><span class="attr">env:</span></span><br><span class="line">  <span class="attr">TAG_NAME:</span> <span class="string">"自动打包"</span></span><br><span class="line">  <span class="attr">SOFTWARE_NAME:</span> <span class="string">"ldr-translate"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次触发执行什么</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line"><span class="comment"># 这个名字随意</span></span><br><span class="line">  <span class="attr">build-ldr-linux:</span></span><br><span class="line"><span class="comment"># 在什么服务器上运行，可以有</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-22.04</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Prepare</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="comment"># 自定义的一些初始化命令</span></span><br><span class="line">        <span class="string">rm</span> <span class="string">-rf</span> <span class="string">disk</span></span><br><span class="line">        <span class="string">make</span> <span class="string">clear</span></span><br><span class="line">        <span class="string">echo</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">rpm</span> <span class="string">package</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        sudo apt update -y</span></span><br><span class="line"><span class="string"></span><span class="comment"># 安装打包rpm所需要的工具</span></span><br><span class="line">        <span class="string">sudo</span> <span class="string">apt-get</span> <span class="string">install</span> <span class="string">-y</span> <span class="string">rpm</span></span><br><span class="line"><span class="comment"># 自定义的打包命令</span></span><br><span class="line">        <span class="string">make</span> <span class="string">rpm-gtk</span> <span class="string">&amp;&amp;</span> <span class="string">make</span> <span class="string">rpm-qt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布到release</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Create</span> <span class="string">Release</span> <span class="string">and</span> <span class="string">Upload</span> <span class="string">Release</span> <span class="string">Asset</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">softprops/action-gh-release@v1</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">tag_name:</span> <span class="string">${{</span> <span class="string">env.TAG_NAME</span> <span class="string">}}</span></span><br><span class="line">        <span class="attr">prerelease:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">draft:</span> <span class="literal">false</span></span><br><span class="line">        <span class="attr">files:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">disk/*</span></span><br></pre></td></tr></tbody></table></figure>
+<p>实际应用的时候，建议写成 <code>Makefile</code>，然后在这里只是调用
+<code>make</code> 命令，自己在电脑上测试也方便，</p>
+<p>具体的可以参见</p>
+<p><a href="https://github.com/yuhldr/ldr-translate">GitHub -
+yuhldr/ldr-translate</a></p>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python打包pip</title>
     <url>/posts/4e0c9d8f.html</url>
     <content><![CDATA[<p>我这里是自用的，打包直接安装了，方便多个地方引用，不需要写一堆路径</p>
@@ -5755,55 +5787,6 @@ ubuntu2004.3系统代理设置</figcaption>
       </tags>
   </entry>
   <entry>
-    <title>Windows Terminal美化配置</title>
-    <url>/posts/7737.html</url>
-    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></tbody></table></figure>
-<blockquote>
-<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
-</blockquote>
-<h2 id="默认打开">默认打开</h2>
-<p>打开WSL的某一个还是windows</p>
-<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
-中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
-判断）</p>
-<h2 id="安装字体">安装字体</h2>
-<p>在这里下载：<a href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
-里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
-<p>windows-terminal右上角设置</p>
-<h2 id="颜色主题">颜色主题</h2>
-<p>颜色主题到这里找 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
-<code>.json</code> 文件，类似下面的内容，复制，然后在
-<code>schemes</code> 上括号下面添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Monokai Soda"</span>,</span><br><span class="line">    <span class="string">"black"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"red"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"green"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"yellow"</span>: <span class="string">"#fa8419"</span>,</span><br><span class="line">    <span class="string">"blue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"purple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"cyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"white"</span>: <span class="string">"#c4c5b5"</span>,</span><br><span class="line">    <span class="string">"brightBlack"</span>: <span class="string">"#625e4c"</span>,</span><br><span class="line">    <span class="string">"brightRed"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightGreen"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"brightYellow"</span>: <span class="string">"#e0d561"</span>,</span><br><span class="line">    <span class="string">"brightBlue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"brightPurple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightCyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"brightWhite"</span>: <span class="string">"#f6f6ef"</span>,</span><br><span class="line">    <span class="string">"background"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"foreground"</span>: <span class="string">"#c4c5b5"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="相关配置">相关配置</h2>
-<p>在 <code>defaults</code> 上括号下面添加</p>
-<ul>
-<li>注意字体：<code>fontFace</code></li>
-<li>注意图片地址：<code>backgroundImage</code></li>
-<li>注意：<code>colorScheme</code></li>
-</ul>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"fontFace"</span>: <span class="string">"Cascadia Code"</span>, // 字体</span><br><span class="line"><span class="string">"fontSize"</span>: 12, // 字号</span><br><span class="line"><span class="string">"acrylicOpacity"</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">"colorScheme"</span>: <span class="string">"Monokai Soda"</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">"closeOnExit"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"cursorColor"</span>: <span class="string">"#ffffff"</span>, //光标颜色</span><br><span class="line"><span class="string">"cursorShape"</span>: <span class="string">"emptyBox"</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">"historySize"</span>: 9999999,</span><br><span class="line"><span class="string">"backgroundImage"</span>: <span class="string">"D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg"</span>, //配置背景图片地址</span><br><span class="line"><span class="string">"backgroundImageOpacity"</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">"padding"</span>: <span class="string">"0, 0, 0, 0"</span>,</span><br><span class="line"><span class="string">"snapOnInput"</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">"//wsl$/Ubuntu-20.04/home/yuh"</span>,</span><br><span class="line"><span class="string">"startingDirectory"</span>: <span class="string">"%USERPROFILE%"</span>,</span><br><span class="line"><span class="string">"useAcrylic"</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">"tabTitle"</span>: <span class="string">"chessYu"</span> //标签名称</span><br></pre></td></tr></tbody></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="https://juejin.cn/post/6844904116322304014">Windows
-Terminal美化界面</a></li>
-</ul>
-<hr>
-<blockquote>
-<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
-<br> <strong>版权声明</strong>：转载请注明出处！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>terminal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows包管理scoop配置使用</title>
     <url>/posts/40358.html</url>
     <content><![CDATA[<h2 id="windows10可能禁止脚本运行">windows10可能禁止脚本运行</h2>
@@ -5867,8 +5850,57 @@ Terminal美化界面</a></li>
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>scoop</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows Terminal美化配置</title>
+    <url>/posts/7737.html</url>
+    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
+</blockquote>
+<h2 id="默认打开">默认打开</h2>
+<p>打开WSL的某一个还是windows</p>
+<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
+中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
+判断）</p>
+<h2 id="安装字体">安装字体</h2>
+<p>在这里下载：<a href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
+里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
+<p>windows-terminal右上角设置</p>
+<h2 id="颜色主题">颜色主题</h2>
+<p>颜色主题到这里找 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
+<code>.json</code> 文件，类似下面的内容，复制，然后在
+<code>schemes</code> 上括号下面添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Monokai Soda"</span>,</span><br><span class="line">    <span class="string">"black"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"red"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"green"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"yellow"</span>: <span class="string">"#fa8419"</span>,</span><br><span class="line">    <span class="string">"blue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"purple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"cyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"white"</span>: <span class="string">"#c4c5b5"</span>,</span><br><span class="line">    <span class="string">"brightBlack"</span>: <span class="string">"#625e4c"</span>,</span><br><span class="line">    <span class="string">"brightRed"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightGreen"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"brightYellow"</span>: <span class="string">"#e0d561"</span>,</span><br><span class="line">    <span class="string">"brightBlue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"brightPurple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightCyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"brightWhite"</span>: <span class="string">"#f6f6ef"</span>,</span><br><span class="line">    <span class="string">"background"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"foreground"</span>: <span class="string">"#c4c5b5"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="相关配置">相关配置</h2>
+<p>在 <code>defaults</code> 上括号下面添加</p>
+<ul>
+<li>注意字体：<code>fontFace</code></li>
+<li>注意图片地址：<code>backgroundImage</code></li>
+<li>注意：<code>colorScheme</code></li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"fontFace"</span>: <span class="string">"Cascadia Code"</span>, // 字体</span><br><span class="line"><span class="string">"fontSize"</span>: 12, // 字号</span><br><span class="line"><span class="string">"acrylicOpacity"</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">"colorScheme"</span>: <span class="string">"Monokai Soda"</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">"closeOnExit"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"cursorColor"</span>: <span class="string">"#ffffff"</span>, //光标颜色</span><br><span class="line"><span class="string">"cursorShape"</span>: <span class="string">"emptyBox"</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">"historySize"</span>: 9999999,</span><br><span class="line"><span class="string">"backgroundImage"</span>: <span class="string">"D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg"</span>, //配置背景图片地址</span><br><span class="line"><span class="string">"backgroundImageOpacity"</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">"padding"</span>: <span class="string">"0, 0, 0, 0"</span>,</span><br><span class="line"><span class="string">"snapOnInput"</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">"//wsl$/Ubuntu-20.04/home/yuh"</span>,</span><br><span class="line"><span class="string">"startingDirectory"</span>: <span class="string">"%USERPROFILE%"</span>,</span><br><span class="line"><span class="string">"useAcrylic"</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">"tabTitle"</span>: <span class="string">"chessYu"</span> //标签名称</span><br></pre></td></tr></tbody></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904116322304014">Windows
+Terminal美化界面</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>terminal</tag>
       </tags>
   </entry>
   <entry>

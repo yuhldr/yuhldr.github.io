@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2022-09-29T20:35:43.872Z</updated>
+  <updated>2023-02-02T10:54:11.172Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github自动化</title>
+    <link href="https://yuhldr.github.io/posts/dabdcea.html"/>
+    <id>https://yuhldr.github.io/posts/dabdcea.html</id>
+    <published>2023-01-15T16:32:08.000Z</published>
+    <updated>2023-02-02T10:54:11.172Z</updated>
+    
+    
+    <summary type="html">比如自动打包，自动发邮件什么的，相当于一个小型服务器</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="github" scheme="https://yuhldr.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>python打包pip</title>
@@ -412,25 +431,6 @@
     <category term="oh-my-zsh" scheme="https://yuhldr.github.io/tags/oh-my-zsh/"/>
     
     <category term="p10k" scheme="https://yuhldr.github.io/tags/p10k/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git高级使用</title>
-    <link href="https://yuhldr.github.io/posts/594541bc.html"/>
-    <id>https://yuhldr.github.io/posts/594541bc.html</id>
-    <published>2021-11-02T09:14:03.000Z</published>
-    <updated>2021-11-20T09:18:09.709Z</updated>
-    
-    
-    <summary type="html">git平时使用，各个IDE都有图形化操作，只是创建、推送、拉取，很容易，没什么说的，但是，有时候会出现一些奇怪的问题，或者仓库越来越大，这时候一般是因为什么都不懂，就开始使用图形化界面造成的</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="git" scheme="https://yuhldr.github.io/tags/git/"/>
     
   </entry>
   
