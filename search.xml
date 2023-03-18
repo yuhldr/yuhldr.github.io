@@ -1254,6 +1254,152 @@
       </tags>
   </entry>
   <entry>
+    <title>复数与矩阵</title>
+    <url>/posts/af3ac84b.html</url>
+    <content><![CDATA[<h2 id="矩阵">矩阵</h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">n = <span class="number">3</span></span><br><span class="line">a = np.array([[<span class="number">1</span> + <span class="number">2j</span>, <span class="number">3</span> - <span class="number">4j</span>], [<span class="number">5</span> + <span class="number">6j</span>, <span class="number">7</span> - <span class="number">8j</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>每个标题可以点，维基百科有图、甚至动图，详细介绍</p>
+</blockquote>
+<h3 id="转置"><a href="https://zh.wikipedia.org/zh-hans/%E8%BD%AC%E7%BD%AE%E7%9F%A9%E9%98%B5">转置</a></h3>
+<blockquote>
+<p>行变列，列变行，一般在右上角标注 <span class="math inline">\(^T\)</span> 表示</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a_zz = np.transpose(s)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="共轭"><a href="https://zh.wikipedia.org/wiki/%E5%85%B1%E8%BD%AD">共轭</a></h3>
+<blockquote>
+<p>这个是对复数的，就是把复数的复数部分，变成相反数</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a_ge = np.conj(s)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="余子式"><a href="https://zh.wikipedia.org/zh-hans/%E9%A4%98%E5%9B%A0%E5%AD%90%E7%9F%A9%E9%99%A3">余子式</a></h3>
+<blockquote>
+<p>除去这个元素所在行、所在列 剩下的矩阵行列式</p>
+</blockquote>
+<h3 id="行列式"><a href="https://zh.wikipedia.org/zh-hans/%E8%A1%8C%E5%88%97%E5%BC%8F">行列式</a></h3>
+<p>对于二维，交叉相乘相减，对于三维，选一行或者一列，这一行 “每个元素”
+分别乘以 它的余子式，然后求和，以此类推</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">det_A = np.linalg.det(A)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="单位矩阵"><a href="https://zh.wikipedia.org/zh-hans/%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5">单位矩阵</a></h3>
+<blockquote>
+<p>对角线为1，其他全部0，对于n维单位矩阵一般表示为 <span class="math inline">\(I_n\)</span></p>
+</blockquote>
+<h3 id="求逆"><a href="https://zh.wikipedia.org/zh-hans/%E9%80%86%E7%9F%A9%E9%98%B5">求逆</a></h3>
+<blockquote>
+<p>对于矩阵 <span class="math inline">\(AB=BA=I_n\)</span>
+(单位矩阵)，一般在右上角标注 <span class="math inline">\(^{-1}\)</span>
+表示</p>
+</blockquote>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">inv_A = np.linalg.inv(A)  <span class="comment"># 计算逆矩阵</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="伴随矩阵"><a href="https://zh.wikipedia.org/zh-hans/%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5">伴随矩阵</a></h3>
+<blockquote>
+<p>每个元素的余子式的行列式值，组成的矩阵，再求转置</p>
+</blockquote>
+<p>如果这个矩阵可逆，也可以用下面的求</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">det_A = np.linalg.det(A)  <span class="comment"># 计算行列式</span></span><br><span class="line">inv_A = np.linalg.inv(A)  <span class="comment"># 计算逆矩阵</span></span><br><span class="line"><span class="comment"># 下面这个不是矩阵乘法，仅仅是向量内积（点乘），也就是对应位置相乘</span></span><br><span class="line">adj_A = det_A * inv_A  <span class="comment"># 计算伴随矩阵</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="矩阵乘法"><a href="https://zh.wikipedia.org/wiki/%E7%9F%A9%E9%99%A3%E4%B9%98%E6%B3%95">矩阵乘法</a></h3>
+<blockquote>
+<p>注意，不要和向量的点乘、叉乘混淆，矩阵乘法没有方向，平时说的向量乘法相当于矩阵的叉乘</p>
+</blockquote>
+<p>记作<span class="math inline">\(C=AB或C=A\cdot B\)</span>
+新矩阵每个元素=左行乘右列再求和，所以两个矩阵行列必须是<span class="math inline">\(A(m, n),B(n,
+k)\)</span>，前面的列数等于后面的行数，最后 <span class="math inline">\(C\)</span>的形状是 <span class="math inline">\(C(m,k)\)</span></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">A = [[<span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line">B = [[<span class="number">2</span>], [<span class="number">1</span>]]</span><br><span class="line"><span class="comment"># 虽然叫 dot 但是这不是向量点乘！</span></span><br><span class="line">C = np.dot(A, B)</span><br><span class="line"><span class="comment"># C = [[4]]</span></span><br><span class="line"><span class="comment"># 不能 C = A*B，因为它相当于 np.multiply 只是对应位置相乘，A和B的形状必须完全相同</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="向量">向量</h2>
+<hr>
+<p>下面的是对向量来说的，但是和矩阵相似，而且容易混淆</p>
+<hr>
+<h3 id="向量点乘内积"><a href="https://zh.wikipedia.org/wiki/%E7%82%B9%E7%A7%AF">向量点乘（内积）</a></h3>
+<blockquote>
+<p>是标量！可以理解为投影。这个不是针对矩阵的，这个是向量计算的，得到的是一个数，，实际操作中，两个向量对应位置上的值
+<code>相乘</code> 再 <code>相加</code> 的操作</p>
+</blockquote>
+<p><span class="math inline">\(\vec{a} = [x_1,y_1,z_1]\)</span>、<span class="math inline">\(\vec{b} = [x_2,y_2,z_2]\)</span>， 夹角 <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[
+\vec{a} \cdot \vec{b} = x_1x_2+y_1y_2+z_1z_2
+\]</span> 方向，<span class="math inline">\(x_1x_2\)</span>平行四边形对角线</p>
+<p>这个其实类似于矩阵的乘法，只不过实际操作中，如果ab是二维的，需要转置一下b（这里b是一维的，不转置也行）</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="comment"># 一维的不存在行、列，转置没有意义，如下，二维的必须要转置，按照矩阵乘法来，结果也不是32而是[[32]]</span></span><br><span class="line"><span class="comment"># a = [[1, 2, 3]]</span></span><br><span class="line"><span class="comment"># b = [[4, 5, 6]]</span></span><br><span class="line">bt = np.transpose(b)</span><br><span class="line"><span class="built_in">print</span>(bt)</span><br><span class="line"><span class="comment"># [4 5 6]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.dot(a, bt))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(np.dot(a, b))</span><br><span class="line"><span class="comment"># 32</span></span><br></pre></td></tr></tbody></table></figure>
+<p>但是numpy.dot中转置不转置，结果一样。。。。实际矩阵计算应该是
+<code>[3]</code> 而不是 <code>3</code></p>
+<p>应用，刚才说了，其实就是投影，也就是 <span class="math inline">\(\cos\theta\)</span> <span class="math display">\[
+\cos\theta = \frac{\vec{a}\vec{b}}{|\vec{a}||\vec{b}|}
+\]</span></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">b = [<span class="number">1</span>, <span class="number">3</span>**<span class="number">0.5</span>, <span class="number">0</span>]</span><br><span class="line"><span class="comment"># 求模</span></span><br><span class="line">a_ = np.linalg.norm(a)</span><br><span class="line">b_ = np.linalg.norm(b)</span><br><span class="line"><span class="built_in">print</span>(a_, b_)</span><br><span class="line"><span class="built_in">print</span>(np.dot(a, b) / (a_ * b_))</span><br><span class="line"><span class="comment"># 输出的是45°夹角余弦值</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="叉乘"><a href="https://zh.wikipedia.org/wiki/%E5%8F%89%E7%A7%AF">叉乘</a></h3>
+<p>外积（<code>cross</code> product）又称叉积、叉乘、向量积（vector
+product）</p>
+<blockquote>
+<p>向量叉乘几何意义是面积，方向与二者垂直，结果是标量！</p>
+</blockquote>
+<p>！注意，不是 <a href="https://zh.wikipedia.org/wiki/%E5%A4%96%E7%A7%AF">外积：Outer
+product</a>，是 <code>np.cross</code> 而不是 <code>np.outer</code>！</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">b = [<span class="number">1</span>, <span class="number">3</span>**<span class="number">0.5</span>, <span class="number">0</span>]</span><br><span class="line"><span class="comment"># 求模</span></span><br><span class="line">a_ = np.linalg.norm(a)</span><br><span class="line">b_ = np.linalg.norm(b)</span><br><span class="line"><span class="built_in">print</span>(a_, b_)</span><br><span class="line"><span class="built_in">print</span>(np.cross(a, b) / (a_ * b_))</span><br><span class="line"><span class="comment"># 输出的是</span></span><br><span class="line"><span class="comment"># [0.   0.   1.73205081]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果a b是二维</span></span><br><span class="line"><span class="comment"># a = [1, 0]</span></span><br><span class="line"><span class="comment"># b = [1, 3**0.5]</span></span><br><span class="line"><span class="comment"># 垂直方向没有，输出的是一个数</span></span><br><span class="line"><span class="comment"># 1.73205081</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="numpy函数说明">numpy函数说明</h2>
+<p>首先注意，<code>一维向量</code> 不等于 <code>一维矩阵</code></p>
+<ul>
+<li>一维向量 <code>[1, 2, 3]</code></li>
+<li>一维矩阵 <code>[[1, 2, 3]]</code></li>
+</ul>
+<p>尤其是在使用 <code>dot</code> 时，结果完全不一样</p>
+<h3 id="一维向量">一维向量</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="comment"># 转置不变，因为不存在行列，转置无意义</span></span><br><span class="line">bt = np.transpose(b)</span><br><span class="line"><span class="built_in">print</span>(bt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下几个结果完全一样</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dot_t"</span>, np.dot(a, bt))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dot"</span>, np.dot(a, b))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"inner_t"</span>, np.inner(a, bt))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"inner"</span>, np.inner(a, b))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"matmul_t"</span>, np.matmul(a, bt))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"matmul"</span>, np.matmul(a, b))</span><br><span class="line"><span class="comment"># 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于把ab看做二维的，然后把a转置，在矩阵相乘</span></span><br><span class="line"><span class="comment"># np.outer不是叉乘（np.cross）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"outer\n"</span>, np.outer(a, b))</span><br><span class="line"><span class="comment">#  [[ 4  5  6]</span></span><br><span class="line"><span class="comment">#  [ 8 10 12]</span></span><br><span class="line"><span class="comment">#  [12 15 18]]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>一维向量，<code>dot</code>、<code>inner</code>、<code>matmul</code>
+没任何区别</p>
+<h3 id="一维矩阵">一维矩阵</h3>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 本来形状是 (1, 3)</span></span><br><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line">b = [[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</span><br><span class="line"><span class="comment"># 转置变成 (3, 1)</span></span><br><span class="line">bt = np.transpose(b)</span><br><span class="line"><span class="built_in">print</span>(bt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵乘法，前后两个矩阵形状必须是 (m,n)(n,k)=(m,k)</span></span><br><span class="line"><span class="comment"># 前面列，等于后面行，相乘结果(m,k)</span></span><br><span class="line"><span class="comment"># 不满足 np.dot 直接报错</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dot_t"</span>, np.dot(a, bt))</span><br><span class="line"><span class="comment"># [[32]]</span></span><br><span class="line"><span class="comment"># print("dot", np.dot(a, b))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"matmul_t"</span>, np.matmul(a, bt))</span><br><span class="line"><span class="comment"># [[32]]</span></span><br><span class="line"><span class="comment"># print("matmul", np.matmul(a, b))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># np.inner 要求正好相反，对于 bt 反而报错。。。。</span></span><br><span class="line"><span class="comment"># print("inner_t", np.inner(a, bt))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"inner"</span>, np.inner(a, b))</span><br><span class="line"><span class="comment"># [[32]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于把ab看做二维的，然后把a转置，在矩阵相乘</span></span><br><span class="line"><span class="comment"># np.outer不是叉乘（np.cross）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"outer\n"</span>, np.outer(a, b))</span><br><span class="line"><span class="comment"># 结果和前面的一维向量没区别</span></span><br><span class="line"><span class="comment">#  [[ 4  5  6]</span></span><br><span class="line"><span class="comment">#  [ 8 10 12]</span></span><br><span class="line"><span class="comment">#  [12 15 18]]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>一维矩阵，<code>dot</code>、<code>inner</code>、<code>matmul</code>
+结果没有区别，但是对于矩阵乘法定义上有区别，<code>行</code>、<code>列</code>
+要求 <code>np.inner</code>不一样</p>
+<p>但是推荐使用 <code>np.dot</code> 或者
+<code>np.matmul</code>，使用时按照线性代数里的定义矩阵乘法即可</p>
+<h3 id="高维矩阵">高维矩阵</h3>
+<p>与一维矩阵没有区别</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">b = [[<span class="number">4</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>], [<span class="number">8</span>, <span class="number">9</span>]]</span><br><span class="line">bt = np.transpose(b)</span><br><span class="line"><span class="built_in">print</span>(bt)</span><br><span class="line"><span class="built_in">print</span>(np.shape(a))</span><br><span class="line"><span class="comment"># (2, 3)</span></span><br><span class="line"><span class="built_in">print</span>(np.shape(b))</span><br><span class="line"><span class="comment"># (3, 2)</span></span><br><span class="line"><span class="built_in">print</span>(np.shape(bt))</span><br><span class="line"><span class="comment"># (2, 3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print("dot,t", np.dot(a, bt))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dot\n"</span>, np.dot(a, b))</span><br><span class="line"><span class="comment">#  [[40 46]</span></span><br><span class="line"><span class="comment">#  [58 67]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print("matmul,t\n", np.matmul(a, bt))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"matmul\n"</span>, np.matmul(a, b))</span><br><span class="line"><span class="comment">#  [[40 46]</span></span><br><span class="line"><span class="comment">#  [58 67]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print("inner", np.inner(a, b))</span></span><br><span class="line"><span class="comment"># error</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"inner,t\n"</span>, np.inner(a, bt))</span><br><span class="line"><span class="comment">#  [[40 46]</span></span><br><span class="line"><span class="comment">#  [58 67]]</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>np.dot</code> 或者 <code>np.matmul</code>
+一样，速度方面懒得测试了</p>
+<h2 id="复数">复数</h2>
+<p>复数在python的表示</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = (<span class="number">1</span> + <span class="number">1j</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%A4%8D%E6%95%B0_(%E6%95%B0%E5%AD%A6)">数学运算定义</a></p>
+<p>加法： <span class="math display">\[(a+b)+(c+d)=(a+c)+(b+d)i\]</span></p>
+<p>减法：</p>
+<p><span class="math display">\[(a+bi)-(c+di)=(a-c)+(b-d)i\]</span></p>
+<p>乘法：</p>
+<p><span class="math display">\[
+\begin{align}
+(a+bi)(c+di)&amp;=ac+bci+adi+bdi^2\\&amp;=(ac-bd)+(bc+adi)
+\end{align}
+\]</span></p>
+<p>除法</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{(a+bi)}{(c+di)}
+&amp;=\frac{(a+bi)(c-di)}{(c+di)(c-di)}\\
+&amp;=\frac{ac+bci-adi-bdi^2}{c^2-(di)^2}\\
+&amp;=\frac{(ac+bd)+(bc-ad)i}{c^2+d^2}\\
+&amp;=(\frac{ac+bd}{c^2+d^2})+(\frac{bc-ad}{c^2+d^2})i
+\end{align}
+\]</span></p>
+<h3 id="矩阵乘积">矩阵乘积</h3>
+<p>不管 <code>np.inner</code> 了，测试 <code>np.dot</code> 或者
+<code>np.matmul</code></p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">a = [[<span class="number">1</span>+<span class="number">1j</span>, <span class="number">2</span>+<span class="number">2j</span>, <span class="number">3</span>+<span class="number">3j</span>], [<span class="number">2</span>+<span class="number">2j</span>, <span class="number">3</span>+<span class="number">3j</span>, <span class="number">4</span>+<span class="number">4j</span>]]</span><br><span class="line">b = [[<span class="number">4</span>+<span class="number">4j</span>, <span class="number">5</span>+<span class="number">5j</span>], [<span class="number">6</span>+<span class="number">6j</span>, <span class="number">7</span>+<span class="number">7j</span>], [<span class="number">8</span>+<span class="number">8j</span>, <span class="number">9</span>+<span class="number">9j</span>]]</span><br><span class="line">bt = np.transpose(b)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(bt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>((<span class="number">1</span>+<span class="number">1j</span>)*(<span class="number">4</span>+<span class="number">4j</span>))</span><br><span class="line"><span class="comment"># 8j</span></span><br><span class="line"><span class="built_in">print</span>((<span class="number">1</span>+<span class="number">1j</span>)*(<span class="number">4</span>+<span class="number">4j</span>) + (<span class="number">2</span>+<span class="number">2j</span>)*(<span class="number">6</span>+<span class="number">6j</span>) + (<span class="number">3</span>+<span class="number">3j</span>)*(<span class="number">8</span>+<span class="number">8j</span>))</span><br><span class="line"><span class="comment"># 80j</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span>*<span class="number">4</span> + <span class="number">2</span>*<span class="number">6</span> + <span class="number">3</span>*<span class="number">8</span>)</span><br><span class="line"><span class="comment"># 40</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dot\n"</span>, np.dot(a, b))</span><br><span class="line"><span class="comment">#  [[0. +80.j 0. +92.j]</span></span><br><span class="line"><span class="comment">#  [0.+116.j 0.+134.j]]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"matmul\n"</span>, np.matmul(a, b))</span><br><span class="line"><span class="comment">#  [[0. +80.j 0. +92.j]</span></span><br><span class="line"><span class="comment">#  [0.+116.j 0.+134.j]]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>两个没区别</p>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/af3ac84b.html">https://yuhldr.github.io/posts/af3ac84b.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>物理</category>
+      </categories>
+      <tags>
+        <tag>复数</tag>
+        <tag>矩阵</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>kde文件管理视频文件缩略图预览</title>
     <url>/posts/a3d4c429.html</url>
     <content><![CDATA[<p>效果如图，</p>
@@ -1268,7 +1414,7 @@
 勾选上</p>
 <hr>
 <blockquote>
-<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/a3d4c429.html">https://yuhldr.github.io/posts/a3d4c429.html</a>
 <br> <strong>版权声明</strong>：转载请注明出处！</p>
 </blockquote>
 ]]></content>
