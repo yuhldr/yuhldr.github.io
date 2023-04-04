@@ -504,20 +504,6 @@
   </url>
   
   <url>
-    <loc>https://yuhldr.github.io/tags/wsl/</loc>
-    <lastmod>2023-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/ubuntu/</loc>
-    <lastmod>2023-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yuhldr.github.io/tags/docker/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -568,6 +554,20 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/gpu/</loc>
+    <lastmod>2023-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/wsl/</loc>
+    <lastmod>2023-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yuhldr.github.io/tags/ubuntu/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -882,6 +882,13 @@
   </url>
   
   <url>
+    <loc>https://yuhldr.github.io/tags/xrdp/</loc>
+    <lastmod>2023-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yuhldr.github.io/tags/uefi/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -896,7 +903,7 @@
   </url>
   
   <url>
-    <loc>https://yuhldr.github.io/tags/xrdp/</loc>
+    <loc>https://yuhldr.github.io/tags/json/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -911,13 +918,6 @@
   
   <url>
     <loc>https://yuhldr.github.io/tags/github/</loc>
-    <lastmod>2023-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yuhldr.github.io/tags/json/</loc>
     <lastmod>2023-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
