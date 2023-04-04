@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-03-18T04:42:56.813Z</updated>
+  <updated>2023-04-04T13:47:45.961Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>局域网与打印机配置</title>
+    <link href="https://yuhldr.github.io/posts/5401e6fb.html"/>
+    <id>https://yuhldr.github.io/posts/5401e6fb.html</id>
+    <published>2023-04-04T12:37:03.000Z</published>
+    <updated>2023-04-04T13:47:45.961Z</updated>
+    
+    
+    <summary type="html">最近配置自习室打印机，才发现之前自己对网络一窍不通。。。。最终实现本地电脑可以发现打印机，直接自动添加，linux系统下的cups也可以发现局域网设备</summary>
+    
+    
+    
+    <category term="Tools" scheme="https://yuhldr.github.io/categories/Tools/"/>
+    
+    
+    <category term="linux" scheme="https://yuhldr.github.io/tags/linux/"/>
+    
+    <category term="cups" scheme="https://yuhldr.github.io/tags/cups/"/>
+    
+    <category term="hplip" scheme="https://yuhldr.github.io/tags/hplip/"/>
+    
+    <category term="打印机" scheme="https://yuhldr.github.io/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/"/>
+    
+    <category term="局域网" scheme="https://yuhldr.github.io/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>复数与矩阵</title>
     <link href="https://yuhldr.github.io/posts/af3ac84b.html"/>
     <id>https://yuhldr.github.io/posts/af3ac84b.html</id>
     <published>2023-03-17T13:17:02.000Z</published>
-    <updated>2023-03-18T04:42:56.813Z</updated>
+    <updated>2023-03-23T10:27:35.869Z</updated>
     
     
     <summary type="html">本科学的东西都还给老师了，现在实际问题中遇到，就只能重新查找了。。。。。。</summary>
@@ -398,33 +425,6 @@
     <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
     
     <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>slurm集群安装与踩坑详解</title>
-    <link href="https://yuhldr.github.io/posts/bfa79f01.html"/>
-    <id>https://yuhldr.github.io/posts/bfa79f01.html</id>
-    <published>2021-12-25T15:29:25.000Z</published>
-    <updated>2022-12-15T18:04:17.890Z</updated>
-    
-    
-    <summary type="html">主要针对单机安装slurm，并且开启slurm的并行mpi支持进行了说明，集群安装略有提及，适合有一定计算机基础的人参考</summary>
-    
-    
-    
-    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
-    
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
-    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
-    
-    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
-    
-    <category term="openmpi" scheme="https://yuhldr.github.io/tags/openmpi/"/>
     
   </entry>
   
