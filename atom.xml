@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-04-04T13:47:45.961Z</updated>
+  <updated>2023-04-05T13:10:51.724Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/5401e6fb.html"/>
     <id>https://yuhldr.github.io/posts/5401e6fb.html</id>
     <published>2023-04-04T12:37:03.000Z</published>
-    <updated>2023-04-04T13:47:45.961Z</updated>
+    <updated>2023-04-05T13:10:51.724Z</updated>
     
     
     <summary type="html">最近配置自习室打印机，才发现之前自己对网络一窍不通。。。。最终实现本地电脑可以发现打印机，直接自动添加，linux系统下的cups也可以发现局域网设备</summary>
