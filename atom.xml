@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-04-05T13:10:51.724Z</updated>
+  <updated>2023-04-09T08:44:31.300Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux环境变量</title>
+    <link href="https://yuhldr.github.io/posts/289d0c5f.html"/>
+    <id>https://yuhldr.github.io/posts/289d0c5f.html</id>
+    <published>2023-04-09T08:26:07.000Z</published>
+    <updated>2023-04-09T08:44:31.300Z</updated>
+    
+    
+    <summary type="html">Python、C语言等环境变量</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="openmpi" scheme="https://yuhldr.github.io/tags/openmpi/"/>
+    
+    <category term="linux" scheme="https://yuhldr.github.io/tags/linux/"/>
+    
+    <category term="path" scheme="https://yuhldr.github.io/tags/path/"/>
+    
+  </entry>
   
   <entry>
     <title>局域网与打印机配置</title>
@@ -404,27 +429,6 @@
     <category term="fortran" scheme="https://yuhldr.github.io/tags/fortran/"/>
     
     <category term="ifort" scheme="https://yuhldr.github.io/tags/ifort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>slurm集群用户使用指南</title>
-    <link href="https://yuhldr.github.io/posts/d8e81662.html"/>
-    <id>https://yuhldr.github.io/posts/d8e81662.html</id>
-    <published>2021-12-26T09:54:15.000Z</published>
-    <updated>2022-12-15T18:04:48.260Z</updated>
-    
-    
-    <summary type="html">icpcs集群内部文档，slurm使用</summary>
-    
-    
-    
-    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
-    
-    
-    <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
-    
-    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
     
   </entry>
   
