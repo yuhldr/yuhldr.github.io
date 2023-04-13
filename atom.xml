@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-04-09T08:58:59.249Z</updated>
+  <updated>2023-04-13T14:21:54.539Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gnome40扩展推荐</title>
+    <link href="https://yuhldr.github.io/posts/52e60843.html"/>
+    <id>https://yuhldr.github.io/posts/52e60843.html</id>
+    <published>2023-04-13T14:06:37.000Z</published>
+    <updated>2023-04-13T14:21:54.539Z</updated>
+    
+    
+    <summary type="html">一些扩展推荐，提高生产力</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="gnome" scheme="https://yuhldr.github.io/tags/gnome/"/>
+    
+  </entry>
   
   <entry>
     <title>linux环境变量</title>
@@ -90,11 +109,11 @@
   </entry>
   
   <entry>
-    <title>kde文件管理视频文件缩略图预览</title>
+    <title>文件管理视频文件缩略图预览x</title>
     <link href="https://yuhldr.github.io/posts/a3d4c429.html"/>
     <id>https://yuhldr.github.io/posts/a3d4c429.html</id>
     <published>2023-02-02T10:55:23.000Z</published>
-    <updated>2023-02-02T13:31:47.845Z</updated>
+    <updated>2023-04-13T14:34:32.919Z</updated>
     
     
     <summary type="html">记录一下怎么设置kde文件管理器，图片、视频等各种文件预览</summary>
@@ -105,6 +124,8 @@
     
     
     <category term="kde" scheme="https://yuhldr.github.io/tags/kde/"/>
+    
+    <category term="gnome" scheme="https://yuhldr.github.io/tags/gnome/"/>
     
   </entry>
   
@@ -271,7 +292,7 @@
     <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
     <id>https://yuhldr.github.io/posts/3513d90f.html</id>
     <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2023-04-13T09:26:04.699Z</updated>
+    <updated>2023-04-13T15:01:36.694Z</updated>
     
     
     <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
@@ -404,31 +425,6 @@
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="chat" scheme="https://yuhldr.github.io/tags/chat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>oneapi安装</title>
-    <link href="https://yuhldr.github.io/posts/4bdf01b7.html"/>
-    <id>https://yuhldr.github.io/posts/4bdf01b7.html</id>
-    <published>2022-01-07T14:00:38.000Z</published>
-    <updated>2022-01-07T14:19:53.077Z</updated>
-    
-    
-    <summary type="html">主要是为了替换、取代 Intel Parallel Studio XE，包含ifort等intel相关的加速套件</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="mpi" scheme="https://yuhldr.github.io/tags/mpi/"/>
-    
-    <category term="intel" scheme="https://yuhldr.github.io/tags/intel/"/>
-    
-    <category term="fortran" scheme="https://yuhldr.github.io/tags/fortran/"/>
-    
-    <category term="ifort" scheme="https://yuhldr.github.io/tags/ifort/"/>
     
   </entry>
   
