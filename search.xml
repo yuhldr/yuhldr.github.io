@@ -1345,7 +1345,9 @@ Linux Updates Indicator</a> 注意依赖 </p><figure class="highlight bash"><tab
 <li><p>人脸识别</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 提前安装pam-python3 ，不要用默认的python2了</span></span><br><span class="line">yay -S pam-python-git</span><br></pre></td></tr></tbody></table></figure><p></p>
 <blockquote>
-<p>现在用的 <code>python3</code>，怎么改，注意 <a href="https://aur.archlinux.org/packages/howdy">howdy</a> 的评论</p>
+<p>现在用的 <code>python3</code>，怎么改，注意 <a href="https://aur.archlinux.org/packages/howdy">howdy</a>
+的评论，比如你可以直接patch，也可以直接修改
+<code>sudo vim /usr/lib64/security/howdy/pam.py</code></p>
 </blockquote>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yay -S howdy</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>人脸识别修改配置：提示<code>detection_notice = true</code>、摄像头路径<code>device_path = /dev/video2</code>，你的可能是<code>video1</code>，自己确定摄像头</p>
