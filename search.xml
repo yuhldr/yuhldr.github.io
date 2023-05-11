@@ -9,6 +9,30 @@ and KStatusNotifierItem Support</a></p>
 <blockquote>
 <p>gnome40以后，右上角的图标看不到了</p>
 </blockquote>
+<h2 id="颜色拾取">※ 颜色拾取</h2>
+<p><a href="https://extensions.gnome.org/extension/3396/color-picker/">color-picker</a></p>
+<blockquote>
+<p>随便拾取屏幕上颜色</p>
+</blockquote>
+<h2 id="显示网速cpu内存等">显示网速、cpu、内存等</h2>
+<p><a href="https://extensions.gnome.org/extension/4506/simple-system-monitor/">Simple
+System Monitor</a></p>
+<h2 id="显示网速">显示网速</h2>
+<p><a href="https://extensions.gnome.org/extension/4478/net-speed/">Net
+Speed</a> &gt;
+和上面功能重复，但是我的目的是，中间左边显示网速，中间右边显示cpu等</p>
+<h2 id="下拉终端">下拉终端</h2>
+<p><a href="https://extensions.gnome.org/extension/3780/ddterm/">ddterm</a></p>
+<blockquote>
+<p>能用js写这么复杂的东西也是服了，我已经参与它的中文翻译，唯一缺陷：不能上下左右分栏</p>
+</blockquote>
+<h2 id="systemctl服务管理">systemctl服务管理</h2>
+<p><a href="https://extensions.gnome.org/extension/4174/systemd-manager/">Systemd
+Manager</a></p>
+<blockquote>
+<p>如果你没听说过 <code>systemctl</code>
+直接忽略这个吧，啊啊啊，这个是真的方便</p>
+</blockquote>
 <h2 id="剪贴板">※ 剪贴板</h2>
 <p><a href="https://extensions.gnome.org/extension/5278/pano/">Pano -
 Clipboard Manager</a></p>
@@ -42,6 +66,10 @@ Alt-Tab</a></p>
 Linux Updates Indicator</a></p>
 <p>注意依赖</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S pacman-contrib gnome-menus</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="面板图标排序">面板图标排序</h2>
+<p><a href="https://extensions.gnome.org/extension/4356/top-bar-organizer/">Top
+Bar Organizer</a></p>
+<p>上面面板图标太多？，用他排序，但是好像挺多bug，比如只能看到系统指示器、以及extensions扩展指示器，第三方应用不行</p>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/52e60843.html">https://yuhldr.github.io/posts/52e60843.html</a>
@@ -362,7 +390,7 @@ product</a>，是 <code>np.cross</code> 而不是 <code>np.outer</code>！</p>
       </tags>
   </entry>
   <entry>
-    <title>文件管理视频文件缩略图预览x</title>
+    <title>文件管理视频文件缩略图预览</title>
     <url>/posts/a3d4c429.html</url>
     <content><![CDATA[<p>效果如图，</p>
 <figure>
@@ -376,6 +404,7 @@ product</a>，是 <code>np.cross</code> 而不是 <code>np.outer</code>！</p>
 勾选上</p>
 <p>gnome桌面的 <code>nautilus</code></p>
 <ul>
+<li><code>ffmpegthumbs</code>：avi等视频预览</li>
 <li><code>nautilus-image-converter</code>：比如图片、pdf预览</li>
 <li><code>python-nautilus</code>：比如 <code>nextcloud-client</code>
 需要这个</li>
@@ -5173,6 +5202,19 @@ Terminal美化界面</a></li>
 </blockquote>
 <p>编译pdf手册</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 按照前文配置texlive， 并安装如下依赖</span></span><br><span class="line">sudo apt-get install python-virtualenv git doxygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入源码doc目录</span></span><br><span class="line"><span class="built_in">cd</span> lammps/doc</span><br><span class="line">make pdf</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="其他系统说明">其他系统说明</h2>
+<h3 id="fedora">fedora</h3>
+<blockquote>
+<p>2023.5 最新版</p>
+</blockquote>
+<h4 id="ffmpeg">ffmpeg</h4>
+<p>安装 <code>ffmpeg</code> 时，这个发行版的名字是</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">dnf install ffmpeg-free-devel ffmpeg-free</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="openmpi">openmpi</h4>
+<p>安装 <code>openmpi</code> 时</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">dnf install openmpi openmpi-devel</span><br></pre></td></tr></tbody></table></figure>
+<p>！！注意，安装以后，编译或者运行时，比如载入openmpi环境，如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">module load mpi/openmpi-x86_64</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/320.html">https://yuhldr.github.io/posts/320.html</a>
@@ -6756,13 +6798,13 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
 ]]></content>
   </entry>
   <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>归档</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
