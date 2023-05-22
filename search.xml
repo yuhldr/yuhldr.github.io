@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python自用速查</title>
+    <url>/posts/b4a9e8d8.html</url>
+    <content><![CDATA[<h2 id="plt">plt</h2>
+<p>将颜色循环设置为默认值</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gnome40扩展推荐</title>
     <url>/posts/52e60843.html</url>
     <content><![CDATA[<h2 id="右上角显示图标">※ 右上角显示图标</h2>
@@ -2580,7 +2599,7 @@ oh-my-zsh 镜像</a>，建议安装以后，把 <code>~/.oh-my-zsh</code>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-syntax-highlighting.git <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting &amp;&amp; git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-autosuggestions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions &amp;&amp; git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-completions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-completions</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="配置">配置</h3>
 <p>编辑配置 <code>zsh</code></p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
 <p>在最后添加如下内容</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 快捷</span></span><br><span class="line"><span class="built_in">alias</span> c=<span class="string">'clear'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -l'</span></span><br><span class="line"><span class="built_in">alias</span> lm=<span class="string">'ls -l --block-size=m'</span></span><br><span class="line"><span class="built_in">alias</span> lk=<span class="string">'ls -l --block-size=k'</span></span><br><span class="line"><span class="built_in">alias</span> lg=<span class="string">'ls -l --block-size=g'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -a'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/sbin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/usr/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/usr/local/sbin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$HOME</span>/.local/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$HOME</span>/.local/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>修改这一行</p>
@@ -4632,6 +4651,12 @@ a_2u(l,t) =0\]</span></p>
     <url>/posts/14097.html</url>
     <content><![CDATA[<p>参考这里的：<a href="https://latexindentpl.readthedocs.io/en/latest/appendices.html">12.
 Appendices — latexindent.pl 3.13.2 documentation</a></p>
+<h2 id="archlinux">archlinux</h2>
+<blockquote>
+<p>报错参开 <code>ubuntu</code></p>
+</blockquote>
+<p>请安装如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S perl-file-homedir perl-yaml-tiny</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="ubuntu">ubuntu</h2>
 <p>报错这个</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Can<span class="string">'t locate YAML/Tiny.pm in @INC (you may need to install the YAML::Tiny module) </span></span><br></pre></td></tr></tbody></table></figure>
@@ -6798,13 +6823,13 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
 ]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>归档</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>

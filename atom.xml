@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-05-04T14:47:40.886Z</updated>
+  <updated>2023-05-11T12:12:54.307Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python自用速查</title>
+    <link href="https://yuhldr.github.io/posts/b4a9e8d8.html"/>
+    <id>https://yuhldr.github.io/posts/b4a9e8d8.html</id>
+    <published>2023-05-11T12:11:00.000Z</published>
+    <updated>2023-05-11T12:12:54.307Z</updated>
+    
+    
+    <summary type="html">常用但是不想记住的代码片段</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>gnome40扩展推荐</title>
@@ -404,27 +423,6 @@
     
     
     <category term="brew" scheme="https://yuhldr.github.io/tags/brew/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker安装配置rocketchat</title>
-    <link href="https://yuhldr.github.io/posts/7233442f.html"/>
-    <id>https://yuhldr.github.io/posts/7233442f.html</id>
-    <published>2022-01-09T04:32:02.000Z</published>
-    <updated>2022-03-01T02:10:39.735Z</updated>
-    
-    
-    <summary type="html">linux没有合适的微信qq之类的产品，手机端与电脑端互传文件、文字比较麻烦，这里安装配置一下rocketchat，主要功能有聊天、文件传递等</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
-    <category term="chat" scheme="https://yuhldr.github.io/tags/chat/"/>
     
   </entry>
   
