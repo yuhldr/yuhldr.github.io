@@ -8,7 +8,7 @@
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
-<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/b4a9e8d8.html">https://yuhldr.github.io/posts/b4a9e8d8.html</a>
 <br> <strong>版权声明</strong>：转载请注明出处！</p>
 </blockquote>
 ]]></content>
@@ -1151,7 +1151,7 @@ s\leq L,|t|\leq1.\\
     <url>/posts/3513d90f.html</url>
     <content><![CDATA[<p>现在感觉，以前使用的ubuntu就是个渣渣，用了几年，对与软件本身的了解很差，而且这里的yay或者pura包含的软件实在是太丰富了！而且这种自动的源码编译得到的软件，使用效果要比打包的好很多，为了增加你的决心，先看成品，这个是
 <code>kde plasma</code> 桌面，但是最近我又回到了 <code>gnome</code>
-桌面</p>
+桌面（2023.5）</p>
 <blockquote>
 <p>今天，我已经把两个桌面安装了无数遍……</p>
 </blockquote>
@@ -1463,12 +1463,49 @@ and KStatusNotifierItem Support</a>，并打开自身的 <code>扩展</code>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 创建slurm单独的mysql用户，只本地访问即可，所以密码12345678就可以</span></span><br><span class="line">create user <span class="string">'slurm'</span>@<span class="string">'localhost'</span> identified by <span class="string">'12345678'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建基础数据库</span></span><br><span class="line">create database slurm_acct_db;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许slurm用户访问</span></span><br><span class="line">grant all on slurm_acct_db.* TO <span class="string">'slurm'</span>@<span class="string">'localhost'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建另一个，这个不强制，但是建议，如果不创建，后面slurm配置需要改，所以还是创建吧</span></span><br><span class="line">create database slurm_job_db;</span><br><span class="line"></span><br><span class="line">grant all on slurm_job_db.* TO <span class="string">'slurm'</span>@<span class="string">'localhost'</span>;</span><br></pre></td></tr></tbody></table></figure>
 <p>配置文件在</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">/etc/my.cnf</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="nvidia显卡">NVIDIA显卡</h2>
+<p>先说环境，注意我用的 <code>linux-lts</code> 而不是
+<code>linux</code>，所以安装 <code>nvidia</code> 注意也变成了
+<code>nvidia-lts</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">archlinux-keyring 20230504-1</span><br><span class="line">linux-api-headers 6.3-1</span><br><span class="line">linux-firmware 20230404.2e92a49f-1</span><br><span class="line">linux-firmware-whence 20230404.2e92a49f-1</span><br><span class="line">linux-lts 6.1.30-1</span><br><span class="line">linux-lts-headers 6.1.30-1</span><br><span class="line">util-linux 2.39-3</span><br><span class="line">util-linux-libs 2.39-3</span><br><span class="line"></span><br><span class="line">nvidia-lts 1:530.41.03-11</span><br><span class="line">nvidia-settings 530.41.03-1</span><br><span class="line">nvidia-utils 530.41.03-1</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="还原bugs">还原bugs</h3>
+<p>我直接运行以下命令，然后 <code>重启</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yay -S nvidia-lts</span><br></pre></td></tr></tbody></table></figure>
+<p><code>重启</code> 以后，输入 <code>nvidia-smi</code> 提示</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">NVIDIA-SMI has failed because it couldn<span class="string">'t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</span></span><br></pre></td></tr></tbody></table></figure>
+<p>其实他的意思就是，现在驱动根本没起作用</p>
+<h3 id="正确方法">正确方法</h3>
+<p>以下内容全部是看文档解决的，<a href="https://wiki.archlinuxcn.org/wiki/NVIDIA">文档在这里</a>，我忽略了显卡是否支持这一步骤，我的显卡
+<code>GeForce 1060</code></p>
+<ol start="0" type="1">
+<li><p>安装驱动</p>
+<blockquote>
+<p>注意我用的 <code>linux-lts</code> 而不是 <code>linux</code>，所以安装
+<code>nvidia</code> 注意也变成了 <code>nvidia-lts</code></p>
+</blockquote>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S nvidia-lts</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>拉黑 <code>kms</code></p>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/mkinitcpio.conf</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>找到这一行</p>
+<p></p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>删除其中的 <code>kms</code>，防止 initramfs 包含 nouveau
+模块</p></li>
+<li><p>更新 <code>initramfs</code></p>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo mkinitcpio -P</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>更新xorg配置</p>
+<blockquote>
+<p>很重要，不然启动黑屏（但是ssh能连接上）</p>
+</blockquote>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo nvidia-xconfig</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>重启</p>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+</ol>
 <h2 id="wayland">wayland</h2>
 <blockquote>
 <p>不用看了，现在 <code>gnome44</code>
 默认就是，输入密码前，可以选择xorg</p>
 </blockquote>
-<p>这个东西吧，迟早要来的，现在确实还有不少问题，比如kde桌面下，firefox、vsocdeb闪，透明区域黑，todesk不支持等，试试就行，不可能作为主力的</p>
+<p>这个东西吧，迟早要来的，现在确实还有不少问题，比如kde桌面下，firefox、vsocode闪，透明区域黑，todesk不支持等，试试就行，不可能作为主力的</p>
 <blockquote>
 <p>注意，此时我的gnome是41，显卡是N卡，archlinux是2022年4月</p>
 </blockquote>
