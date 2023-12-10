@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-12-10T13:22:08.226Z</updated>
+  <updated>2023-12-10T14:29:23.093Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2archlinux使用btrfs文件系统以及休眠</title>
+    <link href="https://yuhldr.github.io/posts/c33d26e5.html"/>
+    <id>https://yuhldr.github.io/posts/c33d26e5.html</id>
+    <published>2023-12-10T13:29:17.000Z</published>
+    <updated>2023-12-10T14:29:23.093Z</updated>
+    
+    
+    <summary type="html">archlinux使用btrfs文件系统，并且设置休眠</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="btrfs" scheme="https://yuhldr.github.io/tags/btrfs/"/>
+    
+    <category term="hibernate" scheme="https://yuhldr.github.io/tags/hibernate/"/>
+    
+  </entry>
   
   <entry>
     <title>python自用速查</title>
@@ -406,23 +429,6 @@
     <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
     
     <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>brew切换国内源gitee</title>
-    <link href="https://yuhldr.github.io/posts/23f4e01a.html"/>
-    <id>https://yuhldr.github.io/posts/23f4e01a.html</id>
-    <published>2022-01-19T12:22:50.000Z</published>
-    <updated>2022-02-24T06:58:49.000Z</updated>
-    
-    
-    <summary type="html">网上一般是清华或者中科大的，但是感觉很麻烦，gitee的稳定，并且一句命令就可以了</summary>
-    
-    
-    
-    
-    <category term="brew" scheme="https://yuhldr.github.io/tags/brew/"/>
     
   </entry>
   

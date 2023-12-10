@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2archlinux使用btrfs文件系统以及休眠</title>
+    <url>/posts/c33d26e5.html</url>
+    <content><![CDATA[<p>具体怎么使用btrfs安装archlinux这里不细说，大概列一下命令、注意点，也可以看最后的参考文件</p>
+<h2 id="使用btrfs安装系统">使用btrfs安装系统</h2>
+<p>主要命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">mount /dev/sda3 /mnt</span><br><span class="line">btrfs subvolume create /mnt/@</span><br><span class="line">btrfs subvolume create /mnt/@home</span><br><span class="line">btrfs subvolume create /mnt/@usr_local</span><br><span class="line">btrfs subvolume create /mnt/@opt</span><br><span class="line">btrfs subvolume create /mnt/@swap</span><br><span class="line">btrfs subvolume create /mnt/@var</span><br><span class="line"></span><br><span class="line"><span class="comment"># /var 仅用写时复制</span></span><br><span class="line">chattr +C /mnt/@var</span><br><span class="line"></span><br><span class="line">umont /mnt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">mount /dev/sda3 /mnt -o subvol=@</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/boot</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/home</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/var</span><br><span class="line">mount /dev/sda1 /mnt/boot</span><br><span class="line">mount /dev/sda3 /mnt/home -o subvol=@home</span><br><span class="line">mount /dev/sda3 /mnt/var -o subvol=@var</span><br><span class="line">swapon /dev/sda2</span><br><span class="line">lsblk                     <span class="comment"># 检查挂载情况</span></span><br></pre></td></tr></tbody></table></figure>
+<p>一般安装系统时</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></tbody></table></figure>
+<p>但是因为挂载时懒，没指定压缩，我手动添加了
+<code>compress=zstd,</code>（使用zstd压缩） 完整如下</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</span></span><br><span class="line"><span class="comment"># /dev/nvme0n1p5</span></span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/         	btrfs     	rw,relatime,compress=zstd,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@	0 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># /dev/nvme0n1p1 LABEL=SYSTEM_DRV</span></span><br><span class="line">UUID=6E26-4BAA      	/boot      	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># /dev/nvme0n1p5</span></span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/home     	btrfs     	rw,relatime,compress=zstd,ssd,discard=async,space_cache=v2,subvolid=257,subvol=/@home	0 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># /dev/nvme0n1p5</span></span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/var      	btrfs     	rw,relatime,compress=zstd,ssd,discard=async,space_cache=v2,subvolid=258,subvol=/@var	0 0</span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/swap      	btrfs     	rw,relatime,ssd,discard=async,space_cache=v2,subvolid=264,subvol=/@swap	0 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># /dev/nvme0n1p5</span></span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/opt      	btrfs     	rw,relatime,compress=zstd,ssd,discard=async,space_cache=v2,subvolid=259,subvol=/@opt	0 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># /dev/nvme0n1p5</span></span><br><span class="line">UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0	/usr/local	btrfs     	rw,relatime,compress=zstd,ssd,discard=async,space_cache=v2,subvolid=261,subvol=/@usr_local	0 0</span><br></pre></td></tr></tbody></table></figure>
+<p>如果手动添加挂载，注意每一条中的
+<code>subvolid=264,subvol=/@opt</code> 对应</p>
+<p>如下可以看到id </p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo btrfs subvolume list /mnt</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="注意点">注意点</h3>
+<ul>
+<li>修改 <code>mkinitcpio.conf</code></li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">/etc/mkinitcpio.conf</span><br></pre></td></tr></tbody></table></figure>
+<p>在 <code>MODULES=()</code> 中添加修改为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">MODULES=(btrfs)</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>内核参数</li>
+</ul>
+<p>对于 bootctl 必须要有如下类似代码</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="bootctl启动">bootctl启动</h3>
+<p>我使用 <code>bootctl</code> 启动</p>
+<p>就是不想要 <code>grub</code>，注意双系统 efi 分区大一些，方便就一个
+<code>/boot</code>，<code>efi</code> 直接挂载在 <code>/boot</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo bootctl install</span><br></pre></td></tr></tbody></table></figure>
+<p>配置文件为：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line"># /boot/loader/entries/arch-boot.conf</span><br><span class="line">title arch-boot</span><br><span class="line">linux vmlinuz-linux</span><br><span class="line">initrd initramfs-linux.img</span><br><span class="line">initrd intel-ucode.img</span><br><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@ resume=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 resume_offset=30305772</span><br></pre></td></tr></tbody></table></figure>
+<p>其中 <code>86f86555-c1c5-4a78-9d77-b0e4b16c7be0</code> 出现两次</p>
+<ul>
+<li><p>启动必需</p>
+<p><code>root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@</code></p></li>
+<li><p>休眠必需</p>
+<p><code>resume=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 resume_offset=30305772</code></p></li>
+</ul>
+<p>而这一串数字，是 <code>btrfs</code> 系统的分区 <code>uuid</code></p>
+<p>可以通过以下查看</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">lsblk -f</span><br></pre></td></tr></tbody></table></figure>
+<p>再更新即可生效</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo bootctl update</span><br></pre></td></tr></tbody></table></figure>
+<p>查看效果</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo bootctl status</span><br><span class="line"><span class="comment"># sudo bootctl list</span></span><br></pre></td></tr></tbody></table></figure>
+<p>临时启动另一个系统</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># auto-windows 是在 sudo bootctl list 中找到的 `id`</span></span><br><span class="line">sudo bootctl set-oneshot auto-windows</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/388400709">Archlinux 安装简记
+Xfce + Btrfs 2021.07</a></li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/Btrfs">Btrfs - Arch Linux
+中文维基</a></li>
+</ul>
+<h2 id="休眠">休眠</h2>
+<p>指的是，断电（关机），也能打开就使用，恢复之前的一切</p>
+<p>需要交换空间 <code>swap</code> 也就是上面预留了
+<code>/@swap</code>，并且 <code>/etc/fstab</code> 挂载了
+<code>/swap</code></p>
+<h3 id="swap文件">swap文件</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 我内存32g,所以给了64g</span></span><br><span class="line">sudo btrfs filesystem mkswapfile --size 64g --uuid clear /swap/swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用</span></span><br><span class="line">sudo swapon /swap/swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置fstab</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/swap/swapfile none swap defaults 0 0"</span> &gt;&gt; /etc/fstab</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要 btrfs-progs</span></span><br><span class="line">sudo pacman -S btrfs-progs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查偏移值，看到一个数字30305772(每个人不一样)，</span></span><br><span class="line"><span class="comment"># 也就是用在上方内核参数 `resume_offset=30305772`</span></span><br><span class="line">sudo btrfs inspect-internal map-swapfile -r /swap/swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意内核参数，参考上方 bootctl配置</span></span><br><span class="line"><span class="comment"># 一般是：resume=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 resume_offset=30305772</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 initramfs</span></span><br><span class="line">sudo vim /etc/mkinitcpio.conf</span><br><span class="line"><span class="comment"># 添加 resume 参数，必须在 filesystems 之后</span></span><br><span class="line"><span class="comment"># 我的如下，仅作参考</span></span><br><span class="line">HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems resume fsck)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="休眠方式">休眠方式</h3>
+<ul>
+<li>手动</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">systemctl hibernate</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>电源键</li>
+</ul>
+<p>对于 <code>gnome45</code>
+在设置-电源，最后有一个，<code>电源按钮行为</code>，选中休眠即可</p>
+<p>或者按照下面的</p>
+<ul>
+<li>修改 logind.conf</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/systemd/logind.conf</span><br></pre></td></tr></tbody></table></figure>
+<p>找到 <code>HandleLidSwitch</code> 这几行，取消注释
+<code>#</code>，修改为</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">HandleLidSwitch=hibernate</span><br><span class="line">HandleLidSwitchExternalPower=hibernate</span><br></pre></td></tr></tbody></table></figure>
+<p>分别为：没有充电器时合上盖子、插上充电器时合上盖子</p>
+<p>点击电源键同理</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">HandlePowerKey=hibernate</span><br><span class="line">HandlePowerKeyLongPress=hibernate</span><br></pre></td></tr></tbody></table></figure>
+<p>注意，还需要</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></tbody></table></figure>
+<p>然后重启才生效</p>
+<h3 id="参考-1">参考</h3>
+<ul>
+<li><a href="https://wiki.archlinuxcn.org/wiki/Btrfs#交换文件">Btrfs-交换文件</a></li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86/%E6%8C%82%E8%B5%B7%E4%B8%8E%E4%BC%91%E7%9C%A0">电源管理/挂起与休眠</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/c33d26e5.html">https://yuhldr.github.io/posts/c33d26e5.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>btrfs</tag>
+        <tag>hibernate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python自用速查</title>
     <url>/posts/b4a9e8d8.html</url>
     <content><![CDATA[<h2 id="plt">plt</h2>
