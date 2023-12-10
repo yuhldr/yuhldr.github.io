@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2archlinux使用btrfs文件系统以及休眠</title>
+    <title>archlinux使用btrfs文件系统以及休眠</title>
     <url>/posts/c33d26e5.html</url>
     <content><![CDATA[<p>具体怎么使用btrfs安装archlinux这里不细说，大概列一下命令、注意点，也可以看最后的参考文件</p>
 <h2 id="使用btrfs安装系统">使用btrfs安装系统</h2>
@@ -5161,55 +5161,6 @@ ubuntu2004.3系统代理设置</figcaption>
       </tags>
   </entry>
   <entry>
-    <title>Windows Terminal美化配置</title>
-    <url>/posts/7737.html</url>
-    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></tbody></table></figure>
-<blockquote>
-<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
-</blockquote>
-<h2 id="默认打开">默认打开</h2>
-<p>打开WSL的某一个还是windows</p>
-<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
-中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
-判断）</p>
-<h2 id="安装字体">安装字体</h2>
-<p>在这里下载：<a href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
-里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
-<p>windows-terminal右上角设置</p>
-<h2 id="颜色主题">颜色主题</h2>
-<p>颜色主题到这里找 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
-<code>.json</code> 文件，类似下面的内容，复制，然后在
-<code>schemes</code> 上括号下面添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Monokai Soda"</span>,</span><br><span class="line">    <span class="string">"black"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"red"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"green"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"yellow"</span>: <span class="string">"#fa8419"</span>,</span><br><span class="line">    <span class="string">"blue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"purple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"cyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"white"</span>: <span class="string">"#c4c5b5"</span>,</span><br><span class="line">    <span class="string">"brightBlack"</span>: <span class="string">"#625e4c"</span>,</span><br><span class="line">    <span class="string">"brightRed"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightGreen"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"brightYellow"</span>: <span class="string">"#e0d561"</span>,</span><br><span class="line">    <span class="string">"brightBlue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"brightPurple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightCyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"brightWhite"</span>: <span class="string">"#f6f6ef"</span>,</span><br><span class="line">    <span class="string">"background"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"foreground"</span>: <span class="string">"#c4c5b5"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="相关配置">相关配置</h2>
-<p>在 <code>defaults</code> 上括号下面添加</p>
-<ul>
-<li>注意字体：<code>fontFace</code></li>
-<li>注意图片地址：<code>backgroundImage</code></li>
-<li>注意：<code>colorScheme</code></li>
-</ul>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"fontFace"</span>: <span class="string">"Cascadia Code"</span>, // 字体</span><br><span class="line"><span class="string">"fontSize"</span>: 12, // 字号</span><br><span class="line"><span class="string">"acrylicOpacity"</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">"colorScheme"</span>: <span class="string">"Monokai Soda"</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">"closeOnExit"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"cursorColor"</span>: <span class="string">"#ffffff"</span>, //光标颜色</span><br><span class="line"><span class="string">"cursorShape"</span>: <span class="string">"emptyBox"</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">"historySize"</span>: 9999999,</span><br><span class="line"><span class="string">"backgroundImage"</span>: <span class="string">"D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg"</span>, //配置背景图片地址</span><br><span class="line"><span class="string">"backgroundImageOpacity"</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">"padding"</span>: <span class="string">"0, 0, 0, 0"</span>,</span><br><span class="line"><span class="string">"snapOnInput"</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">"//wsl$/Ubuntu-20.04/home/yuh"</span>,</span><br><span class="line"><span class="string">"startingDirectory"</span>: <span class="string">"%USERPROFILE%"</span>,</span><br><span class="line"><span class="string">"useAcrylic"</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">"tabTitle"</span>: <span class="string">"chessYu"</span> //标签名称</span><br></pre></td></tr></tbody></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="https://juejin.cn/post/6844904116322304014">Windows
-Terminal美化界面</a></li>
-</ul>
-<hr>
-<blockquote>
-<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
-<br> <strong>版权声明</strong>：转载请注明出处！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>terminal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows包管理scoop配置使用</title>
     <url>/posts/40358.html</url>
     <content><![CDATA[<h2 id="windows10可能禁止脚本运行">windows10可能禁止脚本运行</h2>
@@ -5273,8 +5224,57 @@ Terminal美化界面</a></li>
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>scoop</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows Terminal美化配置</title>
+    <url>/posts/7737.html</url>
+    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
+</blockquote>
+<h2 id="默认打开">默认打开</h2>
+<p>打开WSL的某一个还是windows</p>
+<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
+中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
+判断）</p>
+<h2 id="安装字体">安装字体</h2>
+<p>在这里下载：<a href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
+里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
+<p>windows-terminal右上角设置</p>
+<h2 id="颜色主题">颜色主题</h2>
+<p>颜色主题到这里找 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
+<code>.json</code> 文件，类似下面的内容，复制，然后在
+<code>schemes</code> 上括号下面添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Monokai Soda"</span>,</span><br><span class="line">    <span class="string">"black"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"red"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"green"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"yellow"</span>: <span class="string">"#fa8419"</span>,</span><br><span class="line">    <span class="string">"blue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"purple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"cyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"white"</span>: <span class="string">"#c4c5b5"</span>,</span><br><span class="line">    <span class="string">"brightBlack"</span>: <span class="string">"#625e4c"</span>,</span><br><span class="line">    <span class="string">"brightRed"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightGreen"</span>: <span class="string">"#98e024"</span>,</span><br><span class="line">    <span class="string">"brightYellow"</span>: <span class="string">"#e0d561"</span>,</span><br><span class="line">    <span class="string">"brightBlue"</span>: <span class="string">"#9d65ff"</span>,</span><br><span class="line">    <span class="string">"brightPurple"</span>: <span class="string">"#f4005f"</span>,</span><br><span class="line">    <span class="string">"brightCyan"</span>: <span class="string">"#58d1eb"</span>,</span><br><span class="line">    <span class="string">"brightWhite"</span>: <span class="string">"#f6f6ef"</span>,</span><br><span class="line">    <span class="string">"background"</span>: <span class="string">"#1a1a1a"</span>,</span><br><span class="line">    <span class="string">"foreground"</span>: <span class="string">"#c4c5b5"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="相关配置">相关配置</h2>
+<p>在 <code>defaults</code> 上括号下面添加</p>
+<ul>
+<li>注意字体：<code>fontFace</code></li>
+<li>注意图片地址：<code>backgroundImage</code></li>
+<li>注意：<code>colorScheme</code></li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"fontFace"</span>: <span class="string">"Cascadia Code"</span>, // 字体</span><br><span class="line"><span class="string">"fontSize"</span>: 12, // 字号</span><br><span class="line"><span class="string">"acrylicOpacity"</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">"colorScheme"</span>: <span class="string">"Monokai Soda"</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">"closeOnExit"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">"cursorColor"</span>: <span class="string">"#ffffff"</span>, //光标颜色</span><br><span class="line"><span class="string">"cursorShape"</span>: <span class="string">"emptyBox"</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">"historySize"</span>: 9999999,</span><br><span class="line"><span class="string">"backgroundImage"</span>: <span class="string">"D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg"</span>, //配置背景图片地址</span><br><span class="line"><span class="string">"backgroundImageOpacity"</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">"padding"</span>: <span class="string">"0, 0, 0, 0"</span>,</span><br><span class="line"><span class="string">"snapOnInput"</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">"//wsl$/Ubuntu-20.04/home/yuh"</span>,</span><br><span class="line"><span class="string">"startingDirectory"</span>: <span class="string">"%USERPROFILE%"</span>,</span><br><span class="line"><span class="string">"useAcrylic"</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">"tabTitle"</span>: <span class="string">"chessYu"</span> //标签名称</span><br></pre></td></tr></tbody></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904116322304014">Windows
+Terminal美化界面</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
+<br> <strong>版权声明</strong>：转载请注明出处！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>terminal</tag>
       </tags>
   </entry>
   <entry>
@@ -6988,15 +6988,15 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
       </tags>
   </entry>
   <entry>
+    <title>归档</title>
+    <url>/archives/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>我是谁</title>
     <url>/about/index.html</url>
     <content><![CDATA[<p>一个不务正业的物理生</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>分类</title>
