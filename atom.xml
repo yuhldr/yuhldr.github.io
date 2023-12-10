@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-05-22T08:02:47.491Z</updated>
+  <updated>2023-12-10T13:22:08.226Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/b4a9e8d8.html"/>
     <id>https://yuhldr.github.io/posts/b4a9e8d8.html</id>
     <published>2023-05-11T12:11:00.000Z</published>
-    <updated>2023-05-22T08:02:47.491Z</updated>
+    <updated>2023-12-10T13:22:08.226Z</updated>
     
     
     <summary type="html">常用但是不想记住的代码片段</summary>
@@ -40,7 +40,7 @@
     <link href="https://yuhldr.github.io/posts/52e60843.html"/>
     <id>https://yuhldr.github.io/posts/52e60843.html</id>
     <published>2023-04-13T14:06:37.000Z</published>
-    <updated>2023-05-04T14:47:40.886Z</updated>
+    <updated>2023-05-04T14:47:40.000Z</updated>
     
     
     <summary type="html">一些扩展推荐，提高生产力</summary>
@@ -59,7 +59,7 @@
     <link href="https://yuhldr.github.io/posts/289d0c5f.html"/>
     <id>https://yuhldr.github.io/posts/289d0c5f.html</id>
     <published>2023-04-09T08:26:07.000Z</published>
-    <updated>2023-04-09T08:58:59.249Z</updated>
+    <updated>2023-04-09T08:58:59.000Z</updated>
     
     
     <summary type="html">Python、C语言等环境变量</summary>
@@ -84,7 +84,7 @@
     <link href="https://yuhldr.github.io/posts/5401e6fb.html"/>
     <id>https://yuhldr.github.io/posts/5401e6fb.html</id>
     <published>2023-04-04T12:37:03.000Z</published>
-    <updated>2023-04-05T13:10:51.724Z</updated>
+    <updated>2023-04-05T13:10:51.000Z</updated>
     
     
     <summary type="html">最近配置自习室打印机，才发现之前自己对网络一窍不通。。。。最终实现本地电脑可以发现打印机，直接自动添加，linux系统下的cups也可以发现局域网设备</summary>
@@ -111,7 +111,7 @@
     <link href="https://yuhldr.github.io/posts/af3ac84b.html"/>
     <id>https://yuhldr.github.io/posts/af3ac84b.html</id>
     <published>2023-03-17T13:17:02.000Z</published>
-    <updated>2023-03-23T10:27:35.869Z</updated>
+    <updated>2023-03-23T10:27:35.000Z</updated>
     
     
     <summary type="html">本科学的东西都还给老师了，现在实际问题中遇到，就只能重新查找了。。。。。。</summary>
@@ -132,7 +132,7 @@
     <link href="https://yuhldr.github.io/posts/a3d4c429.html"/>
     <id>https://yuhldr.github.io/posts/a3d4c429.html</id>
     <published>2023-02-02T10:55:23.000Z</published>
-    <updated>2023-04-14T08:17:13.014Z</updated>
+    <updated>2023-04-14T08:17:13.000Z</updated>
     
     
     <summary type="html">记录一下怎么设置kde文件管理器，图片、视频等各种文件预览</summary>
@@ -153,7 +153,7 @@
     <link href="https://yuhldr.github.io/posts/dabdcea.html"/>
     <id>https://yuhldr.github.io/posts/dabdcea.html</id>
     <published>2023-01-15T16:32:08.000Z</published>
-    <updated>2023-02-02T10:54:30.291Z</updated>
+    <updated>2023-02-02T10:54:30.000Z</updated>
     
     
     <summary type="html">比如自动打包，自动发邮件什么的，相当于一个小型服务器</summary>
@@ -172,7 +172,7 @@
     <link href="https://yuhldr.github.io/posts/4e0c9d8f.html"/>
     <id>https://yuhldr.github.io/posts/4e0c9d8f.html</id>
     <published>2022-09-28T13:18:27.000Z</published>
-    <updated>2022-09-29T20:35:43.872Z</updated>
+    <updated>2022-09-29T20:35:43.000Z</updated>
     
     
     <summary type="html">这里有很多坑，比如引入非python文件，比如有些python文件没有被打包进入，比如多个文件之间的引用问题</summary>
@@ -193,7 +193,7 @@
     <link href="https://yuhldr.github.io/posts/a63b796.html"/>
     <id>https://yuhldr.github.io/posts/a63b796.html</id>
     <published>2022-09-28T13:06:42.000Z</published>
-    <updated>2022-09-29T20:35:43.872Z</updated>
+    <updated>2022-09-29T20:35:43.000Z</updated>
     
     
     <summary type="html">python中json解析中文会被编码，可以防止这个问题，并且可以自动格式化；还有个问题就是 load 和 dump 都有两种写法</summary>
@@ -214,7 +214,7 @@
     <link href="https://yuhldr.github.io/posts/6bab798e.html"/>
     <id>https://yuhldr.github.io/posts/6bab798e.html</id>
     <published>2022-08-15T20:01:12.000Z</published>
-    <updated>2022-09-29T20:35:43.869Z</updated>
+    <updated>2022-09-29T20:35:43.000Z</updated>
     
     
     <summary type="html">测试描述</summary>
@@ -229,7 +229,7 @@
     <link href="https://yuhldr.github.io/posts/fae93d3c.html"/>
     <id>https://yuhldr.github.io/posts/fae93d3c.html</id>
     <published>2022-07-14T14:48:59.000Z</published>
-    <updated>2022-10-10T02:21:34.700Z</updated>
+    <updated>2022-10-10T02:21:34.000Z</updated>
     
     
     <summary type="html">archlinux安装xrdp，远程时，对于分辨率的适配比vnc好太多，而且远程时，别人看不到，但是安装中遇到了各种问题，官方文档也不靠谱</summary>
@@ -250,7 +250,7 @@
     <link href="https://yuhldr.github.io/posts/67b80cff.html"/>
     <id>https://yuhldr.github.io/posts/67b80cff.html</id>
     <published>2022-06-25T11:22:35.000Z</published>
-    <updated>2022-07-14T14:47:57.034Z</updated>
+    <updated>2022-07-14T14:47:57.000Z</updated>
     
     
     <summary type="html">前几天ubuntu服务器重启失败,引导出了问题,记录一下解决方案,并且今天虚拟机安装win11遇到了类似问题</summary>
@@ -273,7 +273,7 @@
     <link href="https://yuhldr.github.io/posts/2dcfe2a6.html"/>
     <id>https://yuhldr.github.io/posts/2dcfe2a6.html</id>
     <published>2022-04-26T08:08:11.000Z</published>
-    <updated>2022-05-06T09:53:47.207Z</updated>
+    <updated>2022-05-06T09:53:47.000Z</updated>
     
     
     <summary type="html">latex一些常见的问题和示例代码，方便复制粘贴</summary>
@@ -292,7 +292,7 @@
     <link href="https://yuhldr.github.io/posts/7d18e834.html"/>
     <id>https://yuhldr.github.io/posts/7d18e834.html</id>
     <published>2022-04-10T13:17:27.000Z</published>
-    <updated>2022-05-06T09:32:24.830Z</updated>
+    <updated>2022-05-06T09:32:24.000Z</updated>
     
     
     <summary type="html">办公室里大家用的都是widows电脑，他们在一台电脑上usb连接了惠普打印机，然后直接选择共享，其他人就可以连接到自己电脑上了，而用linux的我就尴尬了，死活连接不上……</summary>
@@ -311,7 +311,7 @@
     <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
     <id>https://yuhldr.github.io/posts/3513d90f.html</id>
     <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2023-05-28T03:50:23.440Z</updated>
+    <updated>2023-09-14T09:54:08.000Z</updated>
     
     
     <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
@@ -332,7 +332,7 @@
     <link href="https://yuhldr.github.io/posts/d5c2f773.html"/>
     <id>https://yuhldr.github.io/posts/d5c2f773.html</id>
     <published>2022-03-21T07:03:02.000Z</published>
-    <updated>2022-06-28T06:01:47.393Z</updated>
+    <updated>2022-06-28T06:01:47.000Z</updated>
     
     
     <summary type="html">分子动力学，如何计算声子态密度，结合LAMMPS</summary>
@@ -353,7 +353,7 @@
     <link href="https://yuhldr.github.io/posts/9553fedc.html"/>
     <id>https://yuhldr.github.io/posts/9553fedc.html</id>
     <published>2022-03-06T13:03:50.000Z</published>
-    <updated>2022-12-15T18:08:53.852Z</updated>
+    <updated>2022-12-15T18:08:53.000Z</updated>
     
     
     <summary type="html">声子相关的一些内容回顾</summary>
@@ -372,7 +372,7 @@
     <link href="https://yuhldr.github.io/posts/db8c1b0a.html"/>
     <id>https://yuhldr.github.io/posts/db8c1b0a.html</id>
     <published>2022-03-01T02:17:47.000Z</published>
-    <updated>2023-05-11T12:03:19.181Z</updated>
+    <updated>2023-05-11T12:03:19.000Z</updated>
     
     
     <summary type="html">使用LAMMPS计算声子谱，有相关开源软件，很方便，如果没有计算机知识，配置起来很麻烦</summary>
@@ -393,7 +393,7 @@
     <link href="https://yuhldr.github.io/posts/95da3501.html"/>
     <id>https://yuhldr.github.io/posts/95da3501.html</id>
     <published>2022-02-24T07:03:37.000Z</published>
-    <updated>2022-03-06T04:09:12.311Z</updated>
+    <updated>2022-03-06T04:09:12.000Z</updated>
     
     
     <summary type="html">使用源码编译安装slurm、pmix3、openmpi等，使其支持pmix_v3并行，并配置邮件提醒</summary>
@@ -414,7 +414,7 @@
     <link href="https://yuhldr.github.io/posts/23f4e01a.html"/>
     <id>https://yuhldr.github.io/posts/23f4e01a.html</id>
     <published>2022-01-19T12:22:50.000Z</published>
-    <updated>2022-02-24T06:58:49.397Z</updated>
+    <updated>2022-02-24T06:58:49.000Z</updated>
     
     
     <summary type="html">网上一般是清华或者中科大的，但是感觉很麻烦，gitee的稳定，并且一句命令就可以了</summary>

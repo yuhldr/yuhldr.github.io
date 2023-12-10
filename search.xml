@@ -4,8 +4,28 @@
     <title>python自用速查</title>
     <url>/posts/b4a9e8d8.html</url>
     <content><![CDATA[<h2 id="plt">plt</h2>
+<h3 id="颜色循环">颜色循环</h3>
 <p>将颜色循环设置为默认值</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="中文字体">中文字体</h3>
+<p>字体问题，中文经常显示不出来</p>
+<p>为了防止修改以后失效、防止每次使用都要设置，建议（以linux为例）：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/lib/python3.11/site-packages/matplotlib/mpl-data/matplotlibrc ~/.config/matplotlib/</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"font.family:  FangSong"</span> &gt;&gt; ~/.config/matplotlib/matplotlibrc</span><br></pre></td></tr></tbody></table></figure>
+<p>在使用 <a href="https://github.com/garrettj403/SciencePlots">SciencePlots</a>
+时。</p>
+<p>即使</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scienceplots</span><br><span class="line"></span><br><span class="line">plt.style.use([<span class="string">'science'</span>, <span class="string">"cjk-sc-font"</span>, <span class="string">"no-latex"</span>])</span><br></pre></td></tr></tbody></table></figure>
+<p>还是有问题，因为
+<code>scienceplots/styles/languages/cjk-sc-font.mplstyle</code>
+有问题</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'font.family:  FangSong'</span> &gt; scienceplots/styles/languages/cjk-sc-font.mplstyle</span><br></pre></td></tr></tbody></table></figure>
+<p><code>FangSong</code>
+修改为你的字体，可以这样查看（两个引号之间的名字）</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">fc-list :lang=zh</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="多线程">多线程</h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">s</span>):</span><br><span class="line">  <span class="built_in">print</span>(s)</span><br><span class="line"></span><br><span class="line">qv = np.linspace(<span class="number">134</span>, <span class="number">140</span>, <span class="number">7</span>, dtype=<span class="string">"int"</span>)</span><br><span class="line"><span class="keyword">with</span> Pool(<span class="number">4</span>) <span class="keyword">as</span> p:</span><br><span class="line">    p.<span class="built_in">map</span>(test, qvs)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="逐帧播放">逐帧播放</h2>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):</span><br><span class="line">    plt.clf()</span><br><span class="line">    plt.title(<span class="string">f"<span class="subst">{i}</span>"</span>)</span><br><span class="line">    R = np.real(A[:, i]) + np.imag(A[:, i])</span><br><span class="line"></span><br><span class="line">    plt.plot((np.dot(R, A) * np.dot(R, A_))[:<span class="number">120</span>], <span class="string">"."</span>)</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/b4a9e8d8.html">https://yuhldr.github.io/posts/b4a9e8d8.html</a>
@@ -1368,6 +1388,10 @@ and KStatusNotifierItem Support</a>，并打开自身的 <code>扩展</code>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S kdeconnect</span><br></pre></td></tr></tbody></table></figure><p></p></li>
 <li><p>vnc被远程</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S krfb</span><br></pre></td></tr></tbody></table></figure><p></p></li>
+<li><p>texlive</p>
+<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S texlive perl-yaml-tiny perl-file-homedir texlive-langchinese</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><code>perl-yaml-tiny perl-file-homedir</code>
+格式化tex用的，<code>texlive-langchinese</code> 中文方面的</p></li>
 <li><p>查看图</p>
 <p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S gwenview</span><br></pre></td></tr></tbody></table></figure><p></p></li>
 <li><p>查看本地视频</p>
@@ -2634,6 +2658,8 @@ oh-my-zsh 镜像</a>，建议安装以后，把 <code>~/.oh-my-zsh</code>
 <code>zsh-autosuggestions</code>
 <code>zsh-completions</code>，下面用的都是我链接到gitee的镜像</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-syntax-highlighting.git <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting &amp;&amp; git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-autosuggestions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions &amp;&amp; git <span class="built_in">clone</span> https://gitee.com/yuhldr/zsh-completions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-completions</span><br></pre></td></tr></tbody></table></figure>
+<p>原版 github</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-syntax-highlighting &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-autosuggestions &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-completions <span class="variable">${ZSH_CUSTOM:-~/.oh-my-zsh/custom}</span>/plugins/zsh-completions</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="配置">配置</h3>
 <p>编辑配置 <code>zsh</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
