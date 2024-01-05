@@ -29,6 +29,10 @@ NexT.boot.registerEvents = function() {
       target && target.click();
     }
   });
+
+  window.addEventListener('tabs:click', e => {
+    NexT.utils.registerCodeblock(e.target);
+  });
 };
 
 NexT.boot.refresh = function() {
@@ -46,7 +50,7 @@ NexT.boot.refresh = function() {
 
   CONFIG.exturl && NexT.utils.registerExtURL();
   NexT.utils.wrapTableWithBox();
-  NexT.utils.registerCopyCode();
+  NexT.utils.registerCodeblock();
   NexT.utils.registerTabsTag();
   NexT.utils.registerActiveMenuItem();
   NexT.utils.registerLangSelect();
