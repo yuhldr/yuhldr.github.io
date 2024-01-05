@@ -118,6 +118,8 @@ Xfce + Btrfs 2021.07</a></li>
     <title>python自用速查</title>
     <url>/posts/b4a9e8d8.html</url>
     <content><![CDATA[<h2 id="plt">plt</h2>
+<h3 id="直线">直线</h3>
+<figure class="highlight py"><table><tbody><tr><td class="code"><pre><span class="line">plt.axhline(y=yn, linestyle=<span class="string">'--'</span>, label=<span class="string">f'pe=<span class="subst">{yn}</span>'</span>)</span><br><span class="line">plt.axvline(x=xn, linestyle=<span class="string">'-.'</span>, label=<span class="string">f'a=<span class="subst">{xn}</span>'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="颜色循环">颜色循环</h3>
 <p>将颜色循环设置为默认值</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></tbody></table></figure>
@@ -166,73 +168,105 @@ Xfce + Btrfs 2021.07</a></li>
   <entry>
     <title>gnome40扩展推荐</title>
     <url>/posts/52e60843.html</url>
-    <content><![CDATA[<h2 id="右上角显示图标">※ 右上角显示图标</h2>
+    <content><![CDATA[<h2 id="当前在用">当前在用</h2>
+<blockquote>
+<p>2024-01-05</p>
+</blockquote>
+<h3 id="右上角显示图标">右上角显示图标</h3>
 <p><a href="https://extensions.gnome.org/extension/615/appindicator-support/">AppIndicator
 and KStatusNotifierItem Support</a></p>
 <blockquote>
 <p>gnome40以后，右上角的图标看不到了</p>
 </blockquote>
-<h2 id="颜色拾取">※ 颜色拾取</h2>
-<p><a href="https://extensions.gnome.org/extension/3396/color-picker/">color-picker</a></p>
-<blockquote>
-<p>随便拾取屏幕上颜色</p>
-</blockquote>
-<h2 id="显示网速cpu内存等">显示网速、cpu、内存等</h2>
+<h3 id="显示网速cpu内存等">显示网速、cpu、内存等</h3>
 <p><a href="https://extensions.gnome.org/extension/4506/simple-system-monitor/">Simple
 System Monitor</a></p>
-<h2 id="显示网速">显示网速</h2>
-<p><a href="https://extensions.gnome.org/extension/4478/net-speed/">Net
-Speed</a> &gt;
-和上面功能重复，但是我的目的是，中间左边显示网速，中间右边显示cpu等</p>
-<h2 id="下拉终端">下拉终端</h2>
+<h3 id="下拉终端">下拉终端</h3>
 <p><a href="https://extensions.gnome.org/extension/3780/ddterm/">ddterm</a></p>
 <blockquote>
 <p>能用js写这么复杂的东西也是服了，我已经参与它的中文翻译，唯一缺陷：不能上下左右分栏</p>
 </blockquote>
-<h2 id="systemctl服务管理">systemctl服务管理</h2>
-<p><a href="https://extensions.gnome.org/extension/4174/systemd-manager/">Systemd
-Manager</a></p>
-<blockquote>
-<p>如果你没听说过 <code>systemctl</code>
-直接忽略这个吧，啊啊啊，这个是真的方便</p>
-</blockquote>
-<h2 id="剪贴板">※ 剪贴板</h2>
+<h3 id="剪贴板">剪贴板</h3>
 <p><a href="https://extensions.gnome.org/extension/5278/pano/">Pano -
 Clipboard Manager</a></p>
 <blockquote>
 <p>这个是真的离谱，基本上模仿mac上的paster开发的，开源，有能力可以贡献代码</p>
 </blockquote>
 <p>注意依赖 </p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S libgda</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="下面图标栏dock">※ 下面图标栏dock</h2>
+<p>fcitx5自带的剪贴板，也挺还用</p>
+<h3 id="输入法">输入法</h3>
+<blockquote>
+<p>我其实不知道有什么用</p>
+</blockquote>
+<p><a href="https://github.com/wengxt/gnome-shell-extension-kimpanel">Unicorn!
+· GitHub</a></p>
+<h3 id="下面图标栏dock">下面图标栏dock</h3>
 <p><a href="https://extensions.gnome.org/extension/307/dash-to-dock/">Dash to
 Dock</a></p>
-<h2 id="农历">农历</h2>
+<h3 id="农历">农历</h3>
 <p><a href="https://extensions.gnome.org/extension/675/lunar-calendar/">Lunar
 Calendar 农历</a></p>
 <p>注意 <code>alt-F2</code> 输入 <code>r</code> 重载，注意依赖
 </p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yay -S lunar-date</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="本地主题">本地主题</h2>
+<h3 id="kde-connect">kde-connect</h3>
+<p><a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a></p>
+<h3 id="tab切换更美观">tab切换更美观</h3>
+<p><a href="https://extensions.gnome.org/extension/97/coverflow-alt-tab/">Coverflow
+Alt-Tab</a></p>
+<h3 id="bing壁纸">bing壁纸</h3>
+<p><a href="https://extensions.gnome.org/extension/1262/bing-wallpaper-changer/">Bing
+Wallpaper</a></p>
+<h3 id="主题">主题</h3>
+<h4 id="gtk3与gtk4主题统一">gtk3与gtk4主题统一</h4>
+<p><a href="https://extensions.gnome.org/extension/5547/custom-accent-colors/">Custom
+Accent Colors</a></p>
+<h4 id="窗口圆角">窗口圆角</h4>
+<blockquote>
+<p>vscode rustdesk等，尖角与gtk4不统一</p>
+</blockquote>
+<p><a href="https://extensions.gnome.org/extension/5237/rounded-window-corners/">Rounded
+Window Corners - GNOME Shell Extensions</a></p>
+<h4 id="本地主题">本地主题</h4>
+<blockquote>
+<p>gtk3与gtk4统一以后，不用也挺好</p>
+</blockquote>
 <p><a href="https://extensions.gnome.org/extension/19/user-themes/">User
 Themes</a></p>
 <p>主题推荐这个，作者很热情：<a href="https://github.com/vinceliuice/Orchis-theme">GitHub -
 vinceliuice/Orchis-theme</a></p>
-<h2 id="增大最大化面积">增大最大化面积</h2>
-<p><a href="https://extensions.gnome.org/extension/1732/gtk-title-bar/">GTK
-Title Bar</a></p>
-<h2 id="kde-connect">kde-connect</h2>
-<p><a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a></p>
-<h2 id="tab切换更美观">tab切换更美观</h2>
-<p><a href="https://extensions.gnome.org/extension/97/coverflow-alt-tab/">Coverflow
-Alt-Tab</a></p>
-<h2 id="更新提示">更新提示</h2>
+<h2 id="其他">其他</h2>
+<h3 id="显示网速">显示网速</h3>
+<p><a href="https://extensions.gnome.org/extension/4478/net-speed/">Net
+Speed</a> &gt;
+和上面功能重复，但是我的目的是，中间左边显示网速，中间右边显示cpu等</p>
+<h3 id="颜色拾取">颜色拾取</h3>
+<p><a href="https://extensions.gnome.org/extension/3396/color-picker/">color-picker</a></p>
+<blockquote>
+<p>随便拾取屏幕上颜色</p>
+</blockquote>
+<h3 id="更新提示">更新提示</h3>
 <p><a href="https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/">Arch
 Linux Updates Indicator</a></p>
 <p>注意依赖</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S pacman-contrib gnome-menus</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="面板图标排序">面板图标排序</h2>
+<h3 id="systemctl服务管理">systemctl服务管理</h3>
+<p><a href="https://extensions.gnome.org/extension/4174/systemd-manager/">Systemd
+Manager</a></p>
+<blockquote>
+<p>如果你没听说过 <code>systemctl</code>
+直接忽略这个吧，啊啊啊，这个是真的方便</p>
+</blockquote>
+<h3 id="面板图标排序">面板图标排序</h3>
 <p><a href="https://extensions.gnome.org/extension/4356/top-bar-organizer/">Top
 Bar Organizer</a></p>
 <p>上面面板图标太多？，用他排序，但是好像挺多bug，比如只能看到系统指示器、以及extensions扩展指示器，第三方应用不行</p>
+<h2 id="过时">过时</h2>
+<blockquote>
+<p>gnome45 2024-01-05</p>
+</blockquote>
+<h3 id="增大最大化面积">增大最大化面积</h3>
+<p><a href="https://extensions.gnome.org/extension/1732/gtk-title-bar/">GTK
+Title Bar</a></p>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/52e60843.html">https://yuhldr.github.io/posts/52e60843.html</a>
