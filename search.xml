@@ -28,14 +28,14 @@
 <li>内核参数</li>
 </ul>
 <p>对于 bootctl 必须要有如下类似代码</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@  quiet splash</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="bootctl启动">bootctl启动</h3>
 <p>我使用 <code>bootctl</code> 启动</p>
 <p>就是不想要 <code>grub</code>，注意双系统 efi 分区大一些，方便就一个
 <code>/boot</code>，<code>efi</code> 直接挂载在 <code>/boot</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo bootctl install</span><br></pre></td></tr></tbody></table></figure>
 <p>配置文件为：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line"># /boot/loader/entries/arch-boot.conf</span><br><span class="line">title arch-boot</span><br><span class="line">linux vmlinuz-linux</span><br><span class="line">initrd initramfs-linux.img</span><br><span class="line">initrd intel-ucode.img</span><br><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@ resume=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 resume_offset=30305772</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line"># /boot/loader/entries/arch-boot.conf</span><br><span class="line">title arch-boot</span><br><span class="line">linux vmlinuz-linux</span><br><span class="line">initrd initramfs-linux.img</span><br><span class="line">initrd intel-ucode.img</span><br><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=/@ resume=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 resume_offset=30305772 quiet splash</span><br></pre></td></tr></tbody></table></figure>
 <p>其中 <code>86f86555-c1c5-4a78-9d77-b0e4b16c7be0</code> 出现两次</p>
 <ul>
 <li><p>启动必需</p>
@@ -52,6 +52,9 @@
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo bootctl status</span><br><span class="line"><span class="comment"># sudo bootctl list</span></span><br></pre></td></tr></tbody></table></figure>
 <p>临时启动另一个系统</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># auto-windows 是在 sudo bootctl list 中找到的 `id`</span></span><br><span class="line">sudo bootctl set-oneshot auto-windows</span><br></pre></td></tr></tbody></table></figure>
+<p>启动屏幕</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S plymouth</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 配置 initramfs</span></span><br><span class="line">sudo vim /etc/mkinitcpio.conf</span><br><span class="line"><span class="comment"># 添加 resume 参数，必须在 filesystems 之后</span></span><br><span class="line"><span class="comment"># 我的如下，仅作参考</span></span><br><span class="line">HOOKS=(base udev plymouth autodetect modconf kms keyboard keymap consolefont block filesystems resume fsck)</span><br><span class="line"><span class="comment"># 生效</span></span><br><span class="line">sudo mkinitcpio -P</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="参考">参考</h3>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/388400709">Archlinux 安装简记
@@ -1413,7 +1416,7 @@ s\leq L,|t|\leq1.\\
 Archlinux双系统安装教程（超详细）</a></p>
 <p>涉及双系统、常用软件等</p>
 <h4 id="先挂载">先挂载</h4>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#  sdc1 为做准备安装新系统的磁盘分区</span></span><br><span class="line">mount /dev/sdc1 /mnt</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/efi</span><br><span class="line"><span class="comment"># sda1 为windows安装时自动创建的efi启动分区</span></span><br><span class="line">mount /dev/sda1 /mnt/efi</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#  sdc1 为做准备安装新系统的磁盘分区</span></span><br><span class="line">mount /dev/sdc1 /mnt</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/efi</span><br><span class="line"><span class="comment"># sda1 为windows安装时自动创建的efi启动分区</span></span><br><span class="line">mount /dev/sda1 /mnt/efi</span><br><span class="line"></span><br><span class="line"><span class="comment"># btrfs</span></span><br><span class="line">mount /dev/nvme0n1p4 -o subvol=@gnome /mnt </span><br></pre></td></tr></tbody></table></figure>
 <p>一些常用命令</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 分区删除等</span></span><br><span class="line">cfdisk /dev/sd你的磁盘名字</span><br><span class="line"><span class="comment"># 分区格式化为 ext4</span></span><br><span class="line">mkfs.ext4 /dev/sd你要格式化的分区名字</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="初步安装">初步安装</h4>
@@ -1428,7 +1431,7 @@ Archlinux双系统安装教程（超详细）</a></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="切换新系统">切换新系统</h4>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></tbody></table></figure>
-<h4 id="grub双系统引导及美化">grub双系统引导及美化</h4>
+<h4 id="grub">grub</h4>
 <p>官方文件在这里，中文的，请自行查看参考，防止更新：<a href="https://wiki.archlinux.org/title/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E6%8E%A2%E6%B5%8B%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">GRUB
 (简体中文) - ArchWiki</a></p>
 <p>grub多系统管理, uefi启动，intel芯片</p>
@@ -1442,10 +1445,13 @@ Archlinux双系统安装教程（超详细）</a></p>
 <p>如果想美化，登录以后按照这里来，<a href="https://github.com/vinceliuice/grub2-themes">vinceliuice/grub2-themes</a>
 下载以后直接：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo ./install</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="bootctl">bootctl</h4>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bootctl install</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bootctl update</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">title arch-kde</span><br><span class="line">linux img/kde/vmlinuz-linux</span><br><span class="line">initrd img/kde/initramfs-linux.img</span><br><span class="line">initrd intel-ucode.img</span><br><span class="line">options root=UUID=86f86555-c1c5-4a78-9d77-b0e4b16c7be0 rw rootflags=subvol=@kde quiet splash</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="其他设置">其他设置</h4>
 <p>文本编辑、网络管理、git</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S vim networkmanager git base-devel</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> NetworkManager</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S vim git base-devel</span><br></pre></td></tr></tbody></table></figure>
 <p>设置root密码，尽量复杂一些</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></tbody></table></figure>
 <p>语言，这里设置以后，一会到kde设置桌面环境，还需要修改</p>
@@ -1473,39 +1479,12 @@ Archlinux双系统安装教程（超详细）</a></p>
 <p>添加，必须和上面的 <code>/etc/hostname</code> 里面的 <code>ldr</code>
 对应</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">127.0.0.1 localhost</span><br><span class="line">::1 localhost</span><br><span class="line">127.0.0.1 ldr.localdomain ldr</span><br></pre></td></tr></tbody></table></figure>
-<p>中文字体</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S noto-fonts-cjk</span><br></pre></td></tr></tbody></table></figure>
 <p>北京时间</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="安装桌面">安装桌面</h4>
 <p>显卡驱动自选，但是我不建议，因为linux内核里本来就有开源的显卡驱动了，对于需要cuda编程的N卡来说，你可以安装
 <code>cudnn</code>，会自动把 <code>cuda</code> <code>nvidia</code>
 等安装上，同时会禁用开源驱动，重新编译内核，安装以后，不要轻易卸载，有时候会因为内核没有重新编译，导致一些奇怪问题</p>
-<ul>
-<li><p>kde</p>
-<p><code>sddm</code> 为登录管理，<code>plasma</code>
-为kde桌面（不包含应用），<code>konsole dolphin okular kate</code> 分别为
-终端、文件管理、pdf阅读、文本编辑</p>
-<p><code>base-devel</code> 为一些基础的东西</p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S sddm plasma</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> sddm</span><br></pre></td></tr></tbody></table></figure><p></p></li>
-<li><p>gnome</p>
-<p>以 <code>gnome42</code> 为例</p>
-<blockquote>
-<p>kde与gnome二选一，不建议都安装！！下面的 <code>gnome</code>
-会把所有gnome相关的东西都安装上</p>
-</blockquote>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S gdm gnome gnome-tweak-tool</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>右上角没有输入法等图标，去这里（注意版本对应）：<a href="https://extensions.gnome.org/extension/615/appindicator-support/">AppIndicator
-and KStatusNotifierItem Support</a>，并打开自身的 <code>扩展</code>
-应用，开启</p>
-<blockquote>
-<p>注意红色提示，安装对应的浏览器插件，然后可以直接在线安装，以谷歌浏览器为例</p>
-</blockquote>
-<p></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S gnome-browser-connector</span><br><span class="line"><span class="comment"># 以前是下面这个文件名字</span></span><br><span class="line"><span class="comment"># pacman -S chrome-gnome-shell</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>额外推荐几个</p>
-<p><a href="./52e60843.html">gnome40扩展推荐</a></p></li>
-</ul>
 <h4 id="新建用户">新建用户</h4>
 <p>用户名，我的是 <code>yuh</code>，你的自己改</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">useradd -m yuh</span><br></pre></td></tr></tbody></table></figure>
@@ -1520,16 +1499,22 @@ and KStatusNotifierItem Support</a>，并打开自身的 <code>扩展</code>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
 <p>有时候代理报错，更新一下时间</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">timedatectl set-ntp <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="其他软件基本是针对kde">其他软件(基本是针对kde)</h4>
+<h4 id="其他软件">其他软件</h4>
 <p>配置其他源 <code>vim /etc/pacman.conf</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[archlinuxcn]</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="variable">$arch</span></span><br><span class="line"></span><br><span class="line">[arch4edu]</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/arch4edu/<span class="variable">$arch</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman-key --lsign-key <span class="string">"farseerfc@archlinux.org"</span>; sudo pacman -Syyu; sudo pacman -Sy archlinuxcn-keyring; sudo pacman-key --recv-keys 7931B6D628C8D3BA; sudo pacman-key --finger 7931B6D628C8D3BA; sudo pacman-key --lsign-key 7931B6D628C8D3BA;</span><br></pre></td></tr></tbody></table></figure>
-<p>常用</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S openssh neofetch atuin networkmanager-openvpn microsoft-edge-stable-bin visual-studio-code-bin spectacle ark nextcloud-client gwenview fcitx5-im fcitx5-chinese-addons pnpm yarn yakuake python-pyqt6 python-pip python-pipreqs python-scipy python-setuptools python-matplotlib yay wget trash-cli texlive perl-yaml-tiny perl-file-homedir texlive-langchinese kdegraphics-thumbnailers ffmpegthumbs kdeconnect clash-premium-bin fuse2 xclip</span><br></pre></td></tr></tbody></table></figure>
+<p>kde 常用</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S plasma spectacle ark gwenview yakuake python-pyqt6 kdegraphics-thumbnailers ffmpegthumbs kdeconnect konsole dolphin okular kate</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> sddm NetworkManager</span><br></pre></td></tr></tbody></table></figure>
+<p>gnome常用：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S gdm evince gnome-calculator gnome-console gnome-control-center gnome-remote-desktop gnome-text-editor gnome-weather loupe nautilus xdg-desktop-portal-gnome xdg-user-dirs-gtk gnome-browser-connector power-profiles-daemon gst-plugin-pipewire gst-plugins-good gnome-shell-extension-gsconnect-git deja-dup gnome-tweaks</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> gdm NetworkManager</span><br></pre></td></tr></tbody></table></figure>
+<p>其他</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">pacman -S openssh neofetch atuin networkmanager-openvpn microsoft-edge-stable-bin visual-studio-code-bin nextcloud-client fcitx5-im fcitx5-chinese-addons pnpm yarn python-pip python-pipreqs python-scipy python-setuptools python-matplotlib yay wget trash-cli texlive perl-yaml-tiny perl-file-homedir texlive-langchinese clash-premium-bin fuse2 xclip pandoc-bin hexo-cli rsync btrfs-progs sof-firmware plymouth noto-fonts-cjk vim git zsh</span><br></pre></td></tr></tbody></table></figure>
+<p>其他yay</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">adw-gtk3 zotero-beta-bin gnome-network-displays-git input-leap-inputcapture wechat-universal-bwrap linuxqq hplip-lite wps-office-cn wps-office-fonts freetype2-wps </span><br></pre></td></tr></tbody></table></figure>
 <p>不喜欢</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yr flatpak-kcm discover</span><br></pre></td></tr></tbody></table></figure>
-<p>aur的</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yi wechat-universal-bwrap linuxqq wps-office-cn wps-office-fonts freetype2-wps zotero-beta-bin</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="mysql">mysql</h4>
 <p>密码设置了 <code>12345678</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo pacman -S mariadb</span><br><span class="line">sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql </span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now mysqld</span><br><span class="line">sudo systemctl status mysqld</span><br><span class="line">sudo mysqladmin -u root password <span class="string">"12345678"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"mysql -uroot -p12345678"</span></span><br></pre></td></tr></tbody></table></figure>
@@ -1581,17 +1566,9 @@ and KStatusNotifierItem Support</a>，并打开自身的 <code>扩展</code>
 <p>修改这一行，如果没有特殊需要，pandoc其实安装
 <code>yay pandoc-bin</code> 更好一些</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">IgnorePkg  = pandoc</span><br></pre></td></tr></tbody></table></figure>
-<p>gnome主题中，qt应用不是黑色</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yay -S adwaita-qt qt5ct</span><br></pre></td></tr></tbody></table></figure>
-<p>修改</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">sudo vim /etc/environment</span><br></pre></td></tr></tbody></table></figure>
-<p>添加</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">QT_QPA_PLATFORMTHEME=<span class="string">"qt5ct"</span></span><br></pre></td></tr></tbody></table></figure>
-<p>打开 <code>qt5ct</code> 自己配置</p>
-<blockquote>
-<p>注意把 <code>vscode</code>
-排除在外，否则会各种问题，比如<code>sudo</code>无法在终端运行</p>
-</blockquote>
+<p>gnome主题中，qt应用不是黑色、gtk3的老应用太丑</p>
+<p><a href="https://github.com/lassekongo83/adw-gtk3">adw-gtk3</a>
+可以解决</p>
 <hr>
 <blockquote>
 <p><strong>本文作者</strong>：yuhldr<br><strong>本文地址</strong>： <a href="https://yuhldr.github.io/posts/3513d90f.html">https://yuhldr.github.io/posts/3513d90f.html</a>
@@ -6880,6 +6857,12 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
       </tags>
   </entry>
   <entry>
+    <title>我是谁</title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<p>一个不务正业的物理生</p>
+]]></content>
+  </entry>
+  <entry>
     <title>归档</title>
     <url>/archives/index.html</url>
     <content><![CDATA[]]></content>
@@ -6888,12 +6871,6 @@ http://localhost:81/ ，此时可以初始化，数据库选择mysql</p></li>
     <title>分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>我是谁</title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<p>一个不务正业的物理生</p>
-]]></content>
   </entry>
   <entry>
     <title>标签</title>

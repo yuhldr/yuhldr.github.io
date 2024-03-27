@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2023-12-16T03:12:39.345Z</updated>
+  <updated>2024-03-21T07:00:54.060Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/c33d26e5.html"/>
     <id>https://yuhldr.github.io/posts/c33d26e5.html</id>
     <published>2023-12-10T13:29:17.000Z</published>
-    <updated>2023-12-16T03:12:39.345Z</updated>
+    <updated>2024-03-21T07:00:54.060Z</updated>
     
     
     <summary type="html">archlinux使用btrfs文件系统，并且设置休眠</summary>
@@ -334,7 +334,7 @@
     <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
     <id>https://yuhldr.github.io/posts/3513d90f.html</id>
     <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2024-03-15T09:35:26.607Z</updated>
+    <updated>2024-03-27T15:21:04.632Z</updated>
     
     
     <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
