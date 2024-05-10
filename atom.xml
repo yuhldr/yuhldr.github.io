@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2024-04-11T13:00:58.205Z</updated>
+  <updated>2024-05-10T05:20:31.926Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,145 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu24.04使用docker</title>
+    <link href="https://yuhldr.github.io/posts/f0d02c9.html"/>
+    <id>https://yuhldr.github.io/posts/f0d02c9.html</id>
+    <published>2024-05-10T05:06:15.000Z</published>
+    <updated>2024-05-10T05:20:31.926Z</updated>
+    
+    
+    <summary type="html">ubuntu24.04安装docker最新版，并使用compose最新版</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建halo</title>
+    <link href="https://yuhldr.github.io/posts/3d9a91dc.html"/>
+    <id>https://yuhldr.github.io/posts/3d9a91dc.html</id>
+    <published>2024-05-10T05:05:28.000Z</published>
+    <updated>2024-05-10T05:29:23.759Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 halo</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建portainer</title>
+    <link href="https://yuhldr.github.io/posts/4f61fe20.html"/>
+    <id>https://yuhldr.github.io/posts/4f61fe20.html</id>
+    <published>2024-05-10T05:05:20.000Z</published>
+    <updated>2024-05-10T05:31:38.110Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用gitlab-runner</title>
+    <link href="https://yuhldr.github.io/posts/d9e06133.html"/>
+    <id>https://yuhldr.github.io/posts/d9e06133.html</id>
+    <published>2024-05-10T05:02:28.000Z</published>
+    <updated>2024-05-10T05:52:20.891Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+    <category term="gitlab-runner" scheme="https://yuhldr.github.io/tags/gitlab-runner/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建nextcloud</title>
+    <link href="https://yuhldr.github.io/posts/ec194a20.html"/>
+    <id>https://yuhldr.github.io/posts/ec194a20.html</id>
+    <published>2024-05-10T05:02:09.000Z</published>
+    <updated>2024-05-10T05:46:29.530Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 nextcloud</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建gitlab</title>
+    <link href="https://yuhldr.github.io/posts/62cb640b.html"/>
+    <id>https://yuhldr.github.io/posts/62cb640b.html</id>
+    <published>2024-05-10T05:02:04.000Z</published>
+    <updated>2024-05-10T05:50:45.334Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 gitlab</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04搭建slurm集群</title>
+    <link href="https://yuhldr.github.io/posts/49ae9ac0.html"/>
+    <id>https://yuhldr.github.io/posts/49ae9ac0.html</id>
+    <published>2024-05-10T05:00:22.000Z</published>
+    <updated>2024-05-10T06:00:47.722Z</updated>
+    
+    
+    <summary type="html">ubuntu24.04搭建slurm集群，slurm管理，musql数据库，munge加密，nfs目录共享，nis用户信息同步</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
+    
+  </entry>
   
   <entry>
     <title>archlinux使用btrfs文件系统以及休眠</title>
@@ -63,7 +202,7 @@
     <link href="https://yuhldr.github.io/posts/52e60843.html"/>
     <id>https://yuhldr.github.io/posts/52e60843.html</id>
     <published>2023-04-13T14:06:37.000Z</published>
-    <updated>2024-01-05T11:59:43.414Z</updated>
+    <updated>2024-05-07T17:36:26.220Z</updated>
     
     
     <summary type="html">一些扩展推荐，提高生产力</summary>
@@ -288,147 +427,6 @@
     <category term="uefi" scheme="https://yuhldr.github.io/tags/uefi/"/>
     
     <category term="win11" scheme="https://yuhldr.github.io/tags/win11/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>latex相关笔记</title>
-    <link href="https://yuhldr.github.io/posts/2dcfe2a6.html"/>
-    <id>https://yuhldr.github.io/posts/2dcfe2a6.html</id>
-    <published>2022-04-26T08:08:11.000Z</published>
-    <updated>2024-03-15T09:39:22.607Z</updated>
-    
-    
-    <summary type="html">latex一些常见的问题和示例代码，方便复制粘贴</summary>
-    
-    
-    
-    <category term="Tools" scheme="https://yuhldr.github.io/categories/Tools/"/>
-    
-    
-    <category term="latex" scheme="https://yuhldr.github.io/tags/latex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux环境下连接windows共享的打印机</title>
-    <link href="https://yuhldr.github.io/posts/7d18e834.html"/>
-    <id>https://yuhldr.github.io/posts/7d18e834.html</id>
-    <published>2022-04-10T13:17:27.000Z</published>
-    <updated>2022-05-06T09:32:24.000Z</updated>
-    
-    
-    <summary type="html">办公室里大家用的都是widows电脑，他们在一台电脑上usb连接了惠普打印机，然后直接选择共享，其他人就可以连接到自己电脑上了，而用linux的我就尴尬了，死活连接不上……</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="smb" scheme="https://yuhldr.github.io/tags/smb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>archlinux安装回顾</title>
-    <link href="https://yuhldr.github.io/posts/3513d90f.html"/>
-    <id>https://yuhldr.github.io/posts/3513d90f.html</id>
-    <published>2022-03-21T16:03:48.000Z</published>
-    <updated>2024-03-28T01:31:06.752Z</updated>
-    
-    
-    <summary type="html">目前已经作为主力使用大概一周，一切感觉很好！关于kde和gnome桌面的使用和配置，以及wayland的使用</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
-    
-    <category term="kde" scheme="https://yuhldr.github.io/tags/kde/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>声子态密度计算</title>
-    <link href="https://yuhldr.github.io/posts/d5c2f773.html"/>
-    <id>https://yuhldr.github.io/posts/d5c2f773.html</id>
-    <published>2022-03-21T07:03:02.000Z</published>
-    <updated>2022-06-28T06:01:47.000Z</updated>
-    
-    
-    <summary type="html">分子动力学，如何计算声子态密度，结合LAMMPS</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
-    <category term="pdos" scheme="https://yuhldr.github.io/tags/pdos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>声子与色散关系复习-预习</title>
-    <link href="https://yuhldr.github.io/posts/9553fedc.html"/>
-    <id>https://yuhldr.github.io/posts/9553fedc.html</id>
-    <published>2022-03-06T13:03:50.000Z</published>
-    <updated>2022-12-15T18:08:53.000Z</updated>
-    
-    
-    <summary type="html">声子相关的一些内容回顾</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="phana" scheme="https://yuhldr.github.io/tags/phana/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>lammps声子谱配置与计算</title>
-    <link href="https://yuhldr.github.io/posts/db8c1b0a.html"/>
-    <id>https://yuhldr.github.io/posts/db8c1b0a.html</id>
-    <published>2022-03-01T02:17:47.000Z</published>
-    <updated>2023-05-11T12:03:19.000Z</updated>
-    
-    
-    <summary type="html">使用LAMMPS计算声子谱，有相关开源软件，很方便，如果没有计算机知识，配置起来很麻烦</summary>
-    
-    
-    
-    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
-    
-    
-    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
-    
-    <category term="phana" scheme="https://yuhldr.github.io/tags/phana/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>课题组集群slurm-21.08.5更新配置</title>
-    <link href="https://yuhldr.github.io/posts/95da3501.html"/>
-    <id>https://yuhldr.github.io/posts/95da3501.html</id>
-    <published>2022-02-24T07:03:37.000Z</published>
-    <updated>2022-03-06T04:09:12.000Z</updated>
-    
-    
-    <summary type="html">使用源码编译安装slurm、pmix3、openmpi等，使其支持pmix_v3并行，并配置邮件提醒</summary>
-    
-    
-    
-    <category term="Slurm" scheme="https://yuhldr.github.io/categories/Slurm/"/>
-    
-    
-    <category term="icpcs" scheme="https://yuhldr.github.io/tags/icpcs/"/>
-    
-    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
     
   </entry>
   
