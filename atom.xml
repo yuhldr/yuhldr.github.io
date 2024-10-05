@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>我是谁</title>
+  <icon>https://www.gravatar.com/avatar/17d1d76075302863ec888a02edf3ac7f</icon>
+  <subtitle>迷茫就去学习吧</subtitle>
+  <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://yuhldr.github.io/"/>
+  <updated>2024-08-31T09:28:49.955Z</updated>
+  <id>https://yuhldr.github.io/</id>
+  
+  <author>
+    <name>yuh</name>
+    <email>yuhldr@qq.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网站通过certbot免费支持https</title>
+    <link href="https://yuhldr.github.io/posts/282ffae9.html"/>
+    <id>https://yuhldr.github.io/posts/282ffae9.html</id>
+    <published>2024-06-18T14:33:03.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">腾讯云现在每3个月需要更新一次，而且手动，重新试了一下letsencrypt，现在是真方便，全自动</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="certbot" scheme="https://yuhldr.github.io/tags/certbot/"/>
+    
+    <category term="ssl" scheme="https://yuhldr.github.io/tags/ssl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker</title>
+    <link href="https://yuhldr.github.io/posts/f0d02c9.html"/>
+    <id>https://yuhldr.github.io/posts/f0d02c9.html</id>
+    <published>2024-05-10T05:06:15.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">ubuntu24.04安装docker最新版，并使用compose最新版</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建halo</title>
+    <link href="https://yuhldr.github.io/posts/3d9a91dc.html"/>
+    <id>https://yuhldr.github.io/posts/3d9a91dc.html</id>
+    <published>2024-05-10T05:05:28.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 halo</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建portainer</title>
+    <link href="https://yuhldr.github.io/posts/4f61fe20.html"/>
+    <id>https://yuhldr.github.io/posts/4f61fe20.html</id>
+    <published>2024-05-10T05:05:20.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用gitlab-runner</title>
+    <link href="https://yuhldr.github.io/posts/d9e06133.html"/>
+    <id>https://yuhldr.github.io/posts/d9e06133.html</id>
+    <published>2024-05-10T05:02:28.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+    <category term="gitlab-runner" scheme="https://yuhldr.github.io/tags/gitlab-runner/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建nextcloud</title>
+    <link href="https://yuhldr.github.io/posts/ec194a20.html"/>
+    <id>https://yuhldr.github.io/posts/ec194a20.html</id>
+    <published>2024-05-10T05:02:09.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 nextcloud</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04使用docker搭建gitlab</title>
+    <link href="https://yuhldr.github.io/posts/62cb640b.html"/>
+    <id>https://yuhldr.github.io/posts/62cb640b.html</id>
+    <published>2024-05-10T05:02:04.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">使用 docker compose 配置 gitlab</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu24.04搭建slurm集群</title>
+    <link href="https://yuhldr.github.io/posts/49ae9ac0.html"/>
+    <id>https://yuhldr.github.io/posts/49ae9ac0.html</id>
+    <published>2024-05-10T05:00:22.000Z</published>
+    <updated>2024-10-05T14:22:07.452Z</updated>
+    
+    
+    <summary type="html">ubuntu24.04搭建slurm集群，slurm管理，musql数据库，munge加密，nfs目录共享，nis用户信息同步</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="slurm" scheme="https://yuhldr.github.io/tags/slurm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>archlinux使用btrfs文件系统以及休眠</title>
+    <link href="https://yuhldr.github.io/posts/c33d26e5.html"/>
+    <id>https://yuhldr.github.io/posts/c33d26e5.html</id>
+    <published>2023-12-10T13:29:17.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">archlinux使用btrfs文件系统，并且设置休眠</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="btrfs" scheme="https://yuhldr.github.io/tags/btrfs/"/>
+    
+    <category term="hibernate" scheme="https://yuhldr.github.io/tags/hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python自用速查</title>
+    <link href="https://yuhldr.github.io/posts/b4a9e8d8.html"/>
+    <id>https://yuhldr.github.io/posts/b4a9e8d8.html</id>
+    <published>2023-05-11T12:11:00.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">常用但是不想记住的代码片段</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gnome40扩展推荐</title>
+    <link href="https://yuhldr.github.io/posts/52e60843.html"/>
+    <id>https://yuhldr.github.io/posts/52e60843.html</id>
+    <published>2023-04-13T14:06:37.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">一些扩展推荐，提高生产力</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="gnome" scheme="https://yuhldr.github.io/tags/gnome/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux环境变量</title>
+    <link href="https://yuhldr.github.io/posts/289d0c5f.html"/>
+    <id>https://yuhldr.github.io/posts/289d0c5f.html</id>
+    <published>2023-04-09T08:26:07.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">Python、C语言等环境变量</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="openmpi" scheme="https://yuhldr.github.io/tags/openmpi/"/>
+    
+    <category term="linux" scheme="https://yuhldr.github.io/tags/linux/"/>
+    
+    <category term="path" scheme="https://yuhldr.github.io/tags/path/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>局域网与打印机配置</title>
+    <link href="https://yuhldr.github.io/posts/5401e6fb.html"/>
+    <id>https://yuhldr.github.io/posts/5401e6fb.html</id>
+    <published>2023-04-04T12:37:03.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">最近配置自习室打印机，才发现之前自己对网络一窍不通。。。。最终实现本地电脑可以发现打印机，直接自动添加，linux系统下的cups也可以发现局域网设备</summary>
+    
+    
+    
+    <category term="Tools" scheme="https://yuhldr.github.io/categories/Tools/"/>
+    
+    
+    <category term="linux" scheme="https://yuhldr.github.io/tags/linux/"/>
+    
+    <category term="cups" scheme="https://yuhldr.github.io/tags/cups/"/>
+    
+    <category term="hplip" scheme="https://yuhldr.github.io/tags/hplip/"/>
+    
+    <category term="打印机" scheme="https://yuhldr.github.io/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/"/>
+    
+    <category term="局域网" scheme="https://yuhldr.github.io/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>复数与矩阵</title>
+    <link href="https://yuhldr.github.io/posts/af3ac84b.html"/>
+    <id>https://yuhldr.github.io/posts/af3ac84b.html</id>
+    <published>2023-03-17T13:17:02.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">本科学的东西都还给老师了，现在实际问题中遇到，就只能重新查找了。。。。。。</summary>
+    
+    
+    
+    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
+    
+    
+    <category term="复数" scheme="https://yuhldr.github.io/tags/%E5%A4%8D%E6%95%B0/"/>
+    
+    <category term="矩阵" scheme="https://yuhldr.github.io/tags/%E7%9F%A9%E9%98%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件管理视频文件缩略图预览</title>
+    <link href="https://yuhldr.github.io/posts/a3d4c429.html"/>
+    <id>https://yuhldr.github.io/posts/a3d4c429.html</id>
+    <published>2023-02-02T10:55:23.000Z</published>
+    <updated>2024-10-05T14:14:36.742Z</updated>
+    
+    
+    <summary type="html">记录一下怎么设置kde文件管理器，图片、视频等各种文件预览</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="kde" scheme="https://yuhldr.github.io/tags/kde/"/>
+    
+    <category term="gnome" scheme="https://yuhldr.github.io/tags/gnome/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>github自动化</title>
+    <link href="https://yuhldr.github.io/posts/dabdcea.html"/>
+    <id>https://yuhldr.github.io/posts/dabdcea.html</id>
+    <published>2023-01-15T16:32:08.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">比如自动打包，自动发邮件什么的，相当于一个小型服务器</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="github" scheme="https://yuhldr.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python打包pip</title>
+    <link href="https://yuhldr.github.io/posts/4e0c9d8f.html"/>
+    <id>https://yuhldr.github.io/posts/4e0c9d8f.html</id>
+    <published>2022-09-28T13:18:27.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">这里有很多坑，比如引入非python文件，比如有些python文件没有被打包进入，比如多个文件之间的引用问题</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+    <category term="pip" scheme="https://yuhldr.github.io/tags/pip/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python中json解析中文处理</title>
+    <link href="https://yuhldr.github.io/posts/a63b796.html"/>
+    <id>https://yuhldr.github.io/posts/a63b796.html</id>
+    <published>2022-09-28T13:06:42.000Z</published>
+    <updated>2024-10-05T17:56:35.649Z</updated>
+    
+    
+    <summary type="html">python中json解析中文会被编码，可以防止这个问题，并且可以自动格式化；还有个问题就是 load 和 dump 都有两种写法</summary>
+    
+    
+    
+    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
+    
+    
+    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
+    
+    <category term="json" scheme="https://yuhldr.github.io/tags/json/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python正则表达式</title>
+    <link href="https://yuhldr.github.io/posts/6bab798e.html"/>
+    <id>https://yuhldr.github.io/posts/6bab798e.html</id>
+    <published>2022-08-15T20:01:12.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">测试描述</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>archlinux安装xrdp的心酸路程</title>
+    <link href="https://yuhldr.github.io/posts/fae93d3c.html"/>
+    <id>https://yuhldr.github.io/posts/fae93d3c.html</id>
+    <published>2022-07-14T14:48:59.000Z</published>
+    <updated>2024-08-31T09:28:49.955Z</updated>
+    
+    
+    <summary type="html">archlinux安装xrdp，远程时，对于分辨率的适配比vnc好太多，而且远程时，别人看不到，但是安装中遇到了各种问题，官方文档也不靠谱</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="xrdp" scheme="https://yuhldr.github.io/tags/xrdp/"/>
+    
+  </entry>
+  
+</feed>
