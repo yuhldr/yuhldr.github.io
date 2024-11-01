@@ -1,6 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python自用速查</title>
+    <url>/posts/b4a9e8d8.html</url>
+    <content><![CDATA[<h2 id="plt">plt</h2>
+<h3 id="直线">直线</h3>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">plt.axhline(y=yn, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">f&#x27;pe=<span class="subst">&#123;yn&#125;</span>&#x27;</span>)</span><br><span class="line">plt.axvline(x=xn, linestyle=<span class="string">&#x27;-.&#x27;</span>, label=<span class="string">f&#x27;a=<span class="subst">&#123;xn&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="颜色循环">颜色循环</h3>
+<p>将颜色循环设置为默认值</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></table></figure>
+<h3 id="中文字体">中文字体</h3>
+<p>字体问题，中文经常显示不出来</p>
+<p>为了防止修改以后失效、防止每次使用都要设置，建议（以linux为例）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/lib/python3.11/site-packages/matplotlib/mpl-data/matplotlibrc ~/.config/matplotlib/</span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.config/matplotlib/matplotlibrc 最后添加</span></span><br><span class="line"></span><br><span class="line">font.serif : FangSong</span><br><span class="line">font.family: serif</span><br><span class="line"><span class="comment"># 负号不显示</span></span><br><span class="line">axes.unicode_minus: False</span><br><span class="line">axes.formatter.use_mathtext : False</span><br></pre></td></tr></table></figure>
+<p>在使用 <a
+href="https://github.com/garrettj403/SciencePlots">SciencePlots</a>
+时。</p>
+<p>即使</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scienceplots</span><br><span class="line"></span><br><span class="line">plt.style.use([<span class="string">&#x27;science&#x27;</span>, <span class="string">&quot;no-latex&quot;</span>, <span class="string">&quot;cjk-sc-font&quot;</span>])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，有些版本，<code>cjk-sc-font</code> 必须在最后</p>
+</blockquote>
+<p>还是有问题，因为
+<code>scienceplots/styles/languages/cjk-sc-font.mplstyle</code>
+有问题</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># scienceplots/styles/languages/cjk-sc-font.mplstyle 修改为</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">font.serif : FangSong</span><br><span class="line">font.family: serif</span><br><span class="line"><span class="comment"># 负号不显示</span></span><br><span class="line">axes.unicode_minus: False</span><br><span class="line">axes.formatter.use_mathtext : False</span><br></pre></td></tr></table></figure>
+<p><code>FangSong</code>
+修改为你的字体，可以这样查看（两个引号之间的名字）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fc-list :lang=zh</span><br></pre></td></tr></table></figure>
+<p>测试</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scienceplots</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.style.use([<span class="string">&#x27;science&#x27;</span>, <span class="string">&quot;no-latex&quot;</span>, <span class="string">&quot;cjk-sc-font&quot;</span>])</span><br><span class="line"></span><br><span class="line">plt.plot([-<span class="number">2</span>,-<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>])</span><br><span class="line">plt.title(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">r&quot;$\alpha$Aa&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="逐帧播放">逐帧播放</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):</span><br><span class="line">    plt.clf()</span><br><span class="line">    plt.title(<span class="string">f&quot;<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">    R = np.real(A[:, i]) + np.imag(A[:, i])</span><br><span class="line"></span><br><span class="line">    plt.plot((np.dot(R, A) * np.dot(R, A_))[:<span class="number">120</span>], <span class="string">&quot;.&quot;</span>)</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="高度图">高度图</h3>
+<p>三维矩阵，给一个为二维矩阵，每个格点作为颜色，画图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_height_map_2d</span>(<span class="params">matrix</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;二维高度图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        matrix (_type_): _description_</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 将二维矩阵转换为NumPy数组</span></span><br><span class="line">    data = np.array(matrix)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 绘制二维图 viridis 可以改，或者画图以后设置里可以看其他的</span></span><br><span class="line">    plt.imshow(data, cmap=<span class="string">&#x27;viridis&#x27;</span>, interpolation=<span class="string">&#x27;nearest&#x27;</span>, origin=<span class="string">&#x27;upper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 添加色谱</span></span><br><span class="line">    plt.colorbar()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置坐标轴标签</span></span><br><span class="line">    plt.xlabel(<span class="string">&#x27;Column&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;Row&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示图形</span></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<p>三维图，给一个为二维矩阵，每个格点作为这里的高度，画图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_height_map</span>(<span class="params">matrix</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;3d高度图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        matrix (_type_): _description_</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    data = np.array(matrix)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取矩阵的行数和列数</span></span><br><span class="line">    rows, cols = data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建行和列的坐标</span></span><br><span class="line">    x = np.arange(<span class="number">0</span>, cols, <span class="number">1</span>)</span><br><span class="line">    y = np.arange(<span class="number">0</span>, rows, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建网格</span></span><br><span class="line">    X, Y = np.meshgrid(x, y)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 绘制高度图</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line"></span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>, projection=<span class="string">&#x27;3d&#x27;</span>)</span><br><span class="line">    ax.set_title(<span class="string">f&quot;<span class="subst">&#123;np.<span class="built_in">max</span>(matrix)&#125;</span>&quot;</span>)</span><br><span class="line">    ax.plot_surface(X, Y, data, cmap=<span class="string">&#x27;turbo&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示图形</span></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="多线程">多线程</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">s</span>):</span><br><span class="line">  <span class="built_in">print</span>(s)</span><br><span class="line"></span><br><span class="line">qv = np.linspace(<span class="number">134</span>, <span class="number">140</span>, <span class="number">7</span>, dtype=<span class="string">&quot;int&quot;</span>)</span><br><span class="line"><span class="keyword">with</span> Pool(<span class="number">4</span>) <span class="keyword">as</span> p:</span><br><span class="line">    p.<span class="built_in">map</span>(test, qvs)</span><br></pre></td></tr></table></figure>
+<hr />
+<p>本文作者：yuhldr<br />本文地址： <a
+href="https://yuhldr.github.io/posts/b4a9e8d8.html">https://yuhldr.github.io/posts/b4a9e8d8.html</a>
+<br /> 版权声明：转载请注明出处！</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>latex相关笔记</title>
+    <url>/posts/2dcfe2a6.html</url>
+    <content><![CDATA[<h2 id="软件">软件</h2>
+<p>不管你用的是 <code>Tex Shop</code> <code>tex Studio</code>
+<code>tex Maker</code>还是 <code>vscode</code>，这些都只是
+<code>IDE</code>，我们需要注意的是，除了IDE，你安装的是什么？</p>
+<p>以下所有内容，仅以 <code>texlive</code> 为例，使用 <code>CTex</code>
+<code>MikTex</code>等的同学，请自行安装
+<code>texlive</code>，下载安装：</p>
+<ul>
+<li><p>对于 <code>windows</code> 以及 <code>linux</code> 电脑，直接为
+<code>texlive</code></p>
+<ul>
+<li><a
+href="https://mirrors.lzu.edu.cn/CTAN/systems/texlive/Images/texlive.iso">兰大镜像</a></li>
+<li><a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso">清华镜像</a></li>
+<li><a
+href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive.iso">中科大</a></li>
+<li><a
+href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/texlive.iso">阿里</a></li>
+</ul></li>
+<li><p>对于 <code>mac</code> 电脑，对应的是 <code>mactex</code></p>
+<ul>
+<li><a
+href="https://mirrors.lzu.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">兰大镜像</a></li>
+<li><a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">清华镜像</a></li>
+<li><a
+href="https://mirrors.ustc.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">中科大</a></li>
+<li><a
+href="https://mirrors.aliyun.com/CTAN/systems/mac/mactex/MacTeX.pkg">阿里</a></li>
+</ul></li>
+</ul>
+<p>安装方法，百度上一堆</p>
+<blockquote>
+<p>你在终端中输入 <code>latex</code>
+以后显示类似如下，说明安装成功，否则自己百度修改环境变量，或重启电脑试试</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意其中的关键 TeX Live 2022</span></span><br><span class="line">This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=latex)</span><br><span class="line"> restricted \write18 enabled.</span><br><span class="line">**</span><br></pre></td></tr></table></figure>
+<h2 id="ide">IDE</h2>
+<p>不强求，自己舒服就好，但是 <code>vscode</code> 配合
+<code>James-Yu.latex-workshop</code> 这个插件真的是太好用了</p>
+<p>对于vscode，建议在设置（json）中自定义</p>
+<blockquote>
+<p>打开自定义快捷键 <code>ctrl shift P</code>，mac大概是
+<code>command shift P</code>，输入
+<code>settings json</code>，选择打开设置</p>
+</blockquote>
+<p>如果出现红色，说明你放的位置不对，这个应该放在最外层的
+<code>&#123;&#125;</code> 中间，并且被添加的这部分上面有一个 <code>,</code> 或
+<code>&#123;</code>，下面有一个 <code>&#125;</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;latex-workshop.latex.tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="comment">// 编译工具和命令</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;latex-workshop.latex.recipes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xe-&gt;xe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xe-&gt;bib-&gt;xe-&gt;xe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<h2 id="加粗">加粗</h2>
+<p>如果不是模板，自己用，更建议自定义加粗字体，其中"方正粗楷简体"几个自是自定义的加粗字体，可以看下面字体安装方法</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\setCJKfamilyfont</span>&#123;kaishubf&#125;&#123;方正粗楷简体&#125;</span><br><span class="line"><span class="keyword">\NewDocumentCommand</span><span class="keyword">\kaishubf</span>&#123;&#125;&#123;<span class="keyword">\CJKfamily</span>&#123;kaishubf&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">测试宋体</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\textbf</span>&#123;测试宋体粗体&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;测试楷体&#125;</span><br><span class="line"><span class="comment">% &#123;\textbf&#123;测试楷体粗体&#125;&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\kaishubf</span>&#123;测试楷体自定义粗体（方正粗楷简体）&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="问题一">问题一</h3>
+<p>常见的其实是中文加粗，在 <code>mac</code>
+<code>linux</code>经常不起作用，而在 <code>windows</code>
+里加粗了，但是字体变了</p>
+<p>原因是，latex现在基本上取消了中文字体加粗，所以请开启
+<code>伪加粗</code></p>
+<p>即一般第一行为</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br></pre></td></tr></table></figure>
+<p>需要加上 <code>伪加粗</code> 选项，即</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[AutoFakeBold]&#123;article&#125;</span><br></pre></td></tr></table></figure>
+<p>有些已经有选项了，补充到后面即可</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[aps,prb,twocolumn,superscriptaddress,showpacs]&#123;revtex4-1&#125;</span><br><span class="line"></span><br><span class="line">改为</span><br><span class="line"></span><br><span class="line"><span class="keyword">\documentclass</span>[aps,prb,twocolumn,superscriptaddress,showpacs,AutoFakeBold]&#123;revtex4-1&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="问题二">问题二</h3>
+<p>开启 <code>伪加粗</code>以后，一般情况下，再使用
+<code>\textbf&#123;&#125;</code>
+基本上就没问题了，但是有些时候，英文还是不起作用。</p>
+<p>这个有可能是因为，你用的模板，或者默认模板里的英文字体，在你的电脑上安装的不合适，一般情况下一个字体，要包含四个格式，请看这里：<a
+href="https://fonts.google.com/specimen/Andika+New+Basic">Google
+Fonts</a>，这个字体包含四个文件，分别问 <code>Regular</code>
+<code>Regular Italic</code> <code>Bold</code>
+<code>Bold Italic</code>，也可看到，完整的字体应该包含，常规字体、加粗字体、斜体、加粗斜体。</p>
+<p>所以解决方法有两种，</p>
+<ul>
+<li>一个是，想办法把字体安装完整，</li>
+<li>另一种方法是修改为当前电脑上已经有的字体，<a
+href="#字体安装">latex字体修改</a>
+后面讲，windows、linux、mac是不太一样的</li>
+</ul>
+<h2 id="字体修改与自定义">字体修改与自定义</h2>
+<h3 id="中文字体">中文字体</h3>
+<blockquote>
+<p>现在的latex已经支持中文了，请不要再使用<code>CTex</code> 等，直接用
+<code>texlive</code>，以下默认你使用的是 <code>texlive</code></p>
+</blockquote>
+<p>latex一般是论文和ppt</p>
+<ul>
+<li>毕业论文中默认模板，一般用 <code>ctexbook</code>，而
+<code>book</code> 是不支持中文的</li>
+<li>常规论文一般期刊提供相应的模板，或者 <code>ctexart</code></li>
+<li>答辩PPT，一般用 <code>ctexbeamer</code>，而 <code>beamer</code>
+是不支持中文的</li>
+</ul>
+<p>全局中文字体设置</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setCJKmainfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setCJKsansfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setCJKmonofont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
+<p>全局英文字体</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setmainfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setsansfont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
+<p>全局代码字体</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setmonofont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>你的字体名</code> 不同电脑是不一样的</p>
+<ul>
+<li><p>mac 找到 <code>字体册</code> 这个软件，点开准备用的字体，有一项是
+<code>PostScript</code>（大概是这么拼写的，懒得去查看了），这个名字就是</p></li>
+<li><p>windows，设置中搜索，字体，打开，搜索准备用的字体，然后点开，里面也有个英文名（第一个
+<code>全称</code>），复制那个</p>
+<figure>
+<img src="../images/2022/tex/win_install_font0.png"
+alt="widows查找字体名" />
+<figcaption aria-hidden="true">widows查找字体名</figcaption>
+</figure>
+<ul>
+<li><p>不要包含字形，比如 <code>regular</code> 、<code>blod</code>
+等，下图中只要 <code>Andika New Basic</code></p>
+<figure>
+<img src="../images/2022/tex/win_install_font1.png"
+alt="widows查找字体名" />
+<figcaption aria-hidden="true">widows查找字体名</figcaption>
+</figure></li>
+<li><p>注意安装字体时，右键，<strong>为所有用户安装</strong>，<strong>不要直接双击安装</strong>！！！仅为当前用户安装是无法识别的</p>
+<figure>
+<img src="../images/2022/tex/win_install_font2.png"
+alt="widows查找字体名" />
+<figcaption aria-hidden="true">widows查找字体名</figcaption>
+</figure></li>
+</ul></li>
+<li><p>linux <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看中文字体</span></span><br><span class="line">fc-list :lang=zh</span><br><span class="line"><span class="comment"># 查看所有字体</span></span><br><span class="line">fc-list</span><br></pre></td></tr></table></figure>
+输出的每一行是一个字体，前半段是文件位置，<code>:</code> 后面（到
+<code>:</code> 或者 <code>,</code>为止）就是需要的这个名字</p>
+<p>比如</p>
+<p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/home/yuh/.fonts/win/times.ttf: Times New Roman:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta</span><br></pre></td></tr></table></figure> 字体名字应该是 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Times New Roman</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="常用代码">常用代码</h2>
+<p>这个网站挺好，<a
+href="https://www.latexlive.com/">在线LaTeX公式编辑器-编辑器</a></p>
+<h3 id="分栏">分栏</h3>
+<blockquote>
+<p>columns</p>
+</blockquote>
+<p>有时候左图，右文字，宽度不要写死，建议用文本宽度的多少倍代替
+<code>0.6\textwidth</code></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;columns&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\column</span>&#123;0.7<span class="keyword">\textwidth</span>&#125;</span><br><span class="line"></span><br><span class="line">    假装我是图</span><br><span class="line"></span><br><span class="line"><span class="keyword">\column</span>&#123;0.3<span class="keyword">\textwidth</span>&#125;</span><br><span class="line"></span><br><span class="line">  文字</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;columns&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="公式">公式</h3>
+<ul>
+<li><p>简单公式</p>
+<p><span class="math display">\[
+  \begin{equation}
+  f = m \times a
+  \end{equation}
+  \]</span></p>
+<ul>
+<li><p>带序号</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 带序号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">f = m <span class="keyword">\times</span> a</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>不要序号 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation*&#125;</span><br><span class="line">f = m <span class="keyword">\times</span> a</span><br><span class="line"><span class="keyword">\end</span>&#123;equation*&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也可以换成 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span> f = m <span class="keyword">\times</span> a <span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>行内公式</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span>f = m <span class="keyword">\times</span> a<span class="built_in">$</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>多行公式</p></li>
+</ul>
+<blockquote>
+<p>这里都用 aligned 实现，<code>\\</code>换行，<code>&amp;</code>
+每行对齐的地方</p>
+</blockquote>
+<p>简单</p>
+<p><span class="math display">\[
+\begin{aligned}
+        &amp;a=1\\
+        &amp;bscw=2
+\end{aligned}
+\qquad c=3
+\]</span></p>
+<p>注意对于 <code>aligned</code>
+前后<strong>不要空行</strong>，会莫名其妙错误， <code>&amp;</code>
+为了左对齐</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">            <span class="built_in">&amp;</span>a=1<span class="keyword">\\</span></span><br><span class="line">            <span class="built_in">&amp;</span>bscw=2</span><br><span class="line">    <span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line">    <span class="keyword">\qquad</span> c=3</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<p>推导</p>
+<p><span class="math display">\[
+\begin{aligned}
+        a&amp;=c+b+x\\
+        &amp;=2+1+2\\
+        &amp;=5
+\end{aligned}
+\]</span></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">  <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">          a<span class="built_in">&amp;</span>=c+b+x<span class="keyword">\\</span></span><br><span class="line">          <span class="built_in">&amp;</span>=2+1+2<span class="keyword">\\</span></span><br><span class="line">          <span class="built_in">&amp;</span>=5</span><br><span class="line">  <span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<p>大括号</p>
+<p><span class="math display">\[
+\left\{
+      \begin{aligned}
+      &amp;x=\dfrac{3\pi}{2}(1+2t)\cos(\dfrac{3\pi}{2}(1+2t)), &amp;  \\
+      &amp;                                                &amp; 0\leq
+s\leq L,|t|\leq1.\\
+      &amp;z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &amp;
+      \end{aligned}
+\right.
+\]</span></p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line"><span class="keyword">\left</span><span class="keyword">\&#123;</span></span><br><span class="line">      <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">      <span class="built_in">&amp;</span>x=<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)<span class="keyword">\cos</span>(<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)), <span class="built_in">&amp;</span>  <span class="keyword">\\</span></span><br><span class="line">      <span class="built_in">&amp;</span>                                                <span class="built_in">&amp;</span> 0<span class="keyword">\leq</span> s<span class="keyword">\leq</span> L,|t|<span class="keyword">\leq</span>1.<span class="keyword">\\</span></span><br><span class="line">      <span class="built_in">&amp;</span>z=<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)<span class="keyword">\sin</span>(<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)), <span class="built_in">&amp;</span></span><br><span class="line">      <span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line"><span class="keyword">\right</span>.</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图片">图片</h3>
+<p>先在最开始引用相关的包</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 为了图片不输入路径，只输入文件名</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;pictures/&#125;&#123;picture/&#125;&#123;pic/&#125;&#123;pics/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 为了可以引用子图，并且单独caption</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;floatrow&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;subfig&#125;</span><br><span class="line"><span class="keyword">\floatsetup</span>[figure]&#123;subcapbesideposition=top&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 修复上面的冲突</span></span><br><span class="line"><span class="keyword">\usepackage</span>[titles,subfigure]&#123;tocloft&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>常规</p>
+</blockquote>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H]</span><br><span class="line">    <span class="keyword">\includegraphics</span>[angle=0, width=0.3<span class="keyword">\textwidth</span>]&#123;图片文件名&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;解释图片，或者标题&#125;</span><br><span class="line">    <span class="keyword">\label</span>&#123;test111&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p>说明</p>
+<ul>
+<li><code>label</code>
+图片的引用标识，<strong>必须唯一</strong>！，可以在引用处点击跳转，使用方法如下
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">如图<span class="keyword">\ref</span>&#123;test111&#125;</span><br></pre></td></tr></table></figure></li>
+<li><code>angle</code> 可以设置图片旋转角度</li>
+<li><code>width=0.3\textwidth</code>，按照当前行的比例，设置图片宽度</li>
+<li>图片可以只有文件名。路径在上面统一设置
+<code>\graphicspath&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;pictures/&#125;&#123;picture/&#125;&#123;pic/&#125;&#123;pics/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</code></li>
+<li><code>H</code> 注意 H 表示固定图片在文中的位置</li>
+<li></li>
+</ul>
+<blockquote>
+<p>子图可
+<code>label</code>引用，可分别<code>caption</code>、<code>label</code></p>
+</blockquote>
+<p>这是一个 <span class="math inline">\(2\times 2\)</span> 的图</p>
+<figure>
+<img src="/images/2022/tex/subfig.png" alt="子图" />
+<figcaption aria-hidden="true">子图</figcaption>
+</figure>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="comment">% label</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 为了图片不输入路径，只输入文件名</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;floatrow&#125;</span><br><span class="line"><span class="comment">% 为了可以引用子图，并且单独caption</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;subfig&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\subfloat</span>[这里是每个图片的说明]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2018-12&#125;</span><br><span class="line">        <span class="comment">% lzu_logo_w.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=0.6<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo<span class="built_in">_</span>w.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\subfloat</span>[也可以为空，比如下一个]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2020-04&#125;</span><br><span class="line">        <span class="comment">% lzu_logo.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[angle=0,width=0.2<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo.pdf&#125;</span><br><span class="line">    &#125;<span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\subfloat</span>[]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2019-08&#125;</span><br><span class="line">        <span class="comment">% lzu_logo_w.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=0.6<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo<span class="built_in">_</span>w.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\subfloat</span>[]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2020-12&#125;</span><br><span class="line">        <span class="comment">% lzu_logo.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[angle=90, width=0.2<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;整个的说明&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="表格">表格</h3>
+<figure>
+<img src="/images/2022/tex/table1.png" alt="三线表格与表格合并" />
+<figcaption aria-hidden="true">三线表格与表格合并</figcaption>
+</figure>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="comment">% 多行合并</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;multirow&#125;</span><br><span class="line"><span class="comment">% 三线表格</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;booktabs&#125;</span><br><span class="line"><span class="comment">% 设置全局行间距</span></span><br><span class="line"><span class="keyword">\linespread</span>&#123;1.2&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;table&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;c|c|c|c|c|c&#125;</span><br><span class="line">        <span class="keyword">\toprule</span> 节点                 <span class="built_in">&amp;</span> 端口号 <span class="built_in">&amp;</span> CPU线程数              <span class="built_in">&amp;</span> 内存                    <span class="built_in">&amp;</span> 硬盘   <span class="built_in">&amp;</span> 购买年份                   <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\midrule</span> ns1                <span class="built_in">&amp;</span> 122 <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;32&#125; <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;4&#125;&#123;*&#125;&#123;124G&#125; <span class="built_in">&amp;</span> 798G <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;4&#125;&#123;*&#125;&#123;2015年&#125; <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-2&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns2 <span class="built_in">&amp;</span> 222 <span class="built_in">&amp;</span>                     <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 1.7T <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-3&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns3 <span class="built_in">&amp;</span> 322 <span class="built_in">&amp;</span> 48                  <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 1.7T <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-3&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns4 <span class="built_in">&amp;</span> 422 <span class="built_in">&amp;</span> 72                  <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 798G <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span> ns5                  <span class="built_in">&amp;</span> 122 <span class="built_in">&amp;</span> 112                 <span class="built_in">&amp;</span> 2T                    <span class="built_in">&amp;</span> 15T  <span class="built_in">&amp;</span> 2023年                  <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\bottomrule</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="/images/2022/tex/table0.png" alt="多个斜线" />
+<figcaption aria-hidden="true">多个斜线</figcaption>
+</figure>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 多行合并</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;multirow&#125;</span><br><span class="line"><span class="comment">% 导入dashbox包，用于绘制虚线框</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;dashbox&#125;</span><br><span class="line"><span class="comment">% 表格斜线</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;diagbox&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\renewcommand</span>&#123;<span class="keyword">\arraystretch</span>&#125;&#123;1.5&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;c|c|c&#125;</span><br><span class="line">    <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="keyword">\diagbox</span>[width=4.6cm,height=1.25cm]&#123;Access structures&#125;&#123;<span class="keyword">\raisebox</span>&#123;-.5<span class="keyword">\height</span>&#125;&#123;Schemes&#125;&#125;&#123;<span class="keyword">\raisebox</span>&#123;-.5<span class="keyword">\height</span>&#125;&#123;Theory&#125;&#125;&#125; <span class="built_in">&amp;</span> <span class="keyword">\multicolumn</span>&#123;2&#125;&#123;c&#125;&#123;Linear space&#125;</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\cline</span>&#123;2-3&#125;</span><br><span class="line">                                                                                                                                           <span class="built_in">&amp;</span> Polynomial                          <span class="built_in">&amp;</span> Lattice</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line">    Threshold access structures                                                                                                            <span class="built_in">&amp;</span> [1] <span class="keyword">\quad</span> <span class="keyword">\dbox</span>&#123;[3][7][14][15][17]&#125; <span class="built_in">&amp;</span> [2][35][37][36]</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line">    General access structures</span><br><span class="line">                                                                                                                                           <span class="built_in">&amp;</span> [10][13][28][1][12][8][9] [29]      <span class="built_in">&amp;</span> [4]</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他">其他</h3>
+<ul>
+<li><p>图文间隔</p>
+<p>有时候图片、公式等等会因为各种原因，导致前后与正文间隔较小，看着很不爽</p>
+<p>减小纵向间距，正数可以增加间距</p>
+<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\vspace</span>&#123;-1cm&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\hspace</span>&#123;-1cm&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>LaTex的PPT下方显示参考文献</p>
+<blockquote>
+<p>因为答辩或者组会，老师可能问你这个文献年份、作者</p>
+</blockquote>
+<p>所以可以这么用</p>
+<p>最开头添加依赖和 <code>bib</code> 参考文献</p>
+<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\RequirePackage</span>[backend=bibtex, isbn=false, url=false]&#123;biblatex&#125;</span><br><span class="line"><span class="keyword">\setbeamerfont</span>&#123;footnote&#125;&#123;size=<span class="keyword">\tiny</span>&#125;</span><br><span class="line"><span class="keyword">\addbibresource</span>&#123;database.bib&#125;</span><br></pre></td></tr></table></figure> 正文</p>
+<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;现有研究&#125;</span><br><span class="line">    答辩中参考文献放在每页下面，方便应对提问：比如年限、作者、期刊等</span><br><span class="line">    <span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">        <span class="keyword">\subfigure</span>[2nm、10-160<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.28<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">\subfigure</span>[5nm、50-350<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.36<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;<span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\subfigure</span>[20nm、25-45<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure> 效果如图</p>
+<figure>
+<img src="/images/2022/tex/cite.png" alt="预览" />
+<figcaption aria-hidden="true">预览</figcaption>
+</figure></li>
+</ul>
+<h2 id="前后文档对比">前后文档对比</h2>
+<p>命令为 <code>latexdiff</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">latexdiff old.tex new.tex &gt; diff.tex</span><br></pre></td></tr></table></figure>
+<p>注意新旧文件顺序，如果差别文件比较长，中文下划线不会自动换行 可以在
+<code>diff.tex</code> 文件中添加 <code>xeCJKfntef</code> 即可</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;......&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;xeCJKfntef&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板示例">模板示例</h2>
+<ul>
+<li>PPT模板：SimpleBeamerLZU：<a
+href="https://github.com/yuhldr/SimpleBeamerLZU">GitHub</a>、<a
+href="https://gitee.com/yuhldr/SimpleBeamerLZU">Gitee</a></li>
+<li>毕业论文模板：LZUThesis2020：<a
+href="https://github.com/yuhldr/LZUThesis2020">GitHub</a>、<a
+href="https://gitee.com/yuhldr/LZUThesis2020">Gitee</a></li>
+</ul>
+<hr />
+<p>本文作者：yuhldr<br />本文地址： <a
+href="https://yuhldr.github.io/posts/2dcfe2a6.html">https://yuhldr.github.io/posts/2dcfe2a6.html</a>
+<br /> 版权声明：转载请注明出处！</p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>latex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网站通过certbot免费支持https</title>
     <url>/posts/282ffae9.html</url>
     <content><![CDATA[<p>使用certbot全自动，点击这里的<a
@@ -57,8 +397,8 @@ href="https://yuhldr.github.io/posts/f0d02c9.html">https://yuhldr.github.io/post
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>ubuntu</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -223,9 +563,9 @@ href="https://yuhldr.github.io/posts/ec194a20.html">https://yuhldr.github.io/pos
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>ubuntu</tag>
         <tag>docker</tag>
         <tag>nextcloud</tag>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -272,8 +612,8 @@ href="https://yuhldr.github.io/posts/62cb640b.html">https://yuhldr.github.io/pos
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>ubuntu</tag>
+        <tag>docker</tag>
         <tag>gitlab</tag>
       </tags>
   </entry>
@@ -481,57 +821,6 @@ href="https://yuhldr.github.io/posts/c33d26e5.html">https://yuhldr.github.io/pos
         <tag>archlinux</tag>
         <tag>btrfs</tag>
         <tag>hibernate</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python自用速查</title>
-    <url>/posts/b4a9e8d8.html</url>
-    <content><![CDATA[<h2 id="plt">plt</h2>
-<h3 id="直线">直线</h3>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">plt.axhline(y=yn, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">f&#x27;pe=<span class="subst">&#123;yn&#125;</span>&#x27;</span>)</span><br><span class="line">plt.axvline(x=xn, linestyle=<span class="string">&#x27;-.&#x27;</span>, label=<span class="string">f&#x27;a=<span class="subst">&#123;xn&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="颜色循环">颜色循环</h3>
-<p>将颜色循环设置为默认值</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plt.gca().set_prop_cycle(None)</span><br></pre></td></tr></table></figure>
-<h3 id="中文字体">中文字体</h3>
-<p>字体问题，中文经常显示不出来</p>
-<p>为了防止修改以后失效、防止每次使用都要设置，建议（以linux为例）：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/lib/python3.11/site-packages/matplotlib/mpl-data/matplotlibrc ~/.config/matplotlib/</span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.config/matplotlib/matplotlibrc 最后添加</span></span><br><span class="line"></span><br><span class="line">font.serif : FangSong</span><br><span class="line">font.family: serif</span><br><span class="line"><span class="comment"># 负号不显示</span></span><br><span class="line">axes.unicode_minus: False</span><br><span class="line">axes.formatter.use_mathtext : False</span><br></pre></td></tr></table></figure>
-<p>在使用 <a
-href="https://github.com/garrettj403/SciencePlots">SciencePlots</a>
-时。</p>
-<p>即使</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scienceplots</span><br><span class="line"></span><br><span class="line">plt.style.use([<span class="string">&#x27;science&#x27;</span>, <span class="string">&quot;no-latex&quot;</span>, <span class="string">&quot;cjk-sc-font&quot;</span>])</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，有些版本，<code>cjk-sc-font</code> 必须在最后</p>
-</blockquote>
-<p>还是有问题，因为
-<code>scienceplots/styles/languages/cjk-sc-font.mplstyle</code>
-有问题</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># scienceplots/styles/languages/cjk-sc-font.mplstyle 修改为</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">font.serif : FangSong</span><br><span class="line">font.family: serif</span><br><span class="line"><span class="comment"># 负号不显示</span></span><br><span class="line">axes.unicode_minus: False</span><br><span class="line">axes.formatter.use_mathtext : False</span><br></pre></td></tr></table></figure>
-<p><code>FangSong</code>
-修改为你的字体，可以这样查看（两个引号之间的名字）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fc-list :lang=zh</span><br></pre></td></tr></table></figure>
-<p>测试</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scienceplots</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.style.use([<span class="string">&#x27;science&#x27;</span>, <span class="string">&quot;no-latex&quot;</span>, <span class="string">&quot;cjk-sc-font&quot;</span>])</span><br><span class="line"></span><br><span class="line">plt.plot([-<span class="number">2</span>,-<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>])</span><br><span class="line">plt.title(<span class="string">&quot;测试&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">r&quot;$\alpha$Aa&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="逐帧播放">逐帧播放</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">120</span>):</span><br><span class="line">    plt.clf()</span><br><span class="line">    plt.title(<span class="string">f&quot;<span class="subst">&#123;i&#125;</span>&quot;</span>)</span><br><span class="line">    R = np.real(A[:, i]) + np.imag(A[:, i])</span><br><span class="line"></span><br><span class="line">    plt.plot((np.dot(R, A) * np.dot(R, A_))[:<span class="number">120</span>], <span class="string">&quot;.&quot;</span>)</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="高度图">高度图</h3>
-<p>三维矩阵，给一个为二维矩阵，每个格点作为颜色，画图</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_height_map_2d</span>(<span class="params">matrix</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;二维高度图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        matrix (_type_): _description_</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 将二维矩阵转换为NumPy数组</span></span><br><span class="line">    data = np.array(matrix)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 绘制二维图 viridis 可以改，或者画图以后设置里可以看其他的</span></span><br><span class="line">    plt.imshow(data, cmap=<span class="string">&#x27;viridis&#x27;</span>, interpolation=<span class="string">&#x27;nearest&#x27;</span>, origin=<span class="string">&#x27;upper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 添加色谱</span></span><br><span class="line">    plt.colorbar()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置坐标轴标签</span></span><br><span class="line">    plt.xlabel(<span class="string">&#x27;Column&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;Row&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示图形</span></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-<p>三维图，给一个为二维矩阵，每个格点作为这里的高度，画图</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_height_map</span>(<span class="params">matrix</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;3d高度图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        matrix (_type_): _description_</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    data = np.array(matrix)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取矩阵的行数和列数</span></span><br><span class="line">    rows, cols = data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建行和列的坐标</span></span><br><span class="line">    x = np.arange(<span class="number">0</span>, cols, <span class="number">1</span>)</span><br><span class="line">    y = np.arange(<span class="number">0</span>, rows, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建网格</span></span><br><span class="line">    X, Y = np.meshgrid(x, y)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 绘制高度图</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line"></span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>, projection=<span class="string">&#x27;3d&#x27;</span>)</span><br><span class="line">    ax.set_title(<span class="string">f&quot;<span class="subst">&#123;np.<span class="built_in">max</span>(matrix)&#125;</span>&quot;</span>)</span><br><span class="line">    ax.plot_surface(X, Y, data, cmap=<span class="string">&#x27;turbo&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示图形</span></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-<h2 id="多线程">多线程</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">s</span>):</span><br><span class="line">  <span class="built_in">print</span>(s)</span><br><span class="line"></span><br><span class="line">qv = np.linspace(<span class="number">134</span>, <span class="number">140</span>, <span class="number">7</span>, dtype=<span class="string">&quot;int&quot;</span>)</span><br><span class="line"><span class="keyword">with</span> Pool(<span class="number">4</span>) <span class="keyword">as</span> p:</span><br><span class="line">    p.<span class="built_in">map</span>(test, qvs)</span><br></pre></td></tr></table></figure>
-<hr />
-<p>本文作者：yuhldr<br />本文地址： <a
-href="https://yuhldr.github.io/posts/b4a9e8d8.html">https://yuhldr.github.io/posts/b4a9e8d8.html</a>
-<br /> 版权声明：转载请注明出处！</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1373,290 +1662,6 @@ href="https://yuhldr.github.io/posts/67b80cff.html">https://yuhldr.github.io/pos
         <tag>ubuntu</tag>
         <tag>uefi</tag>
         <tag>win11</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>latex相关笔记</title>
-    <url>/posts/2dcfe2a6.html</url>
-    <content><![CDATA[<h2 id="软件">软件</h2>
-<p>不管你用的是 <code>Tex Shop</code> <code>tex Studio</code>
-<code>tex Maker</code>还是 <code>vscode</code>，这些都只是
-<code>IDE</code>，我们需要注意的是，除了IDE，你安装的是什么？</p>
-<p>以下所有内容，仅以 <code>texlive</code> 为例，使用 <code>CTex</code>
-<code>MikTex</code>等的同学，请自行安装
-<code>texlive</code>，下载安装：</p>
-<ul>
-<li><p>对于 <code>windows</code> 以及 <code>linux</code> 电脑，直接为
-<code>texlive</code></p>
-<ul>
-<li><a
-href="https://mirrors.lzu.edu.cn/CTAN/systems/texlive/Images/texlive.iso">兰大镜像</a></li>
-<li><a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso">清华镜像</a></li>
-<li><a
-href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive.iso">中科大</a></li>
-<li><a
-href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/texlive.iso">阿里</a></li>
-</ul></li>
-<li><p>对于 <code>mac</code> 电脑，对应的是 <code>mactex</code></p>
-<ul>
-<li><a
-href="https://mirrors.lzu.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">兰大镜像</a></li>
-<li><a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">清华镜像</a></li>
-<li><a
-href="https://mirrors.ustc.edu.cn/CTAN/systems/mac/mactex/MacTeX.pkg">中科大</a></li>
-<li><a
-href="https://mirrors.aliyun.com/CTAN/systems/mac/mactex/MacTeX.pkg">阿里</a></li>
-</ul></li>
-</ul>
-<p>安装方法，百度上一堆</p>
-<blockquote>
-<p>你在终端中输入 <code>latex</code>
-以后显示类似如下，说明安装成功，否则自己百度修改环境变量，或重启电脑试试</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意其中的关键 TeX Live 2022</span></span><br><span class="line">This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=latex)</span><br><span class="line"> restricted \write18 enabled.</span><br><span class="line">**</span><br></pre></td></tr></table></figure>
-<h2 id="ide">IDE</h2>
-<p>不强求，自己舒服就好，但是 <code>vscode</code> 配合
-<code>James-Yu.latex-workshop</code> 这个插件真的是太好用了</p>
-<p>对于vscode，建议在设置（json）中自定义</p>
-<blockquote>
-<p>打开自定义快捷键 <code>ctrl shift P</code>，mac大概是
-<code>command shift P</code>，输入
-<code>settings json</code>，选择打开设置</p>
-</blockquote>
-<p>如果出现红色，说明你放的位置不对，这个应该放在最外层的
-<code>&#123;&#125;</code> 中间，并且被添加的这部分上面有一个 <code>,</code> 或
-<code>&#123;</code>，下面有一个 <code>&#125;</code></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;latex-workshop.latex.tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="comment">// 编译工具和命令</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-pdf&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;latex-workshop.latex.recipes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xe-&gt;xe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xe-&gt;bib-&gt;xe-&gt;xe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;bibtex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pdflatex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;latexmk&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-<h2 id="加粗">加粗</h2>
-<p>如果不是模板，自己用，更建议自定义加粗字体，其中"方正粗楷简体"几个自是自定义的加粗字体，可以看下面字体安装方法</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\setCJKfamilyfont</span>&#123;kaishubf&#125;&#123;方正粗楷简体&#125;</span><br><span class="line"><span class="keyword">\NewDocumentCommand</span><span class="keyword">\kaishubf</span>&#123;&#125;&#123;<span class="keyword">\CJKfamily</span>&#123;kaishubf&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">测试宋体</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\textbf</span>&#123;测试宋体粗体&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">\kaishu</span>&#123;测试楷体&#125;</span><br><span class="line"><span class="comment">% &#123;\textbf&#123;测试楷体粗体&#125;&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\kaishubf</span>&#123;测试楷体自定义粗体（方正粗楷简体）&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="问题一">问题一</h3>
-<p>常见的其实是中文加粗，在 <code>mac</code>
-<code>linux</code>经常不起作用，而在 <code>windows</code>
-里加粗了，但是字体变了</p>
-<p>原因是，latex现在基本上取消了中文字体加粗，所以请开启
-<code>伪加粗</code></p>
-<p>即一般第一行为</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br></pre></td></tr></table></figure>
-<p>需要加上 <code>伪加粗</code> 选项，即</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[AutoFakeBold]&#123;article&#125;</span><br></pre></td></tr></table></figure>
-<p>有些已经有选项了，补充到后面即可</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[aps,prb,twocolumn,superscriptaddress,showpacs]&#123;revtex4-1&#125;</span><br><span class="line"></span><br><span class="line">改为</span><br><span class="line"></span><br><span class="line"><span class="keyword">\documentclass</span>[aps,prb,twocolumn,superscriptaddress,showpacs,AutoFakeBold]&#123;revtex4-1&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="问题二">问题二</h3>
-<p>开启 <code>伪加粗</code>以后，一般情况下，再使用
-<code>\textbf&#123;&#125;</code>
-基本上就没问题了，但是有些时候，英文还是不起作用。</p>
-<p>这个有可能是因为，你用的模板，或者默认模板里的英文字体，在你的电脑上安装的不合适，一般情况下一个字体，要包含四个格式，请看这里：<a
-href="https://fonts.google.com/specimen/Andika+New+Basic">Google
-Fonts</a>，这个字体包含四个文件，分别问 <code>Regular</code>
-<code>Regular Italic</code> <code>Bold</code>
-<code>Bold Italic</code>，也可看到，完整的字体应该包含，常规字体、加粗字体、斜体、加粗斜体。</p>
-<p>所以解决方法有两种，</p>
-<ul>
-<li>一个是，想办法把字体安装完整，</li>
-<li>另一种方法是修改为当前电脑上已经有的字体，<a
-href="#字体安装">latex字体修改</a>
-后面讲，windows、linux、mac是不太一样的</li>
-</ul>
-<h2 id="字体修改与自定义">字体修改与自定义</h2>
-<h3 id="中文字体">中文字体</h3>
-<blockquote>
-<p>现在的latex已经支持中文了，请不要再使用<code>CTex</code> 等，直接用
-<code>texlive</code>，以下默认你使用的是 <code>texlive</code></p>
-</blockquote>
-<p>latex一般是论文和ppt</p>
-<ul>
-<li>毕业论文中默认模板，一般用 <code>ctexbook</code>，而
-<code>book</code> 是不支持中文的</li>
-<li>常规论文一般期刊提供相应的模板，或者 <code>ctexart</code></li>
-<li>答辩PPT，一般用 <code>ctexbeamer</code>，而 <code>beamer</code>
-是不支持中文的</li>
-</ul>
-<p>全局中文字体设置</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setCJKmainfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setCJKsansfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setCJKmonofont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
-<p>全局英文字体</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setmainfont</span>&#123;你的字体名&#125;</span><br><span class="line"><span class="keyword">\setsansfont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
-<p>全局代码字体</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setmonofont</span>&#123;你的字体名&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的 <code>你的字体名</code> 不同电脑是不一样的</p>
-<ul>
-<li><p>mac 找到 <code>字体册</code> 这个软件，点开准备用的字体，有一项是
-<code>PostScript</code>（大概是这么拼写的，懒得去查看了），这个名字就是</p></li>
-<li><p>windows，设置中搜索，字体，打开，搜索准备用的字体，然后点开，里面也有个英文名（第一个
-<code>全称</code>），复制那个</p>
-<figure>
-<img src="../images/2022/tex/win_install_font0.png"
-alt="widows查找字体名" />
-<figcaption aria-hidden="true">widows查找字体名</figcaption>
-</figure>
-<ul>
-<li><p>不要包含字形，比如 <code>regular</code> 、<code>blod</code>
-等，下图中只要 <code>Andika New Basic</code></p>
-<figure>
-<img src="../images/2022/tex/win_install_font1.png"
-alt="widows查找字体名" />
-<figcaption aria-hidden="true">widows查找字体名</figcaption>
-</figure></li>
-<li><p>注意安装字体时，右键，<strong>为所有用户安装</strong>，<strong>不要直接双击安装</strong>！！！仅为当前用户安装是无法识别的</p>
-<figure>
-<img src="../images/2022/tex/win_install_font2.png"
-alt="widows查找字体名" />
-<figcaption aria-hidden="true">widows查找字体名</figcaption>
-</figure></li>
-</ul></li>
-<li><p>linux <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看中文字体</span></span><br><span class="line">fc-list :lang=zh</span><br><span class="line"><span class="comment"># 查看所有字体</span></span><br><span class="line">fc-list</span><br></pre></td></tr></table></figure>
-输出的每一行是一个字体，前半段是文件位置，<code>:</code> 后面（到
-<code>:</code> 或者 <code>,</code>为止）就是需要的这个名字</p>
-<p>比如</p>
-<p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/home/yuh/.fonts/win/times.ttf: Times New Roman:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta</span><br></pre></td></tr></table></figure> 字体名字应该是 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Times New Roman</span><br></pre></td></tr></table></figure></p></li>
-</ul>
-<h2 id="常用代码">常用代码</h2>
-<p>这个网站挺好，<a
-href="https://www.latexlive.com/">在线LaTeX公式编辑器-编辑器</a></p>
-<h3 id="分栏">分栏</h3>
-<blockquote>
-<p>columns</p>
-</blockquote>
-<p>有时候左图，右文字，宽度不要写死，建议用文本宽度的多少倍代替
-<code>0.6\textwidth</code></p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;columns&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\column</span>&#123;0.7<span class="keyword">\textwidth</span>&#125;</span><br><span class="line"></span><br><span class="line">    假装我是图</span><br><span class="line"></span><br><span class="line"><span class="keyword">\column</span>&#123;0.3<span class="keyword">\textwidth</span>&#125;</span><br><span class="line"></span><br><span class="line">  文字</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;columns&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="公式">公式</h3>
-<ul>
-<li><p>简单公式</p>
-<p><span class="math display">\[
-  \begin{equation}
-  f = m \times a
-  \end{equation}
-  \]</span></p>
-<ul>
-<li><p>带序号</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 带序号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">f = m <span class="keyword">\times</span> a</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>不要序号 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation*&#125;</span><br><span class="line">f = m <span class="keyword">\times</span> a</span><br><span class="line"><span class="keyword">\end</span>&#123;equation*&#125;</span><br></pre></td></tr></table></figure></p>
-<p>也可以换成 <figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span> f = m <span class="keyword">\times</span> a <span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>行内公式</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span>f = m <span class="keyword">\times</span> a<span class="built_in">$</span></span><br></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p>多行公式</p></li>
-</ul>
-<blockquote>
-<p>这里都用 aligned 实现，<code>\\</code>换行，<code>&amp;</code>
-每行对齐的地方</p>
-</blockquote>
-<p>简单</p>
-<p><span class="math display">\[
-\begin{aligned}
-        &amp;a=1\\
-        &amp;bscw=2
-\end{aligned}
-\qquad c=3
-\]</span></p>
-<p>注意对于 <code>aligned</code>
-前后<strong>不要空行</strong>，会莫名其妙错误， <code>&amp;</code>
-为了左对齐</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">            <span class="built_in">&amp;</span>a=1<span class="keyword">\\</span></span><br><span class="line">            <span class="built_in">&amp;</span>bscw=2</span><br><span class="line">    <span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line">    <span class="keyword">\qquad</span> c=3</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
-<p>推导</p>
-<p><span class="math display">\[
-\begin{aligned}
-        a&amp;=c+b+x\\
-        &amp;=2+1+2\\
-        &amp;=5
-\end{aligned}
-\]</span></p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">  <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">          a<span class="built_in">&amp;</span>=c+b+x<span class="keyword">\\</span></span><br><span class="line">          <span class="built_in">&amp;</span>=2+1+2<span class="keyword">\\</span></span><br><span class="line">          <span class="built_in">&amp;</span>=5</span><br><span class="line">  <span class="keyword">\end</span>&#123;aligned&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
-<p>大括号</p>
-<p><span class="math display">\[
-\left\{  
-      \begin{aligned}
-      &amp;x=\dfrac{3\pi}{2}(1+2t)\cos(\dfrac{3\pi}{2}(1+2t)),
-&amp;  \\  
-      &amp;                                                &amp; 0\leq
-s\leq L,|t|\leq1.\\  
-      &amp;z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &amp;    
-      \end{aligned}  
-\right.  
-\]</span></p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line"><span class="keyword">\left</span><span class="keyword">\&#123;</span>  </span><br><span class="line">      <span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">      <span class="built_in">&amp;</span>x=<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)<span class="keyword">\cos</span>(<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)), <span class="built_in">&amp;</span>  <span class="keyword">\\</span>  </span><br><span class="line">      <span class="built_in">&amp;</span>                                                <span class="built_in">&amp;</span> 0<span class="keyword">\leq</span> s<span class="keyword">\leq</span> L,|t|<span class="keyword">\leq</span>1.<span class="keyword">\\</span>  </span><br><span class="line">      <span class="built_in">&amp;</span>z=<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)<span class="keyword">\sin</span>(<span class="keyword">\dfrac</span>&#123;3<span class="keyword">\pi</span>&#125;&#123;2&#125;(1+2t)), <span class="built_in">&amp;</span>    </span><br><span class="line">      <span class="keyword">\end</span>&#123;aligned&#125;  </span><br><span class="line"><span class="keyword">\right</span>.  </span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="图片">图片</h3>
-<p>先在最开始引用相关的包</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 为了图片不输入路径，只输入文件名</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;pictures/&#125;&#123;picture/&#125;&#123;pic/&#125;&#123;pics/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 为了可以引用子图，并且单独caption</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;floatrow&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;subfig&#125;</span><br><span class="line"><span class="keyword">\floatsetup</span>[figure]&#123;subcapbesideposition=top&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 修复上面的冲突</span></span><br><span class="line"><span class="keyword">\usepackage</span>[titles,subfigure]&#123;tocloft&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>常规</p>
-</blockquote>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H]</span><br><span class="line">    <span class="keyword">\includegraphics</span>[angle=0, width=0.3<span class="keyword">\textwidth</span>]&#123;图片文件名&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;解释图片，或者标题&#125;</span><br><span class="line">    <span class="keyword">\label</span>&#123;test111&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-<p>说明</p>
-<ul>
-<li><code>label</code>
-图片的引用标识，<strong>必须唯一</strong>！，可以在引用处点击跳转，使用方法如下
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">如图<span class="keyword">\ref</span>&#123;test111&#125;</span><br></pre></td></tr></table></figure></li>
-<li><code>angle</code> 可以设置图片旋转角度</li>
-<li><code>width=0.3\textwidth</code>，按照当前行的比例，设置图片宽度</li>
-<li>图片可以只有文件名。路径在上面统一设置
-<code>\graphicspath&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;pictures/&#125;&#123;picture/&#125;&#123;pic/&#125;&#123;pics/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</code></li>
-<li><code>H</code> 注意 H 表示固定图片在文中的位置</li>
-<li></li>
-</ul>
-<blockquote>
-<p>子图可
-<code>label</code>引用，可分别<code>caption</code>、<code>label</code></p>
-</blockquote>
-<p>这是一个 <span class="math inline">\(2\times 2\)</span> 的图</p>
-<figure>
-<img src="/images/2022/tex/subfig.png" alt="子图" />
-<figcaption aria-hidden="true">子图</figcaption>
-</figure>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="comment">% label</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 为了图片不输入路径，只输入文件名</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#123;figure/&#125;&#123;image/&#125;&#123;images/&#125;&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;floatrow&#125;</span><br><span class="line"><span class="comment">% 为了可以引用子图，并且单独caption</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;subfig&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\subfloat</span>[这里是每个图片的说明]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2018-12&#125;</span><br><span class="line">        <span class="comment">% lzu_logo_w.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=0.6<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo<span class="built_in">_</span>w.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\subfloat</span>[也可以为空，比如下一个]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2020-04&#125;</span><br><span class="line">        <span class="comment">% lzu_logo.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[angle=0,width=0.2<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo.pdf&#125;</span><br><span class="line">    &#125;<span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\subfloat</span>[]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2019-08&#125;</span><br><span class="line">        <span class="comment">% lzu_logo_w.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[width=0.6<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo<span class="built_in">_</span>w.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\subfloat</span>[]&#123;</span><br><span class="line">        <span class="keyword">\label</span>&#123;2020-12&#125;</span><br><span class="line">        <span class="comment">% lzu_logo.pdf 你的文件名</span></span><br><span class="line">        <span class="keyword">\includegraphics</span>[angle=90, width=0.2<span class="keyword">\textwidth</span>]&#123;lzu<span class="built_in">_</span>logo.pdf&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;整个的说明&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="表格">表格</h3>
-<figure>
-<img src="/images/2022/tex/table1.png" alt="三线表格与表格合并" />
-<figcaption aria-hidden="true">三线表格与表格合并</figcaption>
-</figure>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="comment">% 多行合并</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;multirow&#125;</span><br><span class="line"><span class="comment">% 三线表格</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;booktabs&#125;</span><br><span class="line"><span class="comment">% 设置全局行间距</span></span><br><span class="line"><span class="keyword">\linespread</span>&#123;1.2&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;table&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;c|c|c|c|c|c&#125;</span><br><span class="line">        <span class="keyword">\toprule</span> 节点                 <span class="built_in">&amp;</span> 端口号 <span class="built_in">&amp;</span> CPU线程数              <span class="built_in">&amp;</span> 内存                    <span class="built_in">&amp;</span> 硬盘   <span class="built_in">&amp;</span> 购买年份                   <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\midrule</span> ns1                <span class="built_in">&amp;</span> 122 <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;32&#125; <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;4&#125;&#123;*&#125;&#123;124G&#125; <span class="built_in">&amp;</span> 798G <span class="built_in">&amp;</span> <span class="keyword">\multirow</span>&#123;4&#125;&#123;*&#125;&#123;2015年&#125; <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-2&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns2 <span class="built_in">&amp;</span> 222 <span class="built_in">&amp;</span>                     <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 1.7T <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-3&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns3 <span class="built_in">&amp;</span> 322 <span class="built_in">&amp;</span> 48                  <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 1.7T <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\cline</span>&#123;1-3&#125; <span class="keyword">\cline</span>&#123;5-5&#125; ns4 <span class="built_in">&amp;</span> 422 <span class="built_in">&amp;</span> 72                  <span class="built_in">&amp;</span>                       <span class="built_in">&amp;</span> 798G <span class="built_in">&amp;</span>                        <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span> ns5                  <span class="built_in">&amp;</span> 122 <span class="built_in">&amp;</span> 112                 <span class="built_in">&amp;</span> 2T                    <span class="built_in">&amp;</span> 15T  <span class="built_in">&amp;</span> 2023年                  <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\bottomrule</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="/images/2022/tex/table0.png" alt="多个斜线" />
-<figcaption aria-hidden="true">多个斜线</figcaption>
-</figure>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 多行合并</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;multirow&#125;</span><br><span class="line"><span class="comment">% 导入dashbox包，用于绘制虚线框</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;dashbox&#125;</span><br><span class="line"><span class="comment">% 表格斜线</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;diagbox&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\renewcommand</span>&#123;<span class="keyword">\arraystretch</span>&#125;&#123;1.5&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;c|c|c&#125;</span><br><span class="line">    <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="keyword">\diagbox</span>[width=4.6cm,height=1.25cm]&#123;Access structures&#125;&#123;<span class="keyword">\raisebox</span>&#123;-.5<span class="keyword">\height</span>&#125;&#123;Schemes&#125;&#125;&#123;<span class="keyword">\raisebox</span>&#123;-.5<span class="keyword">\height</span>&#125;&#123;Theory&#125;&#125;&#125; <span class="built_in">&amp;</span> <span class="keyword">\multicolumn</span>&#123;2&#125;&#123;c&#125;&#123;Linear space&#125;</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\cline</span>&#123;2-3&#125;</span><br><span class="line">                                                                                                                                           <span class="built_in">&amp;</span> Polynomial                          <span class="built_in">&amp;</span> Lattice</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line">    Threshold access structures                                                                                                            <span class="built_in">&amp;</span> [1] <span class="keyword">\quad</span> <span class="keyword">\dbox</span>&#123;[3][7][14][15][17]&#125; <span class="built_in">&amp;</span> [2][35][37][36]</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line">    General access structures</span><br><span class="line">                                                                                                                                           <span class="built_in">&amp;</span> [10][13][28][1][12][8][9] [29]      <span class="built_in">&amp;</span> [4]</span><br><span class="line">    <span class="keyword">\\</span> <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="其他">其他</h3>
-<ul>
-<li><p>图文间隔</p>
-<p>有时候图片、公式等等会因为各种原因，导致前后与正文间隔较小，看着很不爽</p>
-<p>减小纵向间距，正数可以增加间距</p>
-<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\vspace</span>&#123;-1cm&#125;</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\hspace</span>&#123;-1cm&#125;</span><br></pre></td></tr></table></figure></p></li>
-<li><p>LaTex的PPT下方显示参考文献</p>
-<blockquote>
-<p>因为答辩或者组会，老师可能问你这个文献年份、作者</p>
-</blockquote>
-<p>所以可以这么用</p>
-<p>最开头添加依赖和 <code>bib</code> 参考文献</p>
-<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\RequirePackage</span>[backend=bibtex, isbn=false, url=false]&#123;biblatex&#125;</span><br><span class="line"><span class="keyword">\setbeamerfont</span>&#123;footnote&#125;&#123;size=<span class="keyword">\tiny</span>&#125;</span><br><span class="line"><span class="keyword">\addbibresource</span>&#123;database.bib&#125;</span><br></pre></td></tr></table></figure> 正文</p>
-<p><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;frame&#125;&#123;现有研究&#125;</span><br><span class="line">    答辩中参考文献放在每页下面，方便应对提问：比如年限、作者、期刊等</span><br><span class="line">    <span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line">        <span class="keyword">\subfigure</span>[2nm、10-160<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.28<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">\subfigure</span>[5nm、50-350<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.36<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;<span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\subfigure</span>[20nm、25-45<span class="keyword">\%</span><span class="keyword">\footfullcite</span>&#123;Zhang2011&#125;]&#123;</span><br><span class="line">            <span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;lammps.png&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;frame&#125;</span><br></pre></td></tr></table></figure> 效果如图</p>
-<figure>
-<img src="/images/2022/tex/cite.png" alt="预览" />
-<figcaption aria-hidden="true">预览</figcaption>
-</figure></li>
-</ul>
-<h2 id="模板示例">模板示例</h2>
-<ul>
-<li>PPT模板：SimpleBeamerLZU：<a
-href="https://github.com/yuhldr/SimpleBeamerLZU">GitHub</a>、<a
-href="https://gitee.com/yuhldr/SimpleBeamerLZU">Gitee</a></li>
-<li>毕业论文模板：LZUThesis2020：<a
-href="https://github.com/yuhldr/LZUThesis2020">GitHub</a>、<a
-href="https://gitee.com/yuhldr/LZUThesis2020">Gitee</a></li>
-</ul>
-<hr />
-<p>本文作者：yuhldr<br />本文地址： <a
-href="https://yuhldr.github.io/posts/2dcfe2a6.html">https://yuhldr.github.io/posts/2dcfe2a6.html</a>
-<br /> 版权声明：转载请注明出处！</p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>latex</tag>
       </tags>
   </entry>
   <entry>
@@ -2580,10 +2585,10 @@ href="https://yuhldr.github.io/posts/4bdf01b7.html">https://yuhldr.github.io/pos
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>mpi</tag>
         <tag>intel</tag>
         <tag>fortran</tag>
         <tag>ifort</tag>
+        <tag>mpi</tag>
       </tags>
   </entry>
   <entry>
@@ -2931,8 +2936,8 @@ href="https://yuhldr.github.io/posts/bfa79f01.html">https://yuhldr.github.io/pos
       <tags>
         <tag>ubuntu</tag>
         <tag>lammps</tag>
-        <tag>slurm</tag>
         <tag>mpi</tag>
+        <tag>slurm</tag>
         <tag>openmpi</tag>
       </tags>
   </entry>
@@ -4401,8 +4406,8 @@ href="https://yuhldr.github.io/posts/30877.html">https://yuhldr.github.io/posts/
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>ubuntu</tag>
+        <tag>docker</tag>
         <tag>lammps</tag>
         <tag>vpn</tag>
       </tags>
@@ -4463,8 +4468,8 @@ href="https://yuhldr.github.io/posts/52201.html">https://yuhldr.github.io/posts/
         <category>Docker</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>wsl</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -5677,56 +5682,6 @@ href="https://yuhldr.github.io/posts/46614.html">https://yuhldr.github.io/posts/
       </tags>
   </entry>
   <entry>
-    <title>Windows Terminal美化配置</title>
-    <url>/posts/7737.html</url>
-    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
-</blockquote>
-<h2 id="默认打开">默认打开</h2>
-<p>打开WSL的某一个还是windows</p>
-<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
-中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
-判断）</p>
-<h2 id="安装字体">安装字体</h2>
-<p>在这里下载：<a
-href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
-里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
-<p>windows-terminal右上角设置</p>
-<h2 id="颜色主题">颜色主题</h2>
-<p>颜色主题到这里找 <a
-href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
-<code>.json</code> 文件，类似下面的内容，复制，然后在
-<code>schemes</code> 上括号下面添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Monokai Soda&quot;</span>,</span><br><span class="line">    <span class="string">&quot;black&quot;</span>: <span class="string">&quot;#1a1a1a&quot;</span>,</span><br><span class="line">    <span class="string">&quot;red&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;green&quot;</span>: <span class="string">&quot;#98e024&quot;</span>,</span><br><span class="line">    <span class="string">&quot;yellow&quot;</span>: <span class="string">&quot;#fa8419&quot;</span>,</span><br><span class="line">    <span class="string">&quot;blue&quot;</span>: <span class="string">&quot;#9d65ff&quot;</span>,</span><br><span class="line">    <span class="string">&quot;purple&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cyan&quot;</span>: <span class="string">&quot;#58d1eb&quot;</span>,</span><br><span class="line">    <span class="string">&quot;white&quot;</span>: <span class="string">&quot;#c4c5b5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightBlack&quot;</span>: <span class="string">&quot;#625e4c&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightRed&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightGreen&quot;</span>: <span class="string">&quot;#98e024&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightYellow&quot;</span>: <span class="string">&quot;#e0d561&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightBlue&quot;</span>: <span class="string">&quot;#9d65ff&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightPurple&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightCyan&quot;</span>: <span class="string">&quot;#58d1eb&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightWhite&quot;</span>: <span class="string">&quot;#f6f6ef&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background&quot;</span>: <span class="string">&quot;#1a1a1a&quot;</span>,</span><br><span class="line">    <span class="string">&quot;foreground&quot;</span>: <span class="string">&quot;#c4c5b5&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="相关配置">相关配置</h2>
-<p>在 <code>defaults</code> 上括号下面添加</p>
-<ul>
-<li>注意字体：<code>fontFace</code></li>
-<li>注意图片地址：<code>backgroundImage</code></li>
-<li>注意：<code>colorScheme</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;fontFace&quot;</span>: <span class="string">&quot;Cascadia Code&quot;</span>, // 字体</span><br><span class="line"><span class="string">&quot;fontSize&quot;</span>: 12, // 字号</span><br><span class="line"><span class="string">&quot;acrylicOpacity&quot;</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">&quot;colorScheme&quot;</span>: <span class="string">&quot;Monokai Soda&quot;</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">&quot;closeOnExit&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;cursorColor&quot;</span>: <span class="string">&quot;#ffffff&quot;</span>, //光标颜色</span><br><span class="line"><span class="string">&quot;cursorShape&quot;</span>: <span class="string">&quot;emptyBox&quot;</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">&quot;historySize&quot;</span>: 9999999,</span><br><span class="line"><span class="string">&quot;backgroundImage&quot;</span>: <span class="string">&quot;D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg&quot;</span>, //配置背景图片地址</span><br><span class="line"><span class="string">&quot;backgroundImageOpacity&quot;</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">&quot;padding&quot;</span>: <span class="string">&quot;0, 0, 0, 0&quot;</span>,</span><br><span class="line"><span class="string">&quot;snapOnInput&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">&quot;//wsl$/Ubuntu-20.04/home/yuh&quot;</span>,</span><br><span class="line"><span class="string">&quot;startingDirectory&quot;</span>: <span class="string">&quot;%USERPROFILE%&quot;</span>,</span><br><span class="line"><span class="string">&quot;useAcrylic&quot;</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">&quot;tabTitle&quot;</span>: <span class="string">&quot;chessYu&quot;</span> //标签名称</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="https://juejin.cn/post/6844904116322304014">Windows
-Terminal美化界面</a></li>
-</ul>
-<hr />
-<p>本文作者：yuhldr<br />本文地址： <a
-href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
-<br /> 版权声明：转载请注明出处！</p>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>terminal</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows包管理scoop配置使用</title>
     <url>/posts/40358.html</url>
     <content><![CDATA[<h2 id="windows10可能禁止脚本运行">windows10可能禁止脚本运行</h2>
@@ -5790,8 +5745,58 @@ href="https://yuhldr.github.io/posts/40358.html">https://yuhldr.github.io/posts/
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>scoop</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows Terminal美化配置</title>
+    <url>/posts/7737.html</url>
+    <content><![CDATA[<p>微软应用市场里直接安装就行，我是用的[scoop安装配置]，在归档里找</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scoop install windows-terminal</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最新版1.8中，点击设置，是图形界面，想找到json数据，点左下角<code>打开JSON文件</code>。</p>
+</blockquote>
+<h2 id="默认打开">默认打开</h2>
+<p>打开WSL的某一个还是windows</p>
+<p>修改 <code>defaultProfile</code>，修改为 <code>profiles - list</code>
+中其中一个的 <code>guid</code>（需要哪个用哪个，根据 <code>name</code>
+判断）</p>
+<h2 id="安装字体">安装字体</h2>
+<p>在这里下载：<a
+href="https://github.com/microsoft/cascadia-code">cascadia-code</a>，<code>releases</code>
+里下载，解压以后双击安装 <code>ttf/CascadiaCode.ttf</code> 这个文件</p>
+<p>windows-terminal右上角设置</p>
+<h2 id="颜色主题">颜色主题</h2>
+<p>颜色主题到这里找 <a
+href="https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/windowsterminal">iTerm2-Color-Schemes</a>，随便点开一个自己熟悉的
+<code>.json</code> 文件，类似下面的内容，复制，然后在
+<code>schemes</code> 上括号下面添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Monokai Soda&quot;</span>,</span><br><span class="line">    <span class="string">&quot;black&quot;</span>: <span class="string">&quot;#1a1a1a&quot;</span>,</span><br><span class="line">    <span class="string">&quot;red&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;green&quot;</span>: <span class="string">&quot;#98e024&quot;</span>,</span><br><span class="line">    <span class="string">&quot;yellow&quot;</span>: <span class="string">&quot;#fa8419&quot;</span>,</span><br><span class="line">    <span class="string">&quot;blue&quot;</span>: <span class="string">&quot;#9d65ff&quot;</span>,</span><br><span class="line">    <span class="string">&quot;purple&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cyan&quot;</span>: <span class="string">&quot;#58d1eb&quot;</span>,</span><br><span class="line">    <span class="string">&quot;white&quot;</span>: <span class="string">&quot;#c4c5b5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightBlack&quot;</span>: <span class="string">&quot;#625e4c&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightRed&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightGreen&quot;</span>: <span class="string">&quot;#98e024&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightYellow&quot;</span>: <span class="string">&quot;#e0d561&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightBlue&quot;</span>: <span class="string">&quot;#9d65ff&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightPurple&quot;</span>: <span class="string">&quot;#f4005f&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightCyan&quot;</span>: <span class="string">&quot;#58d1eb&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brightWhite&quot;</span>: <span class="string">&quot;#f6f6ef&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background&quot;</span>: <span class="string">&quot;#1a1a1a&quot;</span>,</span><br><span class="line">    <span class="string">&quot;foreground&quot;</span>: <span class="string">&quot;#c4c5b5&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关配置">相关配置</h2>
+<p>在 <code>defaults</code> 上括号下面添加</p>
+<ul>
+<li>注意字体：<code>fontFace</code></li>
+<li>注意图片地址：<code>backgroundImage</code></li>
+<li>注意：<code>colorScheme</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;fontFace&quot;</span>: <span class="string">&quot;Cascadia Code&quot;</span>, // 字体</span><br><span class="line"><span class="string">&quot;fontSize&quot;</span>: 12, // 字号</span><br><span class="line"><span class="string">&quot;acrylicOpacity&quot;</span>: 0.6, // 透明度</span><br><span class="line"><span class="string">&quot;colorScheme&quot;</span>: <span class="string">&quot;Monokai Soda&quot;</span>, //颜色主题名称, 就是schemes下面的每个实例的 name 值</span><br><span class="line"><span class="string">&quot;closeOnExit&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;cursorColor&quot;</span>: <span class="string">&quot;#ffffff&quot;</span>, //光标颜色</span><br><span class="line"><span class="string">&quot;cursorShape&quot;</span>: <span class="string">&quot;emptyBox&quot;</span>, //光标类型  可选 bar | vintage | underscore | filledBox | emptyBox</span><br><span class="line"><span class="string">&quot;historySize&quot;</span>: 9999999,</span><br><span class="line"><span class="string">&quot;backgroundImage&quot;</span>: <span class="string">&quot;D:\\Users\\yuh\\scoop\\apps\\windows-terminal\\current\\Images\\img3.jpg&quot;</span>, //配置背景图片地址</span><br><span class="line"><span class="string">&quot;backgroundImageOpacity&quot;</span>: 0.25, //背景图片的透明度</span><br><span class="line"><span class="string">&quot;padding&quot;</span>: <span class="string">&quot;0, 0, 0, 0&quot;</span>,</span><br><span class="line"><span class="string">&quot;snapOnInput&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">//默认打开文件夹，如果是linux系统，可以设置为 <span class="string">&quot;//wsl$/Ubuntu-20.04/home/yuh&quot;</span>,</span><br><span class="line"><span class="string">&quot;startingDirectory&quot;</span>: <span class="string">&quot;%USERPROFILE%&quot;</span>,</span><br><span class="line"><span class="string">&quot;useAcrylic&quot;</span>: <span class="literal">false</span>, //是否开启毛玻璃特效，值为<span class="literal">false</span>的时候就没有毛玻璃特效</span><br><span class="line"><span class="string">&quot;tabTitle&quot;</span>: <span class="string">&quot;chessYu&quot;</span> //标签名称</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904116322304014">Windows
+Terminal美化界面</a></li>
+</ul>
+<hr />
+<p>本文作者：yuhldr<br />本文地址： <a
+href="https://yuhldr.github.io/posts/7737.html">https://yuhldr.github.io/posts/7737.html</a>
+<br /> 版权声明：转载请注明出处！</p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>terminal</tag>
       </tags>
   </entry>
   <entry>
@@ -7524,8 +7529,8 @@ href="https://yuhldr.github.io/posts/20828.html">https://yuhldr.github.io/posts/
 ]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>归档</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[
 ]]></content>
   </entry>
@@ -7536,8 +7541,8 @@ href="https://yuhldr.github.io/posts/20828.html">https://yuhldr.github.io/posts/
 ]]></content>
   </entry>
   <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[
 ]]></content>
   </entry>
