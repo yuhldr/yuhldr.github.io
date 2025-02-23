@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2024-08-31T09:28:49.955Z</updated>
+  <updated>2025-02-23T13:57:09.530Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh代理问题</title>
+    <link href="https://yuhldr.github.io/posts/d6442a48.html"/>
+    <id>https://yuhldr.github.io/posts/d6442a48.html</id>
+    <published>2025-02-23T13:26:27.000Z</published>
+    <updated>2025-02-23T13:57:09.530Z</updated>
+    
+    
+    <summary type="html">git clone git@github.com 最近好像也被屏蔽了，问AI回答的乱七八糟，网上搜索的也不正确，这里具体说明一下</summary>
+    
+    
+    
+    <category term="ssh git github" scheme="https://yuhldr.github.io/categories/ssh-git-github/"/>
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>网站通过certbot免费支持https</title>
@@ -54,9 +73,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
   </entry>
   
@@ -128,11 +147,11 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
@@ -151,9 +170,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
     
@@ -406,27 +425,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>archlinux安装xrdp的心酸路程</title>
-    <link href="https://yuhldr.github.io/posts/fae93d3c.html"/>
-    <id>https://yuhldr.github.io/posts/fae93d3c.html</id>
-    <published>2022-07-14T14:48:59.000Z</published>
-    <updated>2024-08-31T09:28:49.955Z</updated>
-    
-    
-    <summary type="html">archlinux安装xrdp，远程时，对于分辨率的适配比vnc好太多，而且远程时，别人看不到，但是安装中遇到了各种问题，官方文档也不靠谱</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
-    
-    <category term="xrdp" scheme="https://yuhldr.github.io/tags/xrdp/"/>
     
   </entry>
   
