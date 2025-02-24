@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2025-02-23T13:57:09.530Z</updated>
+  <updated>2025-02-24T09:07:25.142Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/d6442a48.html"/>
     <id>https://yuhldr.github.io/posts/d6442a48.html</id>
     <published>2025-02-23T13:26:27.000Z</published>
-    <updated>2025-02-23T13:57:09.530Z</updated>
+    <updated>2025-02-24T09:07:25.142Z</updated>
     
     
     <summary type="html">git clone git@github.com 最近好像也被屏蔽了，问AI回答的乱七八糟，网上搜索的也不正确，这里具体说明一下</summary>
@@ -73,9 +73,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
@@ -124,9 +124,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
     <category term="gitlab-runner" scheme="https://yuhldr.github.io/tags/gitlab-runner/"/>
     
@@ -147,11 +147,11 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
@@ -170,11 +170,11 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
