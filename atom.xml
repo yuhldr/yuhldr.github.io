@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2025-02-24T09:07:25.142Z</updated>
+  <updated>2025-03-15T20:04:49.245Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>速度自关联函数与声子态密度</title>
+    <link href="https://yuhldr.github.io/posts/685bd07.html"/>
+    <id>https://yuhldr.github.io/posts/685bd07.html</id>
+    <published>2025-03-15T17:32:32.000Z</published>
+    <updated>2025-03-15T20:04:49.245Z</updated>
+    
+    
+    <summary type="html">各种方案对比计算速度自关联函数与声子态密度</summary>
+    
+    
+    
+    <category term="物理" scheme="https://yuhldr.github.io/categories/%E7%89%A9%E7%90%86/"/>
+    
+    
+    <category term="lammps" scheme="https://yuhldr.github.io/tags/lammps/"/>
+    
+    <category term="vacf" scheme="https://yuhldr.github.io/tags/vacf/"/>
+    
+  </entry>
   
   <entry>
     <title>ssh代理问题</title>
@@ -124,9 +145,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
     
     <category term="gitlab-runner" scheme="https://yuhldr.github.io/tags/gitlab-runner/"/>
     
@@ -172,9 +193,9 @@
     
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
-    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
     
   </entry>
   
@@ -410,21 +431,6 @@
     <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
     
     <category term="json" scheme="https://yuhldr.github.io/tags/json/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python正则表达式</title>
-    <link href="https://yuhldr.github.io/posts/6bab798e.html"/>
-    <id>https://yuhldr.github.io/posts/6bab798e.html</id>
-    <published>2022-08-15T20:01:12.000Z</published>
-    <updated>2024-08-31T09:28:49.955Z</updated>
-    
-    
-    <summary type="html">测试描述</summary>
-    
-    
-    
     
   </entry>
   
