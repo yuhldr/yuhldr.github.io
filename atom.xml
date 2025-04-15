@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2025-03-15T20:04:49.245Z</updated>
+  <updated>2025-04-15T05:14:59.480Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gitlab部署在二级目录并使用Web-IDE</title>
+    <link href="https://yuhldr.github.io/posts/b59d8d5e.html"/>
+    <id>https://yuhldr.github.io/posts/b59d8d5e.html</id>
+    <published>2025-04-15T04:57:55.000Z</published>
+    <updated>2025-04-15T05:14:59.480Z</updated>
+    
+    
+    <summary type="html">没有多余的3级域名，所以把gitlab放在二级目录，使用docker部署、nginx转发，支持https</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>速度自关联函数与声子态密度</title>
@@ -94,9 +109,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
     <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
   </entry>
   
@@ -168,34 +183,11 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
+    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu24.04使用docker搭建gitlab</title>
-    <link href="https://yuhldr.github.io/posts/62cb640b.html"/>
-    <id>https://yuhldr.github.io/posts/62cb640b.html</id>
-    <published>2024-05-10T05:02:04.000Z</published>
-    <updated>2024-08-31T09:28:49.955Z</updated>
-    
-    
-    <summary type="html">使用 docker compose 配置 gitlab</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
-    
-    
-    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
-    
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
-    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
     
   </entry>
   

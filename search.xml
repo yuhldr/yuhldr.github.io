@@ -341,6 +341,53 @@ href="https://yuhldr.github.io/posts/2dcfe2a6.html">https://yuhldr.github.io/pos
       </tags>
   </entry>
   <entry>
+    <title>gitlab部署在二级目录并使用Web-IDE</title>
+    <url>/posts/b59d8d5e.html</url>
+    <content><![CDATA[<p>在很多时候只有域名 <code>xxxx.com</code> 无法使用
+<code>gitlab.xxxx.com</code> 这样的域名，所以部署在
+<code>https://xxxx.com/gitlab/</code>
+这里，但是这个很多小问题，而且gitlab已经支持这样的二级目录</p>
+<p>以下内容需修改</p>
+<ul>
+<li>安装地址 <code>/data/docker_apps/gitlab-ce/</code></li>
+<li>域名 <code>xxxx.com</code></li>
+<li>本地部署端口 <code>208</code></li>
+<li>发件人 <code>xxxx@163.com</code></li>
+<li>邮箱密钥 <code>xxxxxxxxxxxxxx</code></li>
+</ul>
+<h2 id="使用docker部署">使用docker部署</h2>
+<p>我这里把gitlab放在了 <code>/data/docker_apps/gitlab-ce/</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 最新版是这样</span></span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<p>docker-compose的部署文件如下，其中 <code>xxxx.com</code>
+修改为自己的域名</p>
+<blockquote>
+<p>关键在于
+<code>external_url 'https://xxxx.com/gitlab'</code>，这个也可以在配置里修改</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">gitlab:</span></span><br><span class="line">    <span class="comment"># https://hub.docker.com/r/gitlab/gitlab-ce/tags</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.io/gitlab/gitlab-ce:17.10.4-ce.0</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">gitlab</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="comment"># xxxx.com 需要修改为真实域名</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">&#x27;xxxx.com&#x27;</span></span><br><span class="line">    <span class="comment"># https://xxxx.com 需要修改为真实域名</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">GITLAB_OMNIBUS_CONFIG:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        external_url &#x27;https://xxxx.com/gitlab&#x27;</span></span><br><span class="line"><span class="string"></span>    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">icpcs</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="comment"># 注意https必须443</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;208:443&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;230:22&#x27;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">    <span class="comment"># 配置详细见下面</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/data/docker_apps/gitlab-ce/config:/etc/gitlab</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/data/docker_apps/gitlab-ce/logs:/var/log/gitlab</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/data/docker_apps/gitlab-ce/data:/var/opt/gitlab</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">icpcs:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">ipam:</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">subnet:</span> <span class="number">10.13</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br><span class="line">          <span class="attr">gateway:</span> <span class="number">10.13</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>部分配置可以再次修改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 与上面安装地址和映射地址有关</span></span><br><span class="line">vim /data/docker_apps/gitlab-ce/config/gitlab.rb</span><br></pre></td></tr></table></figure>
+<p>参考如下</p>
+<figure class="highlight rb"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在docker里配置了，这里可以不配置 external_url</span></span><br><span class="line">external_url <span class="string">&#x27;https://xxxx.com/gitlab&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># git clone 时的地址</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_ssh_host&#x27;</span>] = <span class="string">&#x27;你的ip地址或者其他配置&#x27;</span></span><br><span class="line"><span class="comment"># git clone 时的端口</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_shell_ssh_port&#x27;</span>] = <span class="number">230</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gitlab_rails[<span class="string">&#x27;backup_keep_time&#x27;</span>] = <span class="number">7776000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据自己的内存和cpu核心调整</span></span><br><span class="line">sidekiq[<span class="string">&#x27;concurrency&#x27;</span>] = <span class="number">10</span></span><br><span class="line">postgresql[<span class="string">&#x27;shared_buffers&#x27;</span>] = <span class="string">&quot;10GB&quot;</span></span><br><span class="line">postgresql[<span class="string">&#x27;max_worker_processes&#x27;</span>] = <span class="number">16</span></span><br><span class="line">puma[<span class="string">&#x27;per_worker_max_memory_mb&#x27;</span>] = <span class="number">2048</span></span><br><span class="line">puma[<span class="string">&#x27;worker_processes&#x27;</span>] = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮件发送的发件人，这里是163邮箱 xxxx@163.com </span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_password&#x27;</span>] = <span class="string">&quot;xxxxxxxxxxxxxx&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_user_name&#x27;</span>] = <span class="string">&quot;xxxx@163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_from&#x27;</span>] = <span class="string">&#x27;xxxx@163.com&#x27;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_reply_to&#x27;</span>] = <span class="string">&#x27;xxxx@163.com&#x27;</span></span><br><span class="line"></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_domain&#x27;</span>] = <span class="string">&quot;smtp.163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_address&#x27;</span>] = <span class="string">&quot;smtp.163.com&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_port&#x27;</span>] = <span class="number">465</span></span><br><span class="line"></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable&#x27;</span>] = <span class="literal">true</span> </span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_authentication&#x27;</span>] = <span class="string">&quot;login&quot;</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_enable_starttls_auto&#x27;</span>] = <span class="literal">false</span> </span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_tls&#x27;</span>] = <span class="literal">true</span> </span><br><span class="line">gitlab_rails[<span class="string">&#x27;smtp_pool&#x27;</span>] = <span class="literal">false</span></span><br><span class="line">gitlab_rails[<span class="string">&#x27;gitlab_email_enabled&#x27;</span>] = <span class="literal">true</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="nginx配置">nginx配置</h2>
+<p>转发二级目录，需要注意的是</p>
+<blockquote>
+<p>proxy_pass 传递原始URI
+<code>https://localhost:208;</code>，如果后面加上了 <code>/gitlab</code>
+使用Web-IDE会无法显示文件：<a
+href="https://gitlab.com/gitlab-org/gitlab/-/issues/341944">看这里</a></p>
+</blockquote>
+<p>在nginx配置添加如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location /gitlab &#123;</span><br><span class="line">    # 安全头配置</span><br><span class="line">    add_header Strict-Transport-Security &quot;max-age=15552000; includeSubDomains; preload&quot; always;</span><br><span class="line">    add_header X-Download-Options noopen;</span><br><span class="line"></span><br><span class="line">    # 关键：传递原始URI，如果后面加上了 `/gitlab` 使用Web-IDE会无法显示文件</span><br><span class="line">    proxy_pass https://localhost:208;</span><br><span class="line"></span><br><span class="line">    # 请求头配置</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"></span><br><span class="line">    # 性能优化</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line">    proxy_buffering off;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<hr />
+<p>本文作者：yuhldr<br />本文地址： <a
+href="https://yuhldr.github.io/posts/undefined.html">https://yuhldr.github.io/posts/undefined.html</a>
+<br /> 版权声明：转载请注明出处！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>速度自关联函数与声子态密度</title>
     <url>/posts/685bd07.html</url>
     <content><![CDATA[<blockquote>
@@ -670,8 +717,8 @@ href="https://yuhldr.github.io/posts/f0d02c9.html">https://yuhldr.github.io/post
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>ubuntu</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -836,58 +883,9 @@ href="https://yuhldr.github.io/posts/ec194a20.html">https://yuhldr.github.io/pos
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>ubuntu</tag>
         <tag>docker</tag>
         <tag>nextcloud</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu24.04使用docker搭建gitlab</title>
-    <url>/posts/62cb640b.html</url>
-    <content><![CDATA[<p>先按照 <a href="f0d02c9.html">这里配置docker</a></p>
-<p>然后使用 <code>docker compose</code> 配置，更新简单</p>
-<h2 id="创建docker-compose文件">创建docker-compose文件</h2>
-<p>创建 <code>docker-compose.yaml</code> 文件，内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">services:</span><br><span class="line"></span><br><span class="line">  gitlab:</span><br><span class="line">    <span class="comment"># https://hub.docker.com/r/gitlab/gitlab-ce/tags</span></span><br><span class="line">    image: docker.io/gitlab/gitlab-ce:16.11.1-ce.0</span><br><span class="line">    container_name: gitlab</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - icpcs</span><br><span class="line">    environment:</span><br><span class="line">      - GITLAB_RELATIVE_URL_ROOT=/gitlab</span><br><span class="line">    ports:</span><br><span class="line">      - 208:80</span><br><span class="line">      - 230:22</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/docker_apps/gitlab-ce/config:/etc/gitlab</span><br><span class="line">      - /data/docker_apps/gitlab-ce/logs:/var/log/gitlab</span><br><span class="line">      - /data/docker_apps/gitlab-ce/data:/var/opt/gitlab</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  icpcs:</span><br><span class="line">    driver: bridge</span><br><span class="line">    ipam:</span><br><span class="line">     config:</span><br><span class="line">       - subnet: 10.13.0.0/16</span><br><span class="line">         gateway: 10.13.0.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意，<code>10.13.0</code> 不要与本地网络其他ip冲突</li>
-<li>版本为 <code>gitlab-ce:16.11.1-ce.0</code> 可以在 <a
-href="https://hub.docker.com/r/gitlab/gitlab-ce/tags">docker-hub</a>
-查看有哪些版本</li>
-</ul>
-<h2 id="创建本地数据目录">创建本地数据目录</h2>
-<p>这里数据都放在了 <code>/data/docker_apps/gitlab-ce</code>
-这里，你也可以放在其他地方，但是注意上面docker-compose文件中对应的路径也要修改</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /data/docker_apps/gitlab-ce/config</span><br><span class="line"><span class="built_in">mkdir</span> /data/docker_apps/gitlab-ce/logs</span><br><span class="line"><span class="built_in">mkdir</span> /data/docker_apps/gitlab-ce/data</span><br></pre></td></tr></table></figure>
-<h2 id="安装">安装</h2>
-<p>在 <code>docker-compose.yaml</code> 文件所在目录，执行</p>
-<blockquote>
-<p>注意最新版没有 <code>docker-compose</code></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<h2 id="配置">配置</h2>
-<p>只能作参考，比如 <code>xxx@163.com</code>
-改成你的邮箱，<code>mailpasswd</code> 改成你的密码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /data/docker_apps/gitlab-ce/config/gitlab.rb</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">external_url &#x27;https://xxxx.cn/gitlab&#x27;</span><br><span class="line"></span><br><span class="line">gitlab_rails[&#x27;gitlab_ssh_host&#x27;] = &#x27;xxxx.cn&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;] = 230</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gitlab_rails[&#x27;backup_keep_time&#x27;] = 7776000</span><br><span class="line"></span><br><span class="line">sidekiq[&#x27;concurrency&#x27;] = 32</span><br><span class="line">postgresql[&#x27;shared_buffers&#x27;] = &quot;1024MB&quot;</span><br><span class="line">postgresql[&#x27;max_worker_processes&#x27;] = 16</span><br><span class="line"></span><br><span class="line">puma[&#x27;per_worker_max_memory_mb&#x27;] = 51200</span><br><span class="line">puma[&#x27;worker_processes&#x27;] = 25</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gitlab_rails[&#x27;smtp_enable&#x27;] = true </span><br><span class="line">gitlab_rails[&#x27;smtp_address&#x27;] = &quot;smtp.163.com&quot;</span><br><span class="line">gitlab_rails[&#x27;smtp_port&#x27;] = 465</span><br><span class="line">gitlab_rails[&#x27;smtp_user_name&#x27;] = &quot;xxx@163.com&quot;</span><br><span class="line">gitlab_rails[&#x27;smtp_password&#x27;] = &quot;mailpasswd&quot;</span><br><span class="line">gitlab_rails[&#x27;smtp_domain&#x27;] = &quot;smtp.163.com&quot;</span><br><span class="line">gitlab_rails[&#x27;smtp_authentication&#x27;] = &quot;login&quot;</span><br><span class="line">gitlab_rails[&#x27;smtp_enable_starttls_auto&#x27;] = false </span><br><span class="line">gitlab_rails[&#x27;smtp_tls&#x27;] = true </span><br><span class="line">gitlab_rails[&#x27;smtp_pool&#x27;] = false</span><br><span class="line">gitlab_rails[&#x27;gitlab_email_enabled&#x27;] = true </span><br><span class="line">gitlab_rails[&#x27;gitlab_email_from&#x27;] = &#x27;xxx@163.com&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_email_reply_to&#x27;] = &#x27;xxx@163.com&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>nginx 配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen   82;</span><br><span class="line">    server_name  xxxx.cn;</span><br><span class="line"></span><br><span class="line">    absolute_redirect off;</span><br><span class="line">    #上传会被限制</span><br><span class="line">    client_max_body_size 1024m;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    location /gitlab/ &#123;</span><br><span class="line">        #add_header Set-Cookie &quot;__Host-Prefix=true; Path=/nc; Secure; SameSite=Strict&quot;;</span><br><span class="line">        add_header Strict-Transport-Security &quot;max-age=15552000; includeSubDomains; preload;&quot; always;</span><br><span class="line">        add_header X-Download-Options noopen;    </span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line"></span><br><span class="line">        proxy_pass     http://localhost:208/gitlab/;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;    </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="更新">更新</h2>
-<p>直接再次在 <code>docker-compose.yaml</code>
-文件所在目录运行这个命令即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<hr />
-<p>本文作者：yuhldr<br />本文地址： <a
-href="https://yuhldr.github.io/posts/62cb640b.html">https://yuhldr.github.io/posts/62cb640b.html</a>
-<br /> 版权声明：转载请注明出处！</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>ubuntu</tag>
-        <tag>gitlab</tag>
       </tags>
   </entry>
   <entry>
@@ -2901,10 +2899,10 @@ href="https://yuhldr.github.io/posts/4bdf01b7.html">https://yuhldr.github.io/pos
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>mpi</tag>
         <tag>intel</tag>
         <tag>fortran</tag>
         <tag>ifort</tag>
-        <tag>mpi</tag>
       </tags>
   </entry>
   <entry>
@@ -3252,8 +3250,8 @@ href="https://yuhldr.github.io/posts/bfa79f01.html">https://yuhldr.github.io/pos
       <tags>
         <tag>ubuntu</tag>
         <tag>lammps</tag>
-        <tag>mpi</tag>
         <tag>slurm</tag>
+        <tag>mpi</tag>
         <tag>openmpi</tag>
       </tags>
   </entry>
@@ -4722,8 +4720,8 @@ href="https://yuhldr.github.io/posts/30877.html">https://yuhldr.github.io/posts/
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>ubuntu</tag>
+        <tag>docker</tag>
         <tag>lammps</tag>
         <tag>vpn</tag>
       </tags>
@@ -4784,8 +4782,8 @@ href="https://yuhldr.github.io/posts/52201.html">https://yuhldr.github.io/posts/
         <category>Docker</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>wsl</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -5991,8 +5989,8 @@ href="https://yuhldr.github.io/posts/46614.html">https://yuhldr.github.io/posts/
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>windows</tag>
         <tag>wsl</tag>
+        <tag>windows</tag>
         <tag>clash</tag>
         <tag>vpn</tag>
       </tags>
@@ -7845,14 +7843,14 @@ href="https://yuhldr.github.io/posts/20828.html">https://yuhldr.github.io/posts/
 ]]></content>
   </entry>
   <entry>
-    <title>归档</title>
-    <url>/archives/index.html</url>
+    <title>分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[
 ]]></content>
   </entry>
   <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>归档</title>
+    <url>/archives/index.html</url>
     <content><![CDATA[
 ]]></content>
   </entry>
