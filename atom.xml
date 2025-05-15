@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2025-05-15T07:06:48.856Z</updated>
+  <updated>2025-05-15T07:07:24.431Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yuhldr.github.io/posts/b4137e00.html"/>
     <id>https://yuhldr.github.io/posts/b4137e00.html</id>
     <published>2025-05-15T06:53:44.000Z</published>
-    <updated>2025-05-15T07:06:48.856Z</updated>
+    <updated>2025-05-15T07:07:24.431Z</updated>
     
     
     <summary type="html">文档什么的不靠谱，这是结合自己情况与AI得到的</summary>
@@ -140,9 +140,9 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
@@ -214,11 +214,11 @@
     <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
-    
     <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
     
     <category term="nextcloud" scheme="https://yuhldr.github.io/tags/nextcloud/"/>
+    
+    <category term="ubuntu" scheme="https://yuhldr.github.io/tags/ubuntu/"/>
     
   </entry>
   
