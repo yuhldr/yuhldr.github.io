@@ -6,7 +6,7 @@
   <link href="https://yuhldr.github.io/atom.xml" rel="self"/>
   
   <link href="https://yuhldr.github.io/"/>
-  <updated>2025-05-15T07:07:24.431Z</updated>
+  <updated>2025-05-27T08:19:16.522Z</updated>
   <id>https://yuhldr.github.io/</id>
   
   <author>
@@ -17,25 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>archlinux系统gnome桌面cups配置打印机</title>
+    <link href="https://yuhldr.github.io/posts/a60a48cc.html"/>
+    <id>https://yuhldr.github.io/posts/a60a48cc.html</id>
+    <published>2025-05-27T07:44:29.000Z</published>
+    <updated>2025-05-27T08:19:16.522Z</updated>
+    
+    
+    <summary type="html">使用 cups和ipp 无需打印机驱动</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
+    
+    
+    <category term="archlinux" scheme="https://yuhldr.github.io/tags/archlinux/"/>
+    
+    <category term="cups" scheme="https://yuhldr.github.io/tags/cups/"/>
+    
+    <category term="ipp" scheme="https://yuhldr.github.io/tags/ipp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>archlinux使用pipewire控制声音与蓝牙</title>
     <link href="https://yuhldr.github.io/posts/b4137e00.html"/>
     <id>https://yuhldr.github.io/posts/b4137e00.html</id>
     <published>2025-05-15T06:53:44.000Z</published>
-    <updated>2025-05-15T07:07:24.431Z</updated>
+    <updated>2025-05-27T08:16:48.173Z</updated>
     
     
     <summary type="html">文档什么的不靠谱，这是结合自己情况与AI得到的</summary>
     
     
     
-    <category term="pipewire" scheme="https://yuhldr.github.io/categories/pipewire/"/>
-    
-    <category term="bluez" scheme="https://yuhldr.github.io/categories/pipewire/bluez/"/>
-    
-    <category term="kde" scheme="https://yuhldr.github.io/categories/pipewire/bluez/kde/"/>
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://yuhldr.github.io/tags/Linux/"/>
+    <category term="kde" scheme="https://yuhldr.github.io/tags/kde/"/>
+    
+    <category term="pipewire" scheme="https://yuhldr.github.io/tags/pipewire/"/>
+    
+    <category term="bluez" scheme="https://yuhldr.github.io/tags/bluez/"/>
     
   </entry>
   
@@ -44,21 +67,21 @@
     <link href="https://yuhldr.github.io/posts/b59d8d5e.html"/>
     <id>https://yuhldr.github.io/posts/b59d8d5e.html</id>
     <published>2025-04-15T04:57:55.000Z</published>
-    <updated>2025-05-15T07:06:17.805Z</updated>
+    <updated>2025-05-27T08:17:02.792Z</updated>
     
     
     <summary type="html">没有多余的3级域名，所以把gitlab放在二级目录，使用docker部署、nginx转发，支持https</summary>
     
     
     
-    <category term="gitlab" scheme="https://yuhldr.github.io/categories/gitlab/"/>
-    
-    <category term="docker" scheme="https://yuhldr.github.io/categories/gitlab/docker/"/>
-    
-    <category term="nginx" scheme="https://yuhldr.github.io/categories/gitlab/docker/nginx/"/>
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://yuhldr.github.io/tags/Linux/"/>
+    <category term="docker" scheme="https://yuhldr.github.io/tags/docker/"/>
+    
+    <category term="gitlab" scheme="https://yuhldr.github.io/tags/gitlab/"/>
+    
+    <category term="nginx" scheme="https://yuhldr.github.io/tags/nginx/"/>
     
   </entry>
   
@@ -88,17 +111,21 @@
     <link href="https://yuhldr.github.io/posts/d6442a48.html"/>
     <id>https://yuhldr.github.io/posts/d6442a48.html</id>
     <published>2025-02-23T13:26:27.000Z</published>
-    <updated>2025-02-24T09:07:25.142Z</updated>
+    <updated>2025-05-27T08:17:23.604Z</updated>
     
     
     <summary type="html">git clone git@github.com 最近好像也被屏蔽了，问AI回答的乱七八糟，网上搜索的也不正确，这里具体说明一下</summary>
     
     
     
-    <category term="ssh git github" scheme="https://yuhldr.github.io/categories/ssh-git-github/"/>
+    <category term="Linux" scheme="https://yuhldr.github.io/categories/Linux/"/>
     
     
-    <category term="Linux" scheme="https://yuhldr.github.io/tags/Linux/"/>
+    <category term="git" scheme="https://yuhldr.github.io/tags/git/"/>
+    
+    <category term="github" scheme="https://yuhldr.github.io/tags/github/"/>
+    
+    <category term="ssh" scheme="https://yuhldr.github.io/tags/ssh/"/>
     
   </entry>
   
@@ -412,27 +439,6 @@
     
     
     <category term="github" scheme="https://yuhldr.github.io/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python打包pip</title>
-    <link href="https://yuhldr.github.io/posts/4e0c9d8f.html"/>
-    <id>https://yuhldr.github.io/posts/4e0c9d8f.html</id>
-    <published>2022-09-28T13:18:27.000Z</published>
-    <updated>2024-08-31T09:28:49.955Z</updated>
-    
-    
-    <summary type="html">这里有很多坑，比如引入非python文件，比如有些python文件没有被打包进入，比如多个文件之间的引用问题</summary>
-    
-    
-    
-    <category term="Python" scheme="https://yuhldr.github.io/categories/Python/"/>
-    
-    
-    <category term="python" scheme="https://yuhldr.github.io/tags/python/"/>
-    
-    <category term="pip" scheme="https://yuhldr.github.io/tags/pip/"/>
     
   </entry>
   

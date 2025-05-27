@@ -341,6 +341,102 @@ href="https://yuhldr.github.io/posts/2dcfe2a6.html">https://yuhldr.github.io/pos
       </tags>
   </entry>
   <entry>
+    <title>archlinux系统gnome桌面cups配置打印机</title>
+    <url>/posts/a60a48cc.html</url>
+    <content><![CDATA[<ul>
+<li><a href="7d18e834">linux环境下连接windows共享的打印机</a></li>
+<li><a href="5401e6fb">局域网与打印机配置</a></li>
+</ul>
+<p>之前有几个可以看一下，这次主要说的是怎么使用cups直接添加打印机，支持无驱动安装（唯一的问题是，多份打印时，或出现一直打印不停止，必须手动停止）</p>
+<p>配置以后的效果，竟然可以显示墨水余量（我这个是gnome48）</p>
+<figure>
+<img src="/images/2025/archlinux_gnome48_printer.png" alt="gnome48" />
+<figcaption aria-hidden="true">gnome48</figcaption>
+</figure>
+<h2 id="打印机后台配置">打印机后台配置</h2>
+<p>首先通过 <a href="5401e6fb">局域网与打印机配置</a>
+使得自己的<code>电脑A</code>和<code>打印机B</code>处于同一个局域网下，然后，在这个<code>电脑A</code>的浏览器里访问<code>打印机B</code>的ip地址，我这里是
+<code>http://192.168.31.2/</code></p>
+<p>然后点击如下图，设置 <code>主机名称:</code> 和
+<code>Bonjour 服务名称:</code>，我这里设置的是
+<code>print3008</code></p>
+<figure>
+<img src="/images/2025/hp_admin_web.png" alt="惠普打印机后台管理" />
+<figcaption aria-hidden="true">惠普打印机后台管理</figcaption>
+</figure>
+<p>有可能需要重启打印机</p>
+<h2 id="电脑软件安装与网络配置">电脑软件安装与网络配置</h2>
+<p>我的archlinux系统，需要安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -Ss cups avahi nss-mdns</span><br></pre></td></tr></table></figure>
+<p>必须配置 <code>.local</code> 域名的解析，编辑</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/nsswitch.conf</span><br></pre></td></tr></table></figure>
+<p>前面加上 <code>#</code> 注释掉这一行，并添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns</span></span><br><span class="line">hosts: files mdns_minimal [NOTFOUND=<span class="built_in">return</span>] resolve myhostname dns</span><br></pre></td></tr></table></figure>
+<p>开启服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> --now avahi-daemon</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart avahi-daemon</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> --now cups</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart cups</span><br></pre></td></tr></table></figure>
+<p>检查是否找到打印机</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">driverless | grep ipp</span><br></pre></td></tr></table></figure>
+<p>略微等待可看到（其中 <code>print3008</code> 是之前网页中的设置）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ipps://print3008._ipps._tcp.<span class="built_in">local</span>/</span><br></pre></td></tr></table></figure>
+<p>说明打印机配置正确，另确定是否可以解析 <code>.local</code>（其中
+<code>print3008</code> 是之前网页中的设置）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping print3008.local</span><br></pre></td></tr></table></figure>
+<p>如果没问题，一切正常</p>
+<h2 id="cups添加打印机">cups添加打印机</h2>
+<p>访问 <a
+href="http://localhost:631/admin">http://localhost:631/admin</a>
+可能需要所如电脑解锁密码，点击 <code>add printer</code>，然后选中</p>
+<blockquote>
+<p>注意第二个图，必须是鼠标包含 <code>driverless</code>
+的选项，并且鼠标放在旁边显示
+<code>ipps://print3008._ipps._tcp.local/</code> （其中
+<code>print3008</code> 是之前网页中的设置）</p>
+</blockquote>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../images/2025/cups_add_printer.png"
+alt="add printer" /></td>
+<td><img src="../images/2025/cups_find_printer.png"
+alt="find_printer" /></td>
+</tr>
+</tbody>
+</table>
+<p>剩下全部继续，无需额外设置</p>
+<blockquote>
+<p>唯一的问题是，多份打印时，或出现一直打印不停止，必须手动停止</p>
+</blockquote>
+<p>但是 gnome里的这个页面我很喜欢</p>
+<figure>
+<img src="../images/2025/archlinux_gnome48_printer.png"
+alt="archlinux-gnome48" />
+<figcaption aria-hidden="true">archlinux-gnome48</figcaption>
+</figure>
+<hr />
+<p>本文作者：yuhldr<br />本文地址： <a
+href="https://yuhldr.github.io/posts/a60a48cc.html">https://yuhldr.github.io/posts/a60a48cc.html</a>
+<br /> 版权声明：转载请注明出处！</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>cups</tag>
+        <tag>ipp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>archlinux使用pipewire控制声音与蓝牙</title>
     <url>/posts/b4137e00.html</url>
     <content><![CDATA[<p>archlinux 上舍弃 pulse 使用 pipewire，我的是 KDE 桌面，gnome
@@ -374,12 +470,12 @@ href="https://yuhldr.github.io/posts/b4137e00.html">https://yuhldr.github.io/pos
 <br /> 版权声明：转载请注明出处！</p>
 ]]></content>
       <categories>
-        <category>pipewire</category>
-        <category>bluez</category>
-        <category>kde</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>kde</tag>
+        <tag>pipewire</tag>
+        <tag>bluez</tag>
       </tags>
   </entry>
   <entry>
@@ -429,12 +525,12 @@ href="https://yuhldr.github.io/posts/b59d8d5e.html">https://yuhldr.github.io/pos
 <br /> 版权声明：转载请注明出处！</p>
 ]]></content>
       <categories>
-        <category>gitlab</category>
-        <category>docker</category>
-        <category>nginx</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>docker</tag>
+        <tag>gitlab</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -704,10 +800,12 @@ href="https://yuhldr.github.io/posts/d6442a48.html">https://yuhldr.github.io/pos
 <br /> 版权声明：转载请注明出处！</p>
 ]]></content>
       <categories>
-        <category>ssh git github</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>ssh</tag>
       </tags>
   </entry>
   <entry>
